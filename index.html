@@ -859,13 +859,17 @@ const st=document.querySelector('#storage-status');if(st)st.textContent=storeOK?
 const proof=document.getElementById('save-proof');if(proof)proof.textContent=storeOK?'✅ 已写入本机存储，最近保存：'+new Date().toLocaleTimeString('zh-CN')+'。请退出后用同一链接重新进入再确认。':'⚠️ 存储失败：当前窗口不能确保记录保留。请复制备份文本，或使用托管网站链接打开。';
 return storeOK;}
 function round(m){return Math.max(1,Math.min(3,Number(state.round[m])||1));}
-function setRound(m,r){captureFields(m);state.round[m]=r;renderFields(m);renderBars();renderGrades();save();}
+function setRound(m,r){captureFields(m);state.round[m]=r;filter[m]=r>1;renderFields(m);renderBars();renderMarks();renderGrades();save();}
 function captureFields(m){let r=round(m);document.querySelectorAll('[data-mode="'+m+'"].blank-field,[data-mode="'+m+'"].response').forEach(el=>{let n=el.dataset.n,b=el.dataset.b||'essay';state.draft[id(m,n,r)+'-'+b]=el.value;});}
 function renderFields(m){let r=round(m);document.querySelectorAll('[data-mode="'+m+'"].blank-field,[data-mode="'+m+'"].response').forEach(el=>{let n=el.dataset.n,b=el.dataset.b||'essay';el.value=state.draft[id(m,n,r)+'-'+b]||'';});}
 function renderBars(){['memory','scene'].forEach(m=>{let r=round(m);document.querySelectorAll('[data-rselect="'+m+'"] button').forEach(b=>b.classList.toggle('selected',+b.dataset.r===r));let completed=!!state.done[m+'-'+r];document.getElementById('finish-'+m).textContent=completed?'撤销“第'+r+'轮已核对”':'第'+r+'轮全部核对完毕';document.getElementById('done-'+m).textContent=completed?'✓ 第'+r+'轮已核对': '第'+r+'轮尚未核对';document.getElementById('filter-'+m).textContent='只看待巩固题：'+(filter[m]?'开':'关');});}
 function firstCorrect(m,n){for(let r=1;r<=3;r++){if(state.done[m+'-'+r]&&state.tick[id(m,n,r)])return r;}return 0;}
+function priorMastered(m,n,r){for(let p=1;p<r;p++){if(state.done[m+'-'+p]&&state.tick[id(m,n,p)])return p;}return 0;}
 function getStatus(m,n){let x=firstCorrect(m,n),d=[1,2,3].filter(r=>state.done[m+'-'+r]);if(x===1)return ['首轮掌握','good'];if(x===2)return ['第2轮掌握','good'];if(x===3)return ['第3轮掌握','good'];if(d.length===3)return ['三轮仍需巩固','bad'];if(d.length>0)return ['继续练习',''];return ['尚未记录',''];}
-function renderMarks(){document.querySelectorAll('input.trial').forEach(el=>{el.checked=!!state.tick[id(el.dataset.mode,el.dataset.n,el.dataset.round)];});document.querySelectorAll('.card').forEach(c=>{let m=c.dataset.mode,n=+c.dataset.n,s=getStatus(m,n),badge=document.querySelector('#st-'+m+'-'+n);badge.textContent=s[0];badge.className='status '+s[1];let mustReview=filter[m]&&firstCorrect(m,n)===0;c.classList.toggle('hide-filter',filter[m]&&!mustReview);});}
+function renderMarks(){document.querySelectorAll('input.trial').forEach(el=>{el.checked=!!state.tick[id(el.dataset.mode,el.dataset.n,el.dataset.round)];});document.querySelectorAll('.card').forEach(c=>{let m=c.dataset.mode,n=+c.dataset.n,s=getStatus(m,n),badge=document.querySelector('#st-'+m+'-'+n);badge.textContent=s[0];badge.className='status '+s[1];let past=priorMastered(m,n,round(m));c.classList.toggle('hide-filter',!!filter[m]&&!!past);
+c.querySelectorAll('.blank-field,.response').forEach(el=>{el.disabled=!!past;});
+if(past){badge.textContent='第'+past+'轮已掌握 · 本轮免做';badge.className='status good';}
+else if(!state.tick[id(m,n,round(m))]&&state.graded[id(m,n,round(m))]){badge.textContent='待巩固';badge.className='status bad';}});}
 
 function prepareAnswerBlocks(){
   const sources=Array.from(document.querySelectorAll('#key-list details'));
@@ -888,6 +892,7 @@ function prepareAnswerBlocks(){
 function roundCompletion(m){
   let total=0,complete=0,missingFields=0;
   document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
+    if(priorMastered(m,Number(card.dataset.n),round(m)))return;
     const fields=Array.from(card.querySelectorAll('.blank-field,.response'));
     total++;
     if(!fields.length){complete++;return;}
@@ -895,11 +900,12 @@ function roundCompletion(m){
     if(missing===0)complete++;
     missingFields+=missing;
   });
-  return {total,complete,missingQuestions:total-complete,missingFields,allComplete:total>0&&complete===total};
+  return {total,complete,missingQuestions:total-complete,missingFields,allComplete:(total===0||complete===total)};
 }
 function roundEvaluated(m,r){
   let evaluated=true;
   document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
+    if(priorMastered(m,Number(card.dataset.n),r))return;
     const key=id(m,Number(card.dataset.n),r);
     if(!state.tick[key]&&!state.graded[key])evaluated=false;
   });
@@ -913,6 +919,7 @@ function renderGrades(){
     let eligible=0,shown=0,checked=0;
     document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
       const n=Number(card.dataset.n),key=id(m,n,r);
+      if(priorMastered(m,n,r)){const answer=card.querySelector('.grade-answer');if(answer)answer.hidden=true;return;}
       const fields=Array.from(card.querySelectorAll('.blank-field,.response'));
       const cardComplete=!fields.length||fields.every(field=>String(field.value||'').trim());
       if(!cardComplete&&state.graded[key]){delete state.graded[key];cleaned=true;}
@@ -965,6 +972,7 @@ window.gradeRound=function(m){
   let revealed=0,locked=0;
   document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
     const n=Number(card.dataset.n),key=id(m,n,r);
+    if(priorMastered(m,n,r))return;
     if(state.tick[key]){locked++;return;}
     if(state.graded[key])return;
     if(!card.querySelector('.grade-answer'))return;
@@ -1024,7 +1032,7 @@ document.querySelectorAll('.trial').forEach(el=>el.addEventListener('change',()=
 document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
 document.addEventListener('click',e=>{let b=e.target.closest('.chip[data-goto]');if(b){let [m,n]=b.dataset.goto.split('-');window.jumpTo(m,+n);}});
 document.querySelectorAll('.roundselect').forEach(w=>w.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setRound(w.dataset.rselect,+b.dataset.r))));
-prepareAnswerBlocks();load();renderFields('memory');renderFields('scene');render();save();
+prepareAnswerBlocks();load();filter.memory=round('memory')>1;filter.scene=round('scene')>1;renderFields('memory');renderFields('scene');render();save();
 })();
 </script><script type="module">
 
@@ -1181,6 +1189,15 @@ function makeRoundPayload(part, roundNumber, state, name, term, stage) {
   for (let number = 1; number <= CONFIG.questionCount; number++) {
     const card = getQuestionCard(part, number);
     if (!card) continue;
+    if (roundNumber > 1) {
+      let masteredPreviously = false;
+      for (let prior = 1; prior < roundNumber; prior++) {
+        if (state.done?.[part.key + "-" + prior] && state.tick?.[part.key + "-" + number + "-" + prior]) {
+          masteredPreviously = true; break;
+        }
+      }
+      if (masteredPreviously) continue;
+    }
     let title = "";
     let expected = "";
     const fields = {};
