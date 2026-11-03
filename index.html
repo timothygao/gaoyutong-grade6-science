@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="color-scheme" content="light"><title>四年级科学·健康生活｜三轮学习追踪</title>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="color-scheme" content="light"><title>六年级科学·健康生活｜三轮学习追踪</title>
 <style>
 :root{--blue:#15375e;--sea:#087f83;--border:#dce5ed;--ink:#273648;--muted:#687b90;--bg:#f3f6fa;--gold:#fff8e8;--green:#17784d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
@@ -12,12 +12,74 @@ nav{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px}.navbtn{border:1px soli
 .files{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0}.upload{display:inline-block;border:1px solid #a8bac9;border-radius:10px;padding:9px 12px;background:#fff;color:var(--blue);cursor:pointer;font-size:14px}.disabled-js{display:none}.hide-filter{display:none!important}.print-header{display:none}
 @media(max-width:660px){.wrap{padding:14px 13px}h1{font-size:22px}.card{padding:14px 12px}.question{font-size:15px}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:12px}.status{margin-left:0}.trials{gap:10px}.navbtn{padding:10px 8px;font-size:13px}.blank-field{min-width:0}}
 @page{size:A4;margin:13mm 12mm}@media print{body{background:#fff;font-size:11pt;color:#111}.wrap{padding:0;max-width:none}header.top{border:0}h1{font-size:20pt}nav,.toolbar,.roundbar,.notice,.footer,#key-warning,.files,.no-print,#summary-panel,#answers-panel{display:none!important}.panel{display:none!important}.panel.printing{display:block!important}.card{box-shadow:none;border:1px solid #999;margin-bottom:11pt;border-radius:5px;padding:10pt}.print-header{display:block;margin:10pt 0 15pt;font-size:11pt}.blank-field{background:white;border-bottom:1px solid #000!important;color:transparent!important;font-size:0;width:var(--w);height:1.6em;box-shadow:none;print-color-adjust:exact}textarea.response{height:48pt;min-height:48pt;background:#fff;border:0;border-bottom:1px dashed #888;resize:none;color:transparent!important}.trials{margin-top:12pt}input.trial{width:17px;height:17px;border:1.5px solid #666}input.trial:checked::after{font-size:12px}.status{display:none}.card{break-inside:avoid}.seq{color:#777}}
+
+.cloud-archive{border:1px solid #c8dfed;background:linear-gradient(120deg,#f1f9ff,#fffaf0);border-radius:15px;padding:17px 19px;margin:14px 0 18px;box-shadow:0 3px 14px #1737500c}
+.cloud-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.cloud-head h3{margin:0 0 3px;color:#214e70;font-size:18px}
+.cloud-head p{margin:0;color:#617b90;font-size:13px}
+.cloud-status{display:inline-block;padding:6px 11px;border-radius:30px;background:#edf2f6;color:#526a7c;font-size:13px;font-weight:700}
+.cloud-status[data-state="ok"]{background:#e8f7ef;color:#176b49}
+.cloud-status[data-state="warn"]{background:#fff4df;color:#8a5b10}
+.cloud-status[data-state="error"]{background:#fff0ed;color:#a73527}
+.cloud-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px}
+.cloud-field{display:flex;flex-direction:column;gap:5px;color:#38566e;font-size:13px;font-weight:700}
+.cloud-field input,.cloud-field select{width:100%;min-width:0;border:1px solid #bdd1df;border-radius:9px;background:#fff;padding:9px 10px;font:inherit;font-size:15px;color:#213b50}
+.cloud-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.cloud-actions button{border:1px solid #b8d0e0;border-radius:9px;background:#fff;color:#24587c;padding:9px 13px;font-size:14px;font-weight:700}
+.cloud-actions button.cloud-primary{background:#276db1;border-color:#276db1;color:#fff}
+.cloud-actions button:disabled{opacity:.55;cursor:wait}
+.cloud-message{margin-top:10px;border-radius:9px;background:#fff;padding:9px 11px;color:#526d80;font-size:13px}
+.cloud-message[data-state="error"]{background:#fff1ee;color:#a73527}
+.cloud-report{margin-top:12px;padding:12px;background:#fff;border:1px solid #d6e4ed;border-radius:10px}
+.cloud-report h4{margin:0 0 8px;color:#244f70}
+.cloud-report p{margin:5px 0;font-size:13px;color:#536d80}
+.cloud-report-row{padding:9px 0;border-top:1px dashed #d8e3eb}
+.cloud-report-row strong{color:#254f70}
+.cloud-report-row small{display:block;color:#6d8293;margin-top:3px;overflow-wrap:anywhere}
+@media(max-width:600px){.cloud-archive{padding:13px}.cloud-actions button{flex:1 1 calc(50% - 8px)}.cloud-head h3{font-size:16px}}
+
 </style></head>
 <body>
-<header class="top"><div class="wrap"><div class="eyebrow">四年级科学 · 第一单元</div><h1>《健康生活》三轮闯关练习</h1><p class="subtitle">31道重点填空 + 31道进阶情境 · 分开完成 · 自动记录三次掌握情况</p>
+<header class="top"><div class="wrap"><div class="eyebrow">六年级科学 · 第一单元</div><h1>《健康生活》三轮闯关练习</h1><p class="subtitle">31道重点填空 + 31道进阶情境 · 分开完成 · 自动记录三次掌握情况</p>
 <nav aria-label="学习模块"><button type="button" class="navbtn active" data-panel="memory">① 基础填空卷</button><button type="button" class="navbtn" data-panel="scene">② 情境挑战卷</button><button type="button" class="navbtn" data-panel="summary">③ 掌握情况</button><button type="button" class="navbtn" data-panel="answers">教师答案</button></nav></div></header>
 <main class="wrap">
-<div class="notice no-print"><b>怎么用：</b>先独立做基础填空，再切换到情境挑战，两套题不会同时出现。每道题有三枚圆圈：哪一轮<strong>独立答对了</strong>，就勾哪一轮；答错或不会，保持空白。每轮完成后点击“本轮全部核对完毕”，系统才能区分“未做”和“不会”。仅使用稳定的 HTTPS 网址打开才能尝试自动保存在本机。钉钉附件预览不保证保存；请先点击“检测保存”。</div>
+<div class="notice no-print"><b>怎么用：</b>先独立做基础填空，再切换到情境挑战，两套题不会同时出现。每道题有三枚圆圈：哪一轮<strong>独立答对了</strong>，就勾哪一轮；答错或不会，保持空白。每轮完成后点击“本轮全部核对完毕”，系统才能区分“未做”和“不会”。每轮核对完成后会自动同步到家庭云端；答题草稿仍保存在当前设备。换设备时，先解锁家庭档案，再点击“从云端恢复”。</div>
+
+<section class="cloud-archive no-print" id="cloudArchive">
+  <div class="cloud-head">
+    <div>
+      <h3>☁️ 家庭云端学习档案</h3>
+      <p>匿名自动连接；每轮核对完成后自动同步。答题草稿仍保存在当前设备。</p>
+    </div>
+    <span id="cloudStatus" class="cloud-status" data-state="loading" aria-live="polite">正在连接云端…</span>
+  </div>
+  <div class="cloud-grid">
+    <label class="cloud-field">孩子姓名
+      <input id="cloudChildName" type="text" value="高语桐" autocomplete="off">
+    </label>
+    <label class="cloud-field">学期
+      <input id="cloudSemester" type="text" value="2026秋" placeholder="例如：2026秋">
+    </label>
+    <label class="cloud-field">本次阶段
+      <select id="cloudPhase">
+        <option value="预习">预习</option>
+        <option value="复习" selected>复习</option>
+        <option value="期末">期末</option>
+      </select>
+    </label>
+    <label class="cloud-field">家庭暗号
+      <input id="cloudPassphrase" type="password" autocomplete="current-password" placeholder="首次或换设备时输入">
+    </label>
+  </div>
+  <div class="cloud-actions">
+    <button type="button" id="cloudUnlock" class="cloud-primary">解锁家庭档案</button>
+    <button type="button" id="cloudSync">同步已完成轮次</button>
+    <button type="button" id="cloudRestore">从云端恢复</button>
+    <button type="button" id="cloudWrongList">查看云端错题榜</button>
+  </div>
+  <div id="cloudMessage" class="cloud-message" role="status">正在建立匿名云端身份…</div>
+  <div id="cloudReport" class="cloud-report" hidden></div>
+</section>
 <section class="tracker no-print" id="save-helper" style="margin:14px 0 20px;border:2px solid #b6dcd9;background:#faffff">
 <h3>💾 在钉钉里保存学习记录</h3>
 <p style="margin:4px 0 10px;font-size:14px">本页会尝试边输入边保存。<strong>请先点“检测能否保存”，再做题。</strong> 如果是在钉钉中预览聊天附件，可能无法正常保存；推荐把本页部署到固定网址后，从钉钉聊天里的链接打开。</p>
@@ -849,4 +911,543 @@ document.addEventListener('click',e=>{let b=e.target.closest('.chip[data-goto]')
 document.querySelectorAll('.roundselect').forEach(w=>w.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setRound(w.dataset.rselect,+b.dataset.r))));
 load();renderFields('memory');renderFields('scene');render();save();
 })();
-</script></body></html>
+</script><script type="module">
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.118.0?bundle";
+
+const CONFIG = {"grade":6,"quizId":"gaoyutong-grade6-science","localKey":"health-life-31-triple-tracker-v3","defaultName":"高语桐","questionCount":31,"parts":[{"key":"memory","label":"基础填空"},{"key":"scene","label":"情境挑战"}]};
+const SUPABASE_URL = "https://iqlnwzxmtjjgzisufljd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_jnY3xbWPgPFBd6naW35bXQ_tzZcNOTE";
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true }
+});
+const $ = (id) => document.getElementById(id);
+const META_KEY = "family-cloud-meta-" + CONFIG.quizId;
+let signedUser = null;
+let unlocked = false;
+let busy = false;
+
+function setStatus(message, state) {
+  const node = $("cloudStatus");
+  if (!node) return;
+  node.textContent = message;
+  node.dataset.state = state || "loading";
+}
+function setMessage(message, isError) {
+  const node = $("cloudMessage");
+  if (!node) return;
+  node.textContent = message;
+  node.dataset.state = isError ? "error" : "normal";
+}
+function setBusy(value) {
+  busy = value;
+  ["cloudUnlock","cloudSync","cloudRestore","cloudWrongList"].forEach((id) => {
+    const node = $(id);
+    if (node) node.disabled = value;
+  });
+}
+function readState() {
+  try { return JSON.parse(localStorage.getItem(CONFIG.localKey) || "{}"); }
+  catch (_) { return {}; }
+}
+function readMeta() {
+  try {
+    const value = JSON.parse(localStorage.getItem(META_KEY) || "{}");
+    return { saved: value.saved || {}, pending: value.pending || {} };
+  } catch (_) { return { saved: {}, pending: {} }; }
+}
+function writeMeta(value) {
+  try { localStorage.setItem(META_KEY, JSON.stringify(value)); } catch (_) {}
+}
+function uuid() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    return (c === "x" ? r : (r & 3 | 8)).toString(16);
+  });
+}
+function hashText(text) {
+  let hash = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(16);
+}
+function phaseValue() {
+  return $("cloudPhase").value || "复习";
+}
+function childName() {
+  return ($("cloudChildName").value || "").trim();
+}
+function semester() {
+  return ($("cloudSemester").value || "").trim();
+}
+async function ensureUser() {
+  const sessionResult = await supabase.auth.getSession();
+  if (sessionResult.error) throw sessionResult.error;
+  if (!sessionResult.data.session) {
+    const signInResult = await supabase.auth.signInAnonymously();
+    if (signInResult.error) throw signInResult.error;
+  }
+  const userResult = await supabase.auth.getUser();
+  if (userResult.error || !userResult.data.user) {
+    throw userResult.error || new Error("没有取得匿名用户身份");
+  }
+  signedUser = userResult.data.user;
+  return signedUser;
+}
+async function refreshAccess() {
+  const user = await ensureUser();
+  const result = await supabase.from("family_access")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+  if (result.error) throw result.error;
+  unlocked = !!result.data;
+  if (unlocked) {
+    setStatus("云端已连接 · 家庭档案已解锁", "ok");
+    await updateCloudCount();
+  } else {
+    setStatus("云端已连接 · 等待家庭暗号解锁", "warn");
+    setMessage("匿名身份已经建立。输入家庭暗号并解锁后，才能同步和查看家庭档案。");
+  }
+}
+async function updateCloudCount() {
+  if (!unlocked || !childName() || !semester()) return;
+  const result = await supabase.from("quiz_attempts_secure")
+    .select("id", { count: "exact", head: true })
+    .eq("quiz_id", CONFIG.quizId)
+    .eq("child_name", childName())
+    .eq("semester", semester());
+  if (!result.error && result.count !== null) {
+    setMessage("家庭档案已解锁。本学期云端已有 " + result.count + " 轮记录；每轮核对完成后会自动同步。");
+  }
+}
+async function unlockFamily() {
+  if (busy) return;
+  const passphrase = ($("cloudPassphrase").value || "").trim();
+  if (!passphrase) {
+    setMessage("请先输入家庭暗号。暗号只发送给后台验证，不会保存在网页或本机。", true);
+    return;
+  }
+  setBusy(true);
+  try {
+    await ensureUser();
+    const result = await supabase.functions.invoke("unlock-family", {
+      body: { passphrase: passphrase }
+    });
+    if (result.error) throw result.error;
+    if (!result.data || result.data.ok !== true) {
+      throw new Error((result.data && result.data.error) || "家庭暗号验证没有通过");
+    }
+    $("cloudPassphrase").value = "";
+    await refreshAccess();
+    setMessage("家庭档案已解锁。今后在同一浏览器中会自动识别；换设备时需要再次输入暗号。");
+  } catch (error) {
+    setStatus("云端解锁失败", "error");
+    setMessage("解锁失败：" + (error.message || String(error)), true);
+  } finally {
+    setBusy(false);
+  }
+}
+function getPartConfig(key) {
+  return CONFIG.parts.find((part) => part.key === key);
+}
+function getQuestionCard(part, number) {
+  if (CONFIG.grade === 4) {
+    const section = part.key === "m" ? "#memoryPanel" : "#scenePanel";
+    return document.querySelector(section + ' .q-card[data-q="' + number + '"]');
+  }
+  return document.getElementById(part.key + "-" + number);
+}
+function makeRoundPayload(part, roundNumber, state, name, term, stage) {
+  const items = [];
+  for (let number = 1; number <= CONFIG.questionCount; number++) {
+    const card = getQuestionCard(part, number);
+    if (!card) continue;
+    let title = "";
+    let expected = "";
+    const fields = {};
+    let correct = false;
+
+    if (CONFIG.grade === 4) {
+      const titleNode = card.querySelector(".card-head h3");
+      title = titleNode ? titleNode.textContent.trim() : "第" + number + "题";
+      const answerNode = card.querySelector(".answer-content");
+      expected = answerNode ? answerNode.textContent.trim() : title;
+      card.querySelectorAll("[data-id]").forEach((field) => {
+        const fieldId = field.dataset.id;
+        const key = part.key + "-" + roundNumber + "-" + fieldId;
+        fields[fieldId] = String((state.values && state.values[key]) || "");
+      });
+      correct = !!(state.ticks && state.ticks[part.key + "-" + number + "-" + roundNumber]);
+    } else {
+      const titleNode = card.querySelector(".story-title") || card.querySelector(".card-header strong");
+      title = titleNode ? titleNode.textContent.trim() : "第" + number + "题";
+      expected = title;
+      card.querySelectorAll(".blank-field,.response").forEach((field) => {
+        const fieldName = field.dataset.b || "essay";
+        const key = part.key + "-" + number + "-" + roundNumber + "-" + fieldName;
+        fields[fieldName] = String((state.draft && state.draft[key]) || "");
+      });
+      correct = !!(state.tick && state.tick[part.key + "-" + number + "-" + roundNumber]);
+    }
+
+    items.push({
+      key: part.key + "-" + number,
+      title: title,
+      expected: expected,
+      fields: fields,
+      correct: correct
+    });
+  }
+  if (items.length !== CONFIG.questionCount) {
+    throw new Error("页面题目数量与预期不一致，未上传本轮记录（当前读取到 " + items.length + " 题）");
+  }
+  const correctCount = items.filter((item) => item.correct).length;
+  const phase = stage + "-" + part.label;
+  const snapshot = {
+    child_name: name,
+    semester: term,
+    phase: phase,
+    round_no: roundNumber,
+    items: items
+  };
+  return {
+    phase: phase,
+    items: items,
+    totalQuestions: items.length,
+    correctQuestions: correctCount,
+    score: Number((correctCount / items.length * 100).toFixed(2)),
+    hash: hashText(JSON.stringify(snapshot))
+  };
+}
+function metaKey(name, term, phase, part, roundNumber) {
+  return [name, term, phase, part, roundNumber].join("|");
+}
+async function syncAll(showResult) {
+  if (busy) return;
+  if (!unlocked) {
+    setMessage("请先解锁家庭档案，再同步学习记录。", true);
+    return;
+  }
+  const name = childName();
+  const term = semester();
+  if (!name || !term) {
+    setMessage("请填写孩子姓名和学期，再同步。", true);
+    return;
+  }
+  setBusy(true);
+  let savedCount = 0;
+  let skippedCount = 0;
+  let completedCount = 0;
+  try {
+    const user = signedUser || await ensureUser();
+    const state = readState();
+    const meta = readMeta();
+    for (const part of CONFIG.parts) {
+      for (let roundNumber = 1; roundNumber <= 3; roundNumber++) {
+        const doneKey = part.key + "-" + roundNumber;
+        if (!(state.done && state.done[doneKey])) continue;
+        completedCount++;
+        const payload = makeRoundPayload(part, roundNumber, state, name, term, phaseValue());
+        const key = metaKey(name, term, payload.phase, part.key, roundNumber);
+        if (meta.saved[key] && meta.saved[key].hash === payload.hash) {
+          skippedCount++;
+          continue;
+        }
+        const pending = meta.pending[key];
+        const attemptId = pending && pending.hash === payload.hash ? pending.id : uuid();
+        meta.pending[key] = { hash: payload.hash, id: attemptId };
+        writeMeta(meta);
+
+        const attempt = {
+          id: attemptId,
+          created_by: user.id,
+          child_name: name,
+          quiz_id: CONFIG.quizId,
+          semester: term,
+          phase: payload.phase,
+          round_no: roundNumber,
+          total_questions: payload.totalQuestions,
+          correct_questions: payload.correctQuestions,
+          score: payload.score,
+          completed_at: new Date().toISOString()
+        };
+        const existingAttempt = await supabase.from("quiz_attempts_secure")
+          .select("id").eq("id", attemptId).maybeSingle();
+        if (existingAttempt.error) throw existingAttempt.error;
+        if (!existingAttempt.data) {
+          const insertedAttempt = await supabase.from("quiz_attempts_secure").insert(attempt);
+          if (insertedAttempt.error) throw insertedAttempt.error;
+        }
+
+        const existingItems = await supabase.from("quiz_item_results_secure")
+          .select("correct_char").eq("attempt_id", attemptId);
+        if (existingItems.error) throw existingItems.error;
+        const existingKeys = new Set((existingItems.data || []).map((row) => row.correct_char));
+        const rows = payload.items.filter((item) => !existingKeys.has(item.key)).map((item) => ({
+          attempt_id: attemptId,
+          created_by: user.id,
+          child_name: name,
+          semester: term,
+          correct_char: item.key,
+          expected_word: item.expected || item.title,
+          question_type: part.label,
+          given_answer: JSON.stringify({ title: item.title, fields: item.fields }),
+          is_correct: item.correct
+        }));
+        if (rows.length) {
+          const insertedItems = await supabase.from("quiz_item_results_secure").insert(rows);
+          if (insertedItems.error) throw insertedItems.error;
+        }
+        meta.saved[key] = { hash: payload.hash, id: attemptId, saved_at: new Date().toISOString() };
+        delete meta.pending[key];
+        writeMeta(meta);
+        savedCount++;
+      }
+    }
+    if (completedCount === 0) {
+      setMessage("目前没有标记为“核对完成”的轮次。完成一轮后会自动同步，也可以在这里手动同步。");
+    } else {
+      setMessage("云端同步完成：新保存 " + savedCount + " 轮；已有 " + skippedCount + " 轮内容未变化，无需重复保存。");
+      await updateCloudCount();
+    }
+  } catch (error) {
+    setStatus("云端同步遇到问题", "error");
+    setMessage("同步失败：" + (error.message || String(error)) + "。本机记录没有被删除，可以稍后再次点击同步。", true);
+  } finally {
+    setBusy(false);
+  }
+}
+function parseGivenAnswer(raw) {
+  try {
+    const parsed = JSON.parse(raw || "{}");
+    return { title: parsed.title || "", fields: parsed.fields || {} };
+  } catch (_) {
+    return { title: "", fields: {} };
+  }
+}
+async function restoreCloud() {
+  if (busy) return;
+  if (!unlocked) {
+    setMessage("请先解锁家庭档案，再从云端恢复。", true);
+    return;
+  }
+  if (!window.confirm("将把云端当前阶段最近一次完成的记录合并到本机；同一轮已有的本机答案会被云端记录覆盖。继续吗？")) return;
+  const name = childName();
+  const term = semester();
+  if (!name || !term) {
+    setMessage("请填写孩子姓名和学期，再恢复。", true);
+    return;
+  }
+  setBusy(true);
+  try {
+    const stage = phaseValue();
+    const attemptsResult = await supabase.from("quiz_attempts_secure")
+      .select("id,child_name,quiz_id,semester,phase,round_no,completed_at")
+      .eq("quiz_id", CONFIG.quizId)
+      .eq("child_name", name)
+      .eq("semester", term)
+      .order("completed_at", { ascending: false })
+      .limit(500);
+    if (attemptsResult.error) throw attemptsResult.error;
+    const prefix = stage + "-";
+    const latest = new Map();
+    (attemptsResult.data || []).filter((attempt) => attempt.phase && attempt.phase.indexOf(prefix) === 0)
+      .forEach((attempt) => {
+        const key = attempt.phase + "|" + attempt.round_no;
+        if (!latest.has(key)) latest.set(key, attempt);
+      });
+    const chosen = Array.from(latest.values());
+    if (!chosen.length) {
+      setMessage("云端暂时没有这个孩子、本学期、当前阶段的记录。");
+      return;
+    }
+    const ids = chosen.map((attempt) => attempt.id);
+    const itemResult = await supabase.from("quiz_item_results_secure")
+      .select("attempt_id,correct_char,given_answer,is_correct")
+      .in("attempt_id", ids)
+      .limit(5000);
+    if (itemResult.error) throw itemResult.error;
+
+    const state = readState();
+    if (CONFIG.grade === 4) {
+      state.values = state.values || {};
+      state.ticks = state.ticks || {};
+      state.done = state.done || {};
+    } else {
+      state.draft = state.draft || {};
+      state.tick = state.tick || {};
+      state.done = state.done || {};
+    }
+    chosen.forEach((attempt) => {
+      const label = attempt.phase.slice(prefix.length);
+      const part = CONFIG.parts.find((candidate) => candidate.label === label);
+      if (!part) return;
+      const roundNumber = Number(attempt.round_no);
+      state.done[part.key + "-" + roundNumber] = true;
+      (itemResult.data || []).filter((row) => row.attempt_id === attempt.id).forEach((row) => {
+        const number = Number(String(row.correct_char || "").split("-").pop());
+        if (!number) return;
+        const tickKey = part.key + "-" + number + "-" + roundNumber;
+        if (CONFIG.grade === 4) state.ticks[tickKey] = !!row.is_correct;
+        else state.tick[tickKey] = !!row.is_correct;
+        const parsed = parseGivenAnswer(row.given_answer);
+        Object.keys(parsed.fields).forEach((fieldName) => {
+          const value = String(parsed.fields[fieldName] == null ? "" : parsed.fields[fieldName]);
+          if (CONFIG.grade === 4) {
+            state.values[part.key + "-" + roundNumber + "-" + fieldName] = value;
+          } else {
+            state.draft[part.key + "-" + number + "-" + roundNumber + "-" + fieldName] = value;
+          }
+        });
+      });
+    });
+    if (CONFIG.grade === 4) state.name = name;
+    localStorage.setItem(CONFIG.localKey, JSON.stringify(state));
+
+    const meta = readMeta();
+    chosen.forEach((attempt) => {
+      const label = attempt.phase.slice(prefix.length);
+      const part = CONFIG.parts.find((candidate) => candidate.label === label);
+      if (!part) return;
+      const roundNumber = Number(attempt.round_no);
+      const payload = makeRoundPayload(part, roundNumber, state, name, term, stage);
+      const key = metaKey(name, term, payload.phase, part.key, roundNumber);
+      meta.saved[key] = { hash: payload.hash, id: attempt.id, saved_at: attempt.completed_at };
+    });
+    writeMeta(meta);
+    setMessage("已从云端恢复 " + chosen.length + " 轮记录，正在刷新页面显示…");
+    window.setTimeout(() => window.location.reload(), 700);
+  } catch (error) {
+    setStatus("云端恢复失败", "error");
+    setMessage("恢复失败：" + (error.message || String(error)), true);
+  } finally {
+    setBusy(false);
+  }
+}
+function escapeHtml(value) {
+  return String(value == null ? "" : value).replace(/[&<>"']/g, function(char) {
+    return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char];
+  });
+}
+async function showWrongList() {
+  if (busy) return;
+  if (!unlocked) {
+    setMessage("请先解锁家庭档案，再查看云端错题榜。", true);
+    return;
+  }
+  const name = childName();
+  const term = semester();
+  if (!name || !term) {
+    setMessage("请填写孩子姓名和学期，再查看错题榜。", true);
+    return;
+  }
+  setBusy(true);
+  try {
+    const attemptsResult = await supabase.from("quiz_attempts_secure")
+      .select("id,phase,round_no,completed_at")
+      .eq("quiz_id", CONFIG.quizId)
+      .eq("child_name", name)
+      .eq("semester", term)
+      .order("completed_at", { ascending: false })
+      .limit(500);
+    if (attemptsResult.error) throw attemptsResult.error;
+    const attempts = attemptsResult.data || [];
+    const report = $("cloudReport");
+    report.hidden = false;
+    if (!attempts.length) {
+      report.innerHTML = "<h4>云端错题榜</h4><p>本学期还没有已同步的练习记录。</p>";
+      return;
+    }
+    const itemResult = await supabase.from("quiz_item_results_secure")
+      .select("attempt_id,correct_char,expected_word,question_type,given_answer,is_correct,answered_at")
+      .in("attempt_id", attempts.map((attempt) => attempt.id))
+      .limit(5000);
+    if (itemResult.error) throw itemResult.error;
+    const groups = new Map();
+    let unanswered = 0;
+    (itemResult.data || []).forEach((item) => {
+      if (item.is_correct) return;
+      const parsed = parseGivenAnswer(item.given_answer);
+      const values = Object.values(parsed.fields || {}).map((value) => String(value || "").trim()).filter(Boolean);
+      if (!values.length) {
+        unanswered++;
+        return;
+      }
+      const key = item.correct_char;
+      if (!groups.has(key)) {
+        groups.set(key, {
+          title: parsed.title || item.expected_word || key,
+          expected: item.expected_word || "",
+          type: item.question_type || "",
+          count: 0,
+          latest: item.answered_at || ""
+        });
+      }
+      const group = groups.get(key);
+      group.count++;
+      if ((item.answered_at || "") > group.latest) group.latest = item.answered_at || "";
+    });
+    const ranked = Array.from(groups.values()).sort((a,b) => b.count - a.count).slice(0,20);
+    let html = "<h4>云端错题榜 · " + escapeHtml(name) + "</h4>";
+    html += "<p>按“填写过答案、但该轮没有勾选为掌握”的次数排序；空白未作答另计，不会混入错题次数。</p>";
+    if (!ranked.length) html += "<p>目前没有填写后仍未掌握的题目。很棒，继续保持！</p>";
+    ranked.forEach((item,index) => {
+      html += '<div class="cloud-report-row"><strong>' + (index+1) + ". " + escapeHtml(item.title) + '</strong>　<span>' + item.count + ' 次待巩固</span>';
+      html += '<small>' + escapeHtml(item.type) + (item.expected ? " · 参考答案/要点：" + escapeHtml(item.expected) : "") + '</small></div>';
+    });
+    html += "<p>未填写或没有留下答案的未勾选题目：" + unanswered + " 条。</p>";
+    report.innerHTML = html;
+    report.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  } catch (error) {
+    setStatus("读取云端记录失败", "error");
+    setMessage("读取失败：" + (error.message || String(error)), true);
+  } finally {
+    setBusy(false);
+  }
+}
+
+function bindNameField() {
+  const cloudName = $("cloudChildName");
+  const oldName = $("student");
+  if (!oldName || !cloudName) return;
+  if (oldName.value.trim()) cloudName.value = oldName.value.trim();
+  else {
+    oldName.value = cloudName.value;
+    oldName.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+  oldName.addEventListener("input", () => {
+    if (document.activeElement !== cloudName) cloudName.value = oldName.value;
+  });
+  cloudName.addEventListener("input", () => {
+    oldName.value = cloudName.value;
+    oldName.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+}
+$("cloudUnlock").addEventListener("click", unlockFamily);
+$("cloudSync").addEventListener("click", () => syncAll(true));
+$("cloudRestore").addEventListener("click", restoreCloud);
+$("cloudWrongList").addEventListener("click", showWrongList);
+
+document.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-finish],#finish-memory,#finish-scene");
+  if (target) window.setTimeout(() => syncAll(false), 180);
+});
+document.addEventListener("change", (event) => {
+  const target = event.target;
+  if (target.matches("input[data-tick],input.trial,[data-id],.blank-field,.response")) {
+    window.setTimeout(() => syncAll(false), 180);
+  }
+});
+
+bindNameField();
+refreshAccess().catch((error) => {
+  setStatus("云端连接失败", "error");
+  setMessage("连接失败：" + (error.message || String(error)) + "。可以刷新页面重试。", true);
+});
+
+</script>
+</body></html>
