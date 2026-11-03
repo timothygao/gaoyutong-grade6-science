@@ -91,7 +91,7 @@ nav{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px}.navbtn{border:1px soli
   <div id="cloudReport" class="cloud-report" hidden></div>
 </section>
 <section class="panel active" id="memory-panel">
-  <div class="roundbar"><div class="split"><div><h2 style="margin:0;color:var(--blue)">A卷 · 基础知识填空</h2><div class="micro">题号与原知识单1—31相同 · 这一部分不显示情境题</div></div><div class="roundselect" data-rselect="memory"><button type="button" data-r="1" class="selected">第1轮</button><button type="button" data-r="2">第2轮</button><button type="button" data-r="3">第3轮</button></div></div><div class="toolbar"><button type="button" class="grade-btn" id="grade-memory" onclick="gradeRound('memory')">批改并显示答案</button><button class="primary" type="button" onclick="toggleFinish('memory')" id="finish-memory">本轮全部核对完毕</button><span class="grade-status" id="grade-status-memory" aria-live="polite"></span><button type="button" onclick="printSheet('memory')">打印这套卷</button><button type="button" onclick="filterMode('memory')" id="filter-memory">只看待巩固题：关</button><span class="finish" id="done-memory"></span></div><div class="micro">先独立完成本轮，再点上方“批改并显示答案”；已勾选掌握的题目不再显示答案，点击“本轮全部核对完毕”后将锁定批改。</div></div>
+  <div class="roundbar"><div class="split"><div><h2 style="margin:0;color:var(--blue)">A卷 · 基础知识填空</h2><div class="micro">题号与原知识单1—31相同 · 这一部分不显示情境题</div></div><div class="roundselect" data-rselect="memory"><button type="button" data-r="1" class="selected">第1轮</button><button type="button" data-r="2">第2轮</button><button type="button" data-r="3">第3轮</button></div></div><div class="toolbar"><button type="button" class="grade-btn" id="grade-memory" onclick="gradeRound('memory')">批改并显示答案</button><button class="primary" type="button" onclick="toggleFinish('memory')" id="finish-memory">本轮全部核对完毕</button><span class="grade-status" id="grade-status-memory" aria-live="polite"></span><button type="button" onclick="printSheet('memory')">打印这套卷</button><button type="button" onclick="filterMode('memory')" id="filter-memory">只看待巩固题：关</button><span class="finish" id="done-memory"></span></div><div class="micro">必须先填写本轮所有空格或情境回答，批改按钮才会开放。批改后，未勾选掌握的题目显示参考答案；答案按轮次保存，切换轮次再切回来仍会保留。已勾选掌握的题目不会在本次批改中揭示答案。完成批改后，才能标记本轮核对完毕。</div></div>
   <div class="print-header">班级：____________　姓名：____________　日期：____________　　第____轮</div>
   <div id="sheet-memory"><article class="card" id="memory-1" data-n="1" data-mode="memory">
     <div class="card-header"><strong>第 01 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
@@ -885,40 +885,83 @@ function prepareAnswerBlocks(){
     });
   });
 }
+function roundCompletion(m){
+  let total=0,complete=0,missingFields=0;
+  document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
+    const fields=Array.from(card.querySelectorAll('.blank-field,.response'));
+    total++;
+    if(!fields.length){complete++;return;}
+    const missing=fields.filter(field=>!String(field.value||'').trim()).length;
+    if(missing===0)complete++;
+    missingFields+=missing;
+  });
+  return {total,complete,missingQuestions:total-complete,missingFields,allComplete:total>0&&complete===total};
+}
+function roundEvaluated(m,r){
+  let evaluated=true;
+  document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
+    const key=id(m,Number(card.dataset.n),r);
+    if(!state.tick[key]&&!state.graded[key])evaluated=false;
+  });
+  return evaluated;
+}
 function renderGrades(){
+  let cleaned=false;
   ['memory','scene'].forEach(m=>{
     const r=round(m),roundDone=!!state.done[m+'-'+r];
+    const completion=roundCompletion(m);
     let eligible=0,shown=0,checked=0;
     document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
       const n=Number(card.dataset.n),key=id(m,n,r);
+      const fields=Array.from(card.querySelectorAll('.blank-field,.response'));
+      const cardComplete=!fields.length||fields.every(field=>String(field.value||'').trim());
+      if(!cardComplete&&state.graded[key]){delete state.graded[key];cleaned=true;}
       const marked=!!state.tick[key],graded=!!state.graded[key];
       const answer=card.querySelector('.grade-answer');
       if(answer)answer.hidden=!graded;
       if(marked)checked++;
       if(graded)shown++;
-      if(!marked&&!graded&&!roundDone&&answer)eligible++;
+      if(!marked&&!graded&&answer)eligible++;
     });
     const button=document.getElementById('grade-'+m);
     const status=document.getElementById('grade-status-'+m);
-    if(!button)return;
-    if(roundDone){
-      button.disabled=true;
-      button.textContent='本轮已核对，不能批改';
-      if(status)status.textContent='本轮已完成核对，批改已锁定。';
-    }else if(eligible===0){
-      button.disabled=true;
-      button.textContent=shown?'本轮答案已全部显示':'本轮已全部勾选掌握';
-      if(status)status.textContent=shown?'已显示 '+shown+' 道题的参考答案。':'所有题目均已勾选掌握。';
-    }else{
-      button.disabled=false;
-      button.textContent=shown?'批改并显示剩余答案':'批改并显示答案';
-      if(status)status.textContent=shown?'已显示 '+shown+' 道答案；还可批改 '+eligible+' 道。':'批改后显示本轮未勾选题目的参考答案。';
+    if(button){
+      if(!completion.allComplete){
+        button.disabled=true;
+        button.textContent='完成本轮作答后可批改';
+        if(status)status.textContent='已完成 '+completion.complete+'/'+completion.total+' 题，还差 '+completion.missingQuestions+' 题。请先填写本轮所有空格或情境回答。';
+      }else if(eligible===0){
+        button.disabled=true;
+        button.textContent=shown?'本轮未掌握题目的答案已显示':'本轮已全部勾选掌握';
+        if(status)status.textContent=shown
+          ?'第'+r+'轮已显示 '+shown+' 道未勾选题目的参考答案。'
+          :'第'+r+'轮题目均已勾选掌握。';
+      }else{
+        button.disabled=false;
+        button.textContent=shown?'显示剩余未勾选答案':'批改并显示答案';
+        if(status)status.textContent=(roundDone?'第'+r+'轮已标记核对完成；仍可查看答案。 ':'')+
+          '已勾选掌握 '+checked+' 题，已显示 '+shown+' 道答案；点击后显示其余未掌握题目的参考答案。';
+      }
+    }
+    const finishButton=document.getElementById('finish-'+m);
+    if(finishButton){
+      const canFinish=completion.allComplete&&roundEvaluated(m,r);
+      finishButton.disabled=!roundDone&&!canFinish;
+      finishButton.title=finishButton.disabled
+        ?'请完成本轮全部作答，并批改或标记掌握后，再完成核对。':'';
     }
   });
+  if(cleaned)save();
 }
 window.gradeRound=function(m){
-  const r=round(m),roundKey=m+'-'+r;
-  if(state.done[roundKey]){renderGrades();return;}
+  const r=round(m);
+  const completion=roundCompletion(m);
+  if(!completion.allComplete){
+    renderGrades();
+    const status=document.getElementById('grade-status-'+m);
+    if(status)status.textContent='暂不能批改：已完成 '+completion.complete+'/'+completion.total+' 题，还差 '+completion.missingQuestions+' 题。请先完成全部作答。';
+    return;
+  }
   let revealed=0,locked=0;
   document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
     const n=Number(card.dataset.n),key=id(m,n,r);
@@ -933,8 +976,8 @@ window.gradeRound=function(m){
   const status=document.getElementById('grade-status-'+m);
   if(status){
     status.textContent=revealed
-      ?'已显示 '+revealed+' 道题的参考答案'+(locked?'；'+locked+' 道已勾选题目保持锁定':'')+'。'
-      :'本轮没有可批改的题目。';
+      ?'第'+r+'轮已显示 '+revealed+' 道题的参考答案。答案已按轮次保存，切换轮次后再切回来仍会保留。'+(locked?'；'+locked+' 道已勾选掌握的题目保持不显示':'')
+      :'本轮没有需要显示的题目答案。';
   }
 }
 function stats(m){let doneRounds=[1,2,3].filter(r=>state.done[m+'-'+r]);let cat=[[],[],[],[]], roundCounts=[0,0,0];for(let n=1;n<=31;n++){let first=firstCorrect(m,n);cat[first?first-1:3].push(n);for(let r=1;r<=3;r++)if(state.done[m+'-'+r]&&state.tick[id(m,n,r)])roundCounts[r-1]++;}
@@ -954,10 +997,20 @@ document.getElementById('stats-'+m).innerHTML=html;
 }
 function render(){renderBars();renderMarks();renderGrades();stats('memory');stats('scene');}
 function showPanel(m){panel=m;document.querySelectorAll('.panel').forEach(e=>e.classList.toggle('active',e.id===m+'-panel'));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.panel===m));window.scrollTo({top:0,behavior:'instant'});if(m==='summary'){stats('memory');stats('scene');}}
-window.toggleFinish=function(m){let r=round(m),key=m+'-'+r;
-// No native confirm dialog: embedded browsers sometimes suppress it.
-if(!state.done[key])state.done[key]=true;else delete state.done[key];
-save();render();};
+window.toggleFinish=function(m){
+  let r=round(m),key=m+'-'+r;
+  if(!state.done[key]){
+    const completion=roundCompletion(m);
+    if(!completion.allComplete||!roundEvaluated(m,r)){
+      renderGrades();
+      const status=document.getElementById('grade-status-'+m);
+      if(status)status.textContent='请先完成本轮全部作答，再批改并核对答案，最后才能标记完成。';
+      return;
+    }
+    state.done[key]=true;
+  }else delete state.done[key];
+  save();render();
+};
 window.filterMode=function(m){filter[m]=!filter[m];render();};
 window.jumpTo=function(m,n){filter[m]=false;render();showPanel(m);const e=document.getElementById(m+'-'+n);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});};
 window.printSheet=function(m){captureFields(m);document.querySelectorAll('.panel').forEach(el=>el.classList.remove('printing'));let el=document.getElementById(m+'-panel');el.classList.add('printing');window.print();setTimeout(()=>el.classList.remove('printing'),800);};
@@ -965,8 +1018,8 @@ window.printSheet=function(m){captureFields(m);document.querySelectorAll('.panel
 window.exportData=function(){captureFields('memory');captureFields('scene');const blob=new Blob([JSON.stringify({version:3,exportedAt:new Date().toISOString(),...state},null,2)],{type:'application/json;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='健康生活_三轮练习记录_'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);};
 window.importData=function(e){let file=e.target.files&&e.target.files[0];if(!file)return;file.text().then(raw=>{let data=JSON.parse(raw);if(!data.tick||!data.draft||!data.done)throw new Error('文件内容不符合学习记录格式');if(!confirm('确定导入？会覆盖当前这份练习的记录。'))return;state={tick:data.tick,draft:data.draft,done:data.done,graded:data.graded||{},round:data.round||{memory:1,scene:1}};save();renderFields('memory');renderFields('scene');render();alert('学习记录导入成功！');}).catch(err=>alert('导入失败：'+err.message));e.target.value='';};
 window.resetData=function(){if(!confirm('将清空两套题全部三轮勾选和已输入答案，确定吗？'))return;if(!confirm('请最后确认：清空后无法撤销，建议先导出记录。'))return;state={tick:{},draft:{},done:{},graded:{},round:{memory:1,scene:1}};save();renderFields('memory');renderFields('scene');render();};
-document.querySelectorAll('.blank-field').forEach((el,i)=>{let card=el.closest('.card');el.dataset.mode='memory';el.dataset.n=card.dataset.n;el.dataset.b='blank'+Array.from(card.querySelectorAll('.blank-field')).indexOf(el);el.addEventListener('input',()=>{state.draft[id('memory',el.dataset.n,round('memory'))+'-'+el.dataset.b]=el.value;save();});});
-document.querySelectorAll('.response').forEach(el=>el.addEventListener('input',()=>{state.draft[id('scene',el.dataset.n,round('scene'))+'-essay']=el.value;save();}));
+document.querySelectorAll('.blank-field').forEach((el,i)=>{let card=el.closest('.card');el.dataset.mode='memory';el.dataset.n=card.dataset.n;el.dataset.b='blank'+Array.from(card.querySelectorAll('.blank-field')).indexOf(el);el.addEventListener('input',()=>{state.draft[id('memory',el.dataset.n,round('memory'))+'-'+el.dataset.b]=el.value;save();renderGrades();});});
+document.querySelectorAll('.response').forEach(el=>el.addEventListener('input',()=>{state.draft[id('scene',el.dataset.n,round('scene'))+'-essay']=el.value;save();renderGrades();}));
 document.querySelectorAll('.trial').forEach(el=>el.addEventListener('change',()=>{state.tick[id(el.dataset.mode,el.dataset.n,el.dataset.round)]=el.checked;save();renderMarks();renderGrades();stats(el.dataset.mode);}));
 document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
 document.addEventListener('click',e=>{let b=e.target.closest('.chip[data-goto]');if(b){let [m,n]=b.dataset.goto.split('-');window.jumpTo(m,+n);}});
@@ -1339,10 +1392,12 @@ async function restoreCloud() {
       state.values = state.values || {};
       state.ticks = state.ticks || {};
       state.done = state.done || {};
+      state.graded = state.graded || {};
     } else {
       state.draft = state.draft || {};
       state.tick = state.tick || {};
       state.done = state.done || {};
+      state.graded = state.graded || {};
     }
     chosen.forEach((attempt) => {
       const label = attempt.phase.slice(prefix.length);
@@ -1354,9 +1409,12 @@ async function restoreCloud() {
         const number = Number(String(row.correct_char || "").split("-").pop());
         if (!number) return;
         const tickKey = part.key + "-" + number + "-" + roundNumber;
+        const parsed = parseGivenAnswer(row.given_answer);
+        const restoredFields = Object.values(parsed.fields || {}).map(value => String(value == null ? "" : value).trim());
+        const restoredAnswerComplete = restoredFields.length > 0 && restoredFields.every(Boolean);
         if (CONFIG.grade === 4) state.ticks[tickKey] = !!row.is_correct;
         else state.tick[tickKey] = !!row.is_correct;
-        const parsed = parseGivenAnswer(row.given_answer);
+        if (!row.is_correct && restoredAnswerComplete) state.graded[tickKey] = true;
         Object.keys(parsed.fields).forEach((fieldName) => {
           const value = String(parsed.fields[fieldName] == null ? "" : parsed.fields[fieldName]);
           if (CONFIG.grade === 4) {
