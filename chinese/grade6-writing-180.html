@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>高语桐六年级语文 · 180字写字表与词语复习</title><style>
+  :root{
+    --ink:#243247;
+    --muted:#66758a;
+    --paper:#fffdf8;
+    --line:#dce7ef;
+    --blue:#2d77b9;
+    --blue-soft:#eef7ff;
+    --green:#267054;
+    --green-soft:#effaf4;
+    --gold:#b66a08;
+    --gold-soft:#fff6df;
+    --red:#b43b3b;
+    --red-soft:#fff0f0;
+    --shadow:0 12px 28px rgba(37,62,92,.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    color:var(--ink);
+    background:linear-gradient(180deg,#f3f9fd 0,#f6f3ec 55%,#f3f9fd 100%);
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;
+    line-height:1.68;
+  }
+  .page{max-width:1100px;margin:0 auto;padding:28px 18px 56px}
+  .hero{
+    background:linear-gradient(135deg,#e9f6ff 0%,#fffdf8 65%,#fff1d2 100%);
+    border:1px solid #d9ebf5;border-radius:22px;padding:28px 28px 24px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden
+  }
+  .hero:after{content:"字";position:absolute;right:26px;top:-14px;font-size:130px;font-weight:800;color:rgba(45,119,185,.08);line-height:1}
+  h1{font-size:29px;line-height:1.3;margin:0 0 8px;letter-spacing:.5px;position:relative;z-index:1}
+  .sub{margin:0;color:var(--muted);position:relative;z-index:1}
+  .badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:1}
+  .badge{font-size:13px;padding:4px 11px;border-radius:999px;border:1px solid #cce2f1;background:#fff;color:#2d77b9}
+  .notice{
+    margin-top:18px;padding:13px 15px;border-left:4px solid var(--gold);
+    background:var(--gold-soft);border-radius:10px;font-size:14px
+  }
+  .setup{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:18px;align-items:end}
+  label{font-weight:700;font-size:14px}
+  input[type="text"]{width:100%;border:1.6px solid #bcd2e2;border-radius:10px;padding:10px 12px;font-size:16px;outline:none;background:#fff}
+  input[type="text"]:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(45,119,185,.12)}
+  button{border:0;border-radius:10px;padding:11px 16px;font-size:15px;font-weight:700;cursor:pointer;transition:.18s transform,.18s box-shadow,.18s background}
+  button:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(37,62,92,.14)}
+  .primary{background:var(--blue);color:#fff}
+  .secondary{background:#eaf5fc;color:#195a92}
+  .ghost{background:#fff;border:1px solid #c8ddeb;color:#24537d}
+  .statusbar{
+    margin:24px 0 12px;padding:13px 16px;background:#fff;border:1px solid #dce9f0;border-radius:12px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 4px 13px rgba(37,62,92,.05)
+  }
+  .round-title{font-weight:800}
+  .progress-wrap{display:flex;align-items:center;gap:10px;min-width:260px}
+  .progress{height:10px;border-radius:999px;background:#eaf0f5;overflow:hidden;flex:1}
+  .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#42a5d8,#2d77b9);transition:width .25s}
+  .progress-text{font-size:13px;color:var(--muted);white-space:nowrap}
+  .section-title{margin:30px 0 12px;display:flex;align-items:center;gap:9px}
+  .section-title h2{font-size:20px;margin:0}
+  .section-title span{font-size:13px;background:#eaf5fc;color:#24537d;padding:3px 9px;border-radius:999px}
+  .section-note{margin:-5px 0 14px;color:var(--muted);font-size:14px}
+  .question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .question{
+    background:var(--paper);border:1px solid #dfe9ee;border-radius:15px;padding:17px 17px 15px;
+    box-shadow:0 4px 13px rgba(37,62,92,.055);position:relative
+  }
+  .question.wide{grid-column:1 / -1}
+  .q-number{display:inline-flex;align-items:center;justify-content:center;width:29px;height:29px;border-radius:50%;background:#eaf5fc;color:#246298;font-size:13px;font-weight:800;margin-right:8px;vertical-align:middle}
+  .q-kind{font-size:12px;color:#7b8ca1}
+  .prompt{font-size:16px;margin:11px 0 12px;min-height:54px}
+  .blank-word{font-size:20px;letter-spacing:4px;color:#1f4e75;font-weight:800;margin:5px 0 9px}
+  .pinyin{display:inline-block;margin:2px 0 8px;padding:3px 9px;border-radius:999px;background:#f3f8fb;color:#5f788f;font-size:13px;letter-spacing:.8px;font-family:Arial,"PingFang SC",sans-serif}
+  .onechar{width:58px!important;display:inline-block;text-align:center;font-size:21px!important;font-weight:700;padding:7px!important;margin-left:6px;vertical-align:middle}
+  .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .option{display:flex;gap:8px;align-items:center;border:1px solid #d5e2eb;border-radius:9px;padding:8px 9px;background:#fff;font-size:14px;cursor:pointer}
+  .option:hover{background:#f5fbff}
+  .option input{accent-color:var(--blue)}
+  .feedback{display:none;margin-top:12px;padding:9px 11px;border-radius:9px;font-size:14px;line-height:1.55}
+  .question.correct{border-color:#a8d7bd;background:#fbfffc}
+  .question.correct .feedback{display:block;background:var(--green-soft);color:#1b623e}
+  .question.wrong{border-color:#e8b8b8;background:#fffdfd}
+  .question.wrong .feedback{display:block;background:var(--red-soft);color:#963535}
+  .submitbar{position:sticky;bottom:14px;margin-top:26px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid #d5e7f0;border-radius:15px;padding:12px;box-shadow:var(--shadow);display:flex;gap:10px;justify-content:center;z-index:10}
+  .report{display:none;margin-top:26px;background:#fff;border:1px solid #d5e7f0;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .report-head{padding:22px 24px;background:linear-gradient(135deg,#e9f7ff,#f8fffb)}
+  .report-head h2{margin:0 0 6px;font-size:23px}
+  .score{font-size:37px;font-weight:900;color:#1f6da7;line-height:1.1;margin:6px 0}
+  .report-body{padding:20px 24px}
+  .level{display:inline-block;border-radius:999px;padding:4px 11px;background:#eef7ff;color:#245d8e;font-size:13px;font-weight:700}
+  .mistakes{padding:14px;border-radius:12px;background:#fff8eb;border:1px solid #f0d9a5;margin-top:16px}
+  .mistakes h3{font-size:16px;margin:0 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid #efc873;background:#fffdf5;color:#885009;border-radius:999px;padding:4px 9px;font-size:14px}
+  .study-box{margin-top:15px;padding:14px;border-radius:12px;background:#effaf4;border:1px solid #bfe4ce}
+  .study-box strong{color:#1d6c43}
+  .vault{display:none;margin-top:22px;background:#fff;border:1px solid #d5e7f0;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .vault-head{padding:17px 20px;background:#f6fbff;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .vault-head h2{font-size:20px;margin:0}
+  .vault-body{padding:17px 20px}
+  .lesson-group{margin-bottom:16px;padding-bottom:14px;border-bottom:1px dashed #dae6ed}
+  .lesson-group:last-child{border-bottom:none}
+  .lesson-name{font-size:14px;color:#47617b;font-weight:800;margin-bottom:8px}
+  .char-btn{width:34px;height:34px;padding:0;margin:3px;border-radius:8px;background:#fff;border:1px solid #d6e4ec;color:#25415c;font-size:17px}
+  .char-btn:hover{background:#eaf5fc;border-color:#9bc7e3}
+  .word-popup{margin-top:13px;padding:12px 14px;border-radius:10px;background:#fff8ea;border:1px solid #f1d7a4;font-size:15px;display:none}
+  .footer-note{margin-top:22px;text-align:center;color:#7890a5;font-size:12px}
+  .hidden{display:none!important}
+  @media (max-width:760px){
+    .page{padding:16px 10px 45px}
+    .hero{padding:22px 18px}
+    h1{font-size:25px}
+    .setup{grid-template-columns:1fr}
+    .statusbar{align-items:flex-start;flex-direction:column}
+    .progress-wrap{width:100%;min-width:0}
+    .question-grid{grid-template-columns:1fr}
+    .question.wide{grid-column:auto}
+    .options{grid-template-columns:1fr}
+    .submitbar{bottom:8px;flex-direction:column}
+    .submitbar button{width:100%}
+  }
+  @media print{
+    body{background:#fff}
+    .hero,.statusbar,.question,.report,.vault{box-shadow:none}
+    .submitbar{position:static}
+    .primary,.secondary,.ghost{border:1px solid #aaa;color:#000;background:#fff}
+  }
+/* 匿名云端安全版补充样式 */
+.cloud-grid > div:last-child { min-width: 170px; }
+.memory-status { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* 简洁首页布局 */
+.study-launch{margin-top:18px;position:relative;z-index:1}
+.launch-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr auto;gap:11px;align-items:end}
+.launch-main .field label{display:block;margin-bottom:5px;font-size:13px;font-weight:800;color:#405870}
+.launch-main input,.launch-main select{width:100%;padding:10px 11px;border:1.5px solid #bfd5e5;border-radius:10px;background:#fff;color:#223346;font-size:15px}
+.start-big{min-width:120px;height:43px;white-space:nowrap}
+.compact-parent{margin-top:14px}
+.compact-parent summary{font-size:15px}
+.compact-parent .parent-zone-body{padding:14px 16px}
+.compact-parent .cloud-box{margin-top:12px}
+.sql-wrap,#sqlBox,#copySqlBtn{display:none!important}
+@media(max-width:980px){
+  .launch-main{grid-template-columns:1fr 1fr}
+  .start-big{grid-column:1/-1;width:100%}
+}
+@media(max-width:560px){
+  .launch-main{grid-template-columns:1fr}
+}
+
+
+
+.memory-controls{margin:15px 0 2px;display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}
+.memory-controls .field label{font-weight:700;font-size:13px;color:#40586f;display:block;margin-bottom:4px}
+.memory-controls input,.memory-controls select{width:100%;padding:9px 10px;border:1.4px solid #bfd5e5;border-radius:9px;background:#fff;font-size:14px}
+.memory-status{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}.memory-pill{border-radius:999px;padding:4px 9px;font-size:12px;background:#eef7ff;color:#2c628d;border:1px solid #cfe4f1}.memory-pill.ok{background:#effaf4;color:#196241;border-color:#bde3cd}.memory-pill.warn{background:#fff6df;color:#80550c;border-color:#edd69b}
+.parent-zone{margin-top:26px;background:#fff;border:1px solid #d8e7ef;border-radius:16px;box-shadow:0 10px 25px rgba(32,57,85,.08);overflow:hidden}.parent-zone summary{padding:15px 18px;cursor:pointer;font-weight:800;color:#25415c;background:#f7fbfe}.parent-zone-body{padding:17px 18px}.parent-zone p{margin:0 0 12px;color:#61768a;font-size:14px}.parent-actions{display:flex;gap:9px;flex-wrap:wrap}.growth-card{margin-top:15px;border:1px solid #d8e7ef;border-radius:14px;overflow:hidden;display:none}.growth-head{padding:15px 17px;background:linear-gradient(135deg,#eef8ff,#f8fffb);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.growth-head h2{font-size:19px;margin:0}.growth-body{padding:15px 17px}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}.metric{border:1px solid #d8e8f0;border-radius:10px;padding:10px;background:#fbfdff}.metric b{display:block;color:#236ea6;font-size:22px;line-height:1.1}.metric span{font-size:12px;color:#6e8092}.rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.rank-col{border:1px solid #dbe7ed;border-radius:10px;padding:11px;min-height:80px}.rank-col h3{margin:0 0 8px;font-size:15px}.rank-col.focus{background:#fff7f0;border-color:#edc3ab}.rank-col.reinforce{background:#fffbed;border-color:#ecd99c}.rank-col.mastered{background:#f3fbf6;border-color:#c5e4cf}.rank-item{padding:7px 0;border-bottom:1px dashed #d7e5ed;font-size:13px}.rank-item:last-child{border-bottom:0}.rank-char{display:inline-flex;justify-content:center;align-items:center;width:28px;height:28px;margin-right:5px;border:1px solid #d5e4eb;border-radius:7px;background:#fff;font-size:18px;font-weight:800;vertical-align:middle}.rank-meta{display:block;margin-left:33px;color:#65798d;font-size:12px;line-height:1.45}.cloud-box{margin-top:15px;padding:13px;border:1px solid #d6eaf5;border-radius:12px;background:#f5faff}.cloud-box strong{color:#254a69}.cloud-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.cloud-grid label{display:block;font-size:12px;color:#526c83;font-weight:700;margin-bottom:3px}.cloud-grid input{width:100%;padding:9px 10px;border:1.4px solid #bfd5e5;border-radius:9px;font-size:14px}.cloud-message{margin-top:9px;padding:8px 10px;border-radius:8px;font-size:13px;display:none}.cloud-message.ok{display:block;background:#effaf4;color:#1e6a43}.cloud-message.err{display:block;background:#fff0f0;color:#963939}.sql-wrap{position:relative;margin-top:11px}.sql-wrap pre{margin:0;max-height:280px;overflow:auto;white-space:pre-wrap;background:#1f2b36;color:#e6f1f7;border-radius:10px;padding:13px;font-size:12px;line-height:1.5}.sql-wrap button{position:absolute;top:8px;right:8px}.growth-note{margin-top:11px;color:#65798d;font-size:12px}.growth-banner{margin-top:10px;padding:9px 11px;border-radius:9px;background:#effaf4;color:#1c6640;font-size:13px;border:1px solid #bce1cc}.hidden-growth{display:none!important}
+@media(max-width:760px){.memory-controls,.cloud-grid,.rank-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}}
+
+.word-panel{margin-top:20px;background:#fff;border:1px solid #d8e7ef;border-radius:15px;padding:18px}
+.word-row{padding:8px 0;border-bottom:1px dashed #e0e8ef}
+.word-row:last-child{border-bottom:none}
+.input-status{font-size:13px;color:#526f81}
+fieldset{border:0;padding:0;margin:0}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.quiz-toolbar{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.quiz-toolbar button{flex:1}
+#quizArea .question.correct .feedback,#quizArea .question.wrong .feedback{display:block}
+.switch-notice{background:#f1f8fd;border:1px solid #d0e5f2;border-radius:10px;padding:10px 12px;margin:10px 0;color:#42637a;font-size:13px}
+@media print{.hero,.cloud-box,.parent-zone,.submitbar,.quiz-toolbar{display:none!important}.question-grid{display:grid;grid-template-columns:repeat(2,1fr)}.question{break-inside:avoid}.report{display:none!important}}
+</style></head><body>
+<main class="page">
+ <section class="hero">
+  <h1>六年级上册 · 180字写字表闯关复习</h1>
+  <p class="sub">高语桐 · 按高语牧的语文字词练习样式制作 · 写字表完整180字，词语表录入本次照片可确认的部分</p>
+  <div class="badges">
+   <span class="badge">180字分5轮，每轮36字</span>
+   <span class="badge">看拼音写字 · 易混字辨析 · 词语应用</span>
+   <span class="badge">未答完不能批改</span>
+   <span class="badge">本机保存 + 家庭Supabase云端错字档案</span>
+  </div>
+  <div class="notice"><strong>练习规则：</strong>先独立完成本轮全部题目，才能批改并显示参考答案。批改后会记录错字、得分；切换轮次再切回来时，已批改的试卷仍可查看。<br>
+  <strong>教材来源：</strong>写字表两页共180字；词语表照片中可辨认的 <b id="sourceWordCount"></b> 个词。书上写“共214个词”，但你提供的词语表照片未覆盖全部课次，缺少的部分不会虚构补齐。练习词语和例题请按教材原文复核。</div>
+  <div class="study-launch">
+   <div class="launch-main" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;display:grid;align-items:end">
+    <div class="field"><label for="studentName">学生</label><input id="studentName" type="text" value="高语桐" readonly></div>
+    <div class="field"><label for="semester">学期</label><input id="semester" type="text" value="2026秋"></div>
+    <div class="field"><label for="phase">学习阶段</label><select id="phase"><option value="预习">预习</option><option value="复习" selected>复习</option><option value="期末总测">期末总测</option><option value="错字专项">错字专项</option></select></div>
+    <div class="field"><label for="roundSelect">选择轮次</label><select id="roundSelect"><option value="0">第1轮 · 1—36字</option><option value="1">第2轮 · 37—72字</option><option value="2">第3轮 · 73—108字</option><option value="3">第4轮 · 109—144字</option><option value="4">第5轮 · 145—180字</option></select></div>
+    <button class="primary" id="startBtn">开始当前轮</button>
+   </div>
+   <details class="parent-zone compact-parent" id="parentZone">
+    <summary>家长中心：错字榜 · 错字专项 · 云端学习档案</summary>
+    <div class="parent-zone-body">
+     <div class="parent-actions"><button class="secondary" id="showGrowthBtn">查看错字成长榜</button><button class="secondary" id="makeSpecialBtn">错字专项卷</button><button class="ghost" id="exportCsvBtn">导出记录 CSV</button><button class="ghost" id="cloudRestoreBtn">从云端恢复已完成记录</button></div>
+     <section id="growthDashboard" class="growth-card"></section>
+     <div class="cloud-box"><strong>☁ 家庭档案</strong>
+      <div class="growth-note">和科学练习共用同一Supabase项目与家庭权限；不会在网页里保存家庭暗号。首次设备要解锁才能同步。</div>
+      <div class="cloud-grid">
+       <div><label for="familyPassphrase">家庭暗号</label><input id="familyPassphrase" type="password" autocomplete="off" placeholder="首次设备输入"></div>
+       <div style="display:flex;align-items:end"><button class="primary" id="unlockFamilyBtn" style="width:100%">解锁家庭档案</button></div>
+      </div>
+      <div class="memory-status"><span class="memory-pill" id="memoryLocal">本机：0次记录</span><span class="memory-pill warn" id="memoryCloud">云端：连接中</span></div>
+      <div id="cloudMsg" class="cloud-message"></div>
+     </div>
+    </div>
+   </details>
+  </div>
+ </section>
+ <section id="quizArea" class="hidden">
+  <div class="statusbar"><div><div class="round-title" id="roundTitle">第一轮</div><div class="input-status">按顺序做题，批改前不显示任何答案。每轮的草稿、答题记录相互独立。</div></div><div class="progress-wrap"><div class="progress"><i id="progressBar"></i></div><span class="progress-text" id="progressText">已答0题</span></div></div>
+  <div class="quiz-toolbar"><button class="primary" id="gradeTopBtn" disabled>批改并显示答案</button><button class="ghost" id="restartBtn">重新练习本轮</button><button class="ghost" id="nextRoundTopBtn">下一轮</button></div>
+  <div class="switch-notice" id="draftNotice">未作答完时批改按钮不可点击，草稿自动保存在本机。</div>
+  <div class="section-title"><h2>第一关：看拼音写字</h2><span>字形默写</span></div><p class="section-note">每题写一个字，拼音带声调。能在已拍摄的词语表中找到对应词的，还会显示词语缺字；否则按拼音默写单字。</p><div class="question-grid" id="fillGrid"></div>
+  <div class="section-title"><h2>第二关：易混字辨析</h2><span>教材旁注易错字</span></div><p class="section-note">对照教材中特别强调的形近字、同音字，选择正确写法。</p><div class="question-grid" id="choiceGrid"></div>
+  <div class="section-title"><h2>第三关：课本词语与应用</h2><span>教材词语表可见部分</span></div><p class="section-note">根据本次照片能读出的词语与旁注出题；不把缺页的词语混进去。</p><div class="question-grid" id="scenarioGrid"></div>
+  <div class="submitbar"><button class="primary" id="gradeBtn" disabled>批改并显示答案</button><button class="ghost" id="nextBtn">下一轮</button></div>
+  <section class="report" id="report"></section>
+  <section class="vault" id="vault"><div class="vault-head"><div><h2>180字写字宝库</h2><div class="growth-note">本轮批改后可点字查看拼音和来源课次。</div></div></div><div class="vault-body"><div class="word-popup" id="wordPopup"></div><div id="vaultGroups"></div></div></section>
+ </section>
+ <section class="word-panel">
+  <h2 style="font-size:19px;margin:0 0 10px">📘 词语表：照片已录入词语</h2>
+  <p class="section-note">这是词语表照片中可读出的部分，按原课次保留。完整214词需要其余页面；本区供翻阅和核对。</p>
+  <div id="photoWordList"></div>
+ </section>
+ <div class="footer-note">高语桐 · 六年级语文 · 2026秋 · 字词成长档案。提交后本机立即保存；解锁家庭档案后同步至云端。</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
+<script>
+(function(){
+'use strict';
+const WORDS=[{"lesson":1,"char":"德","pinyin":"dé","word":""},{"lesson":1,"char":"蓑","pinyin":"suō","word":""},{"lesson":1,"char":"旷","pinyin":"kuàng","word":""},{"lesson":1,"char":"鹊","pinyin":"què","word":""},{"lesson":1,"char":"蝉","pinyin":"chán","word":""},{"lesson":1,"char":"稻","pinyin":"dào","word":""},{"lesson":2,"char":"毯","pinyin":"tǎn","word":"绿毯"},{"lesson":2,"char":"勒","pinyin":"lè","word":"勾勒"},{"lesson":2,"char":"吟","pinyin":"yín","word":"低吟"},{"lesson":2,"char":"裳","pinyin":"shang","word":"衣裳"},{"lesson":2,"char":"蹄","pinyin":"tí","word":"马蹄"},{"lesson":2,"char":"腐","pinyin":"fǔ","word":"豆腐"},{"lesson":2,"char":"貌","pinyin":"mào","word":"礼貌"},{"lesson":2,"char":"拘","pinyin":"jū","word":"拘束"},{"lesson":2,"char":"翁","pinyin":"wēng","word":""},{"lesson":2,"char":"稍","pinyin":"shāo","word":""},{"lesson":3,"char":"嚣","pinyin":"xiāo","word":""},{"lesson":3,"char":"缀","pinyin":"zhuì","word":""},{"lesson":3,"char":"窥","pinyin":"kuī","word":""},{"lesson":3,"char":"蕊","pinyin":"ruǐ","word":""},{"lesson":3,"char":"紫","pinyin":"zǐ","word":"紫色"},{"lesson":3,"char":"潇","pinyin":"xiāo","word":"潇洒"},{"lesson":3,"char":"浊","pinyin":"zhuó","word":"浑浊"},{"lesson":3,"char":"拙","pinyin":"zhuō","word":"笨拙"},{"lesson":3,"char":"簇","pinyin":"cù","word":""},{"lesson":3,"char":"遮","pinyin":"zhē","word":"遮掩"},{"lesson":3,"char":"悦","pinyin":"yuè","word":""},{"lesson":4,"char":"蒙","pinyin":"měng","word":""},{"lesson":4,"char":"崖","pinyin":"yá","word":"悬崖"},{"lesson":4,"char":"渡","pinyin":"dù","word":""},{"lesson":4,"char":"索","pinyin":"suǒ","word":"搜索"},{"lesson":5,"char":"寇","pinyin":"kòu","word":"日寇"},{"lesson":5,"char":"贯","pinyin":"guàn","word":"全神贯注"},{"lesson":5,"char":"棋","pinyin":"qí","word":""},{"lesson":5,"char":"悬","pinyin":"xuán","word":"悬崖"},{"lesson":5,"char":"斩","pinyin":"zhǎn","word":"斩钉截铁"},{"lesson":5,"char":"截","pinyin":"jié","word":"斩钉截铁"},{"lesson":5,"char":"涧","pinyin":"jiàn","word":"山涧"},{"lesson":5,"char":"砸","pinyin":"zá","word":""},{"lesson":5,"char":"雹","pinyin":"báo","word":"雹子"},{"lesson":5,"char":"昂","pinyin":"áng","word":"昂首"},{"lesson":5,"char":"豪","pinyin":"háo","word":"豪迈"},{"lesson":5,"char":"迈","pinyin":"mài","word":"豪迈"},{"lesson":6,"char":"政","pinyin":"zhèng","word":"政府"},{"lesson":6,"char":"府","pinyin":"fǔ","word":"政府"},{"lesson":6,"char":"宾","pinyin":"bīn","word":"外宾"},{"lesson":6,"char":"檐","pinyin":"yán","word":""},{"lesson":6,"char":"拂","pinyin":"fú","word":"飘拂"},{"lesson":6,"char":"阅","pinyin":"yuè","word":"检阅"},{"lesson":6,"char":"率","pinyin":"shuài","word":"率领"},{"lesson":6,"char":"榴","pinyin":"liú","word":""},{"lesson":6,"char":"坦","pinyin":"tǎn","word":"坦克"},{"lesson":6,"char":"捆","pinyin":"kǔn","word":""},{"lesson":6,"char":"嚷","pinyin":"rǎng","word":""},{"lesson":6,"char":"哑","pinyin":"yǎ","word":"沙哑"},{"lesson":7,"char":"蔽","pinyin":"bì","word":"隐蔽"},{"lesson":7,"char":"摧","pinyin":"cuī","word":"摧毁"},{"lesson":7,"char":"搜","pinyin":"sōu","word":"搜索"},{"lesson":7,"char":"蔓","pinyin":"màn","word":"蔓延"},{"lesson":7,"char":"窜","pinyin":"cuàn","word":""},{"lesson":7,"char":"溅","pinyin":"jiàn","word":""},{"lesson":7,"char":"缩","pinyin":"suō","word":"缩小"},{"lesson":7,"char":"熄","pinyin":"xī","word":"熄灭"},{"lesson":8,"char":"凛","pinyin":"lǐn","word":"威风凛凛"},{"lesson":8,"char":"搏","pinyin":"bó","word":"搏斗"},{"lesson":8,"char":"傻","pinyin":"shǎ","word":""},{"lesson":8,"char":"钩","pinyin":"gōu","word":""},{"lesson":8,"char":"裁","pinyin":"cái","word":"别出心裁"},{"lesson":8,"char":"筹","pinyin":"chóu","word":"技高一筹"},{"lesson":8,"char":"橡","pinyin":"xiàng","word":"橡皮"},{"lesson":8,"char":"雕","pinyin":"diāo","word":""},{"lesson":8,"char":"泰","pinyin":"tài","word":""},{"lesson":8,"char":"屏","pinyin":"píng","word":""},{"lesson":8,"char":"蹲","pinyin":"dūn","word":""},{"lesson":8,"char":"津","pinyin":"jīn","word":"津津有味"},{"lesson":9,"char":"谜","pinyin":"mí","word":""},{"lesson":9,"char":"猜","pinyin":"cāi","word":"猜测"},{"lesson":9,"char":"尚","pinyin":"shàng","word":"尚未"},{"lesson":9,"char":"效","pinyin":"xiào","word":"效应"},{"lesson":9,"char":"轨","pinyin":"guǐ","word":"轨道"},{"lesson":9,"char":"谓","pinyin":"wèi","word":"所谓"},{"lesson":9,"char":"斑","pinyin":"bān","word":"斑点"},{"lesson":9,"char":"燥","pinyin":"zào","word":"干燥"},{"lesson":9,"char":"漠","pinyin":"mò","word":"沙漠"},{"lesson":9,"char":"壤","pinyin":"rǎng","word":"土壤"},{"lesson":9,"char":"酱","pinyin":"jiàng","word":"酱油"},{"lesson":11,"char":"黎","pinyin":"lí","word":"黎明"},{"lesson":11,"char":"咆","pinyin":"páo","word":"咆哮"},{"lesson":11,"char":"哮","pinyin":"xiào","word":"咆哮"},{"lesson":11,"char":"疯","pinyin":"fēng","word":""},{"lesson":11,"char":"淌","pinyin":"tǎng","word":""},{"lesson":11,"char":"肆","pinyin":"sì","word":"放肆"},{"lesson":11,"char":"添","pinyin":"tiān","word":""},{"lesson":11,"char":"揪","pinyin":"jiū","word":"揪心"},{"lesson":11,"char":"呻","pinyin":"shēn","word":"呻吟"},{"lesson":11,"char":"膛","pinyin":"táng","word":"胸膛"},{"lesson":11,"char":"废","pinyin":"fèi","word":"废话"},{"lesson":11,"char":"塌","pinyin":"tā","word":""},{"lesson":12,"char":"啸","pinyin":"xiào","word":"呼啸"},{"lesson":12,"char":"汹","pinyin":"xiōng","word":"汹涌"},{"lesson":12,"char":"澎","pinyin":"péng","word":"澎湃"},{"lesson":12,"char":"湃","pinyin":"pài","word":"澎湃"},{"lesson":12,"char":"掀","pinyin":"xiān","word":""},{"lesson":12,"char":"僵","pinyin":"jiāng","word":"僵硬"},{"lesson":12,"char":"淋","pinyin":"lín","word":"湿淋淋"},{"lesson":12,"char":"糟","pinyin":"zāo","word":"糟糕"},{"lesson":12,"char":"霉","pinyin":"méi","word":"倒霉"},{"lesson":12,"char":"嘛","pinyin":"ma","word":""},{"lesson":12,"char":"修","pinyin":"xiū","word":""},{"lesson":12,"char":"熬","pinyin":"áo","word":""},{"lesson":14,"char":"豫","pinyin":"yù","word":""},{"lesson":14,"char":"党","pinyin":"dǎng","word":""},{"lesson":14,"char":"紧","pinyin":"jǐn","word":""},{"lesson":14,"char":"激","pinyin":"jī","word":"激烈"},{"lesson":14,"char":"副","pinyin":"fù","word":""},{"lesson":14,"char":"倚","pinyin":"yǐ","word":""},{"lesson":14,"char":"制","pinyin":"zhì","word":"自制"},{"lesson":14,"char":"插","pinyin":"chā","word":"插图"},{"lesson":14,"char":"聚","pinyin":"jù","word":"聚精会神"},{"lesson":14,"char":"焦","pinyin":"jiāo","word":"焦急"},{"lesson":14,"char":"堡","pinyin":"bǎo","word":""},{"lesson":14,"char":"编","pinyin":"biān","word":""},{"lesson":15,"char":"缝","pinyin":"féng","word":""},{"lesson":15,"char":"嫌","pinyin":"xián","word":""},{"lesson":15,"char":"瓦","pinyin":"wǎ","word":"瓦蓝"},{"lesson":15,"char":"柜","pinyin":"guì","word":"衣柜"},{"lesson":15,"char":"嚷","pinyin":"rǎng","word":""},{"lesson":15,"char":"锅","pinyin":"guō","word":""},{"lesson":15,"char":"酱","pinyin":"jiàng","word":"酱油"},{"lesson":15,"char":"唇","pinyin":"chún","word":"嘴唇"},{"lesson":15,"char":"蹦","pinyin":"bèng","word":""},{"lesson":16,"char":"帘","pinyin":"lián","word":"眼帘"},{"lesson":16,"char":"莹","pinyin":"yíng","word":"晶莹"},{"lesson":16,"char":"裹","pinyin":"guǒ","word":""},{"lesson":16,"char":"薄","pinyin":"bó","word":""},{"lesson":16,"char":"篮","pinyin":"lán","word":"摇篮"},{"lesson":16,"char":"渺","pinyin":"miǎo","word":"渺小"},{"lesson":16,"char":"资","pinyin":"zī","word":"资源"},{"lesson":16,"char":"滥","pinyin":"làn","word":"滥用"},{"lesson":16,"char":"境","pinyin":"jìng","word":"环境"},{"lesson":16,"char":"福","pinyin":"fú","word":"造福"},{"lesson":19,"char":"涯","pinyin":"yá","word":""},{"lesson":19,"char":"莺","pinyin":"yīng","word":""},{"lesson":19,"char":"苔","pinyin":"tái","word":""},{"lesson":20,"char":"聪","pinyin":"cōng","word":""},{"lesson":20,"char":"察","pinyin":"chá","word":""},{"lesson":20,"char":"置","pinyin":"zhì","word":""},{"lesson":20,"char":"悦","pinyin":"yuè","word":""},{"lesson":20,"char":"施","pinyin":"shī","word":""},{"lesson":20,"char":"焉","pinyin":"yān","word":""},{"lesson":21,"char":"拦","pinyin":"lán","word":""},{"lesson":21,"char":"添","pinyin":"tiān","word":""},{"lesson":21,"char":"怖","pinyin":"bù","word":"恐怖"},{"lesson":21,"char":"愉","pinyin":"yú","word":"愉快"},{"lesson":21,"char":"蝶","pinyin":"dié","word":""},{"lesson":21,"char":"蟀","pinyin":"shuài","word":"蟋蟀"},{"lesson":23,"char":"郑","pinyin":"zhèng","word":"郑重"},{"lesson":23,"char":"拜","pinyin":"bài","word":""},{"lesson":23,"char":"偷","pinyin":"tōu","word":""},{"lesson":23,"char":"租","pinyin":"zū","word":""},{"lesson":23,"char":"厨","pinyin":"chú","word":"厨房"},{"lesson":23,"char":"毡","pinyin":"zhān","word":"毡帽"},{"lesson":23,"char":"羞","pinyin":"xiū","word":"怕羞"},{"lesson":23,"char":"罩","pinyin":"zhào","word":""},{"lesson":23,"char":"参","pinyin":"cān","word":"参差"},{"lesson":23,"char":"猬","pinyin":"wèi","word":"刺猬"},{"lesson":23,"char":"伶","pinyin":"líng","word":"伶俐"},{"lesson":23,"char":"俐","pinyin":"lì","word":"伶俐"},{"lesson":24,"char":"鞭","pinyin":"biān","word":""},{"lesson":24,"char":"搁","pinyin":"gē","word":""},{"lesson":24,"char":"萍","pinyin":"píng","word":""},{"lesson":24,"char":"藻","pinyin":"zǎo","word":""},{"lesson":24,"char":"漾","pinyin":"yàng","word":"荡漾"},{"lesson":24,"char":"削","pinyin":"xuē","word":"瘦削"},{"lesson":24,"char":"续","pinyin":"xù","word":"后续"},{"lesson":24,"char":"晕","pinyin":"yūn","word":""},{"lesson":24,"char":"噢","pinyin":"ō","word":""},{"lesson":24,"char":"撕","pinyin":"sī","word":""},{"lesson":24,"char":"陡","pinyin":"dǒu","word":"陡然"},{"lesson":24,"char":"剩","pinyin":"shèng","word":""}];
+const PHOTO_WORDS=[{"lesson":2,"word":"绿毯"},{"lesson":2,"word":"柔美"},{"lesson":2,"word":"勾勒"},{"lesson":2,"word":"低吟"},{"lesson":2,"word":"奇丽"},{"lesson":2,"word":"回味"},{"lesson":2,"word":"洒脱"},{"lesson":2,"word":"衣裳"},{"lesson":2,"word":"疾驰"},{"lesson":2,"word":"马蹄"},{"lesson":2,"word":"豆腐"},{"lesson":2,"word":"礼貌"},{"lesson":2,"word":"拘束"},{"lesson":2,"word":"羞涩"},{"lesson":2,"word":"会心"},{"lesson":3,"word":"宅院"},{"lesson":3,"word":"潇洒"},{"lesson":3,"word":"伏案"},{"lesson":3,"word":"轻灵"},{"lesson":3,"word":"浑浊"},{"lesson":3,"word":"笨拙"},{"lesson":3,"word":"参差"},{"lesson":3,"word":"遮掩"},{"lesson":3,"word":"文思"},{"lesson":3,"word":"梦想"},{"lesson":3,"word":"紫色"},{"lesson":3,"word":"如同"},{"lesson":3,"word":"恰如"},{"lesson":3,"word":"恍然"},{"lesson":5,"word":"日寇"},{"lesson":5,"word":"奋战"},{"lesson":5,"word":"险要"},{"lesson":5,"word":"沉着"},{"lesson":5,"word":"全神贯注"},{"lesson":5,"word":"崎岖"},{"lesson":5,"word":"悬崖"},{"lesson":5,"word":"斩钉截铁"},{"lesson":5,"word":"居高临下"},{"lesson":5,"word":"山涧"},{"lesson":5,"word":"粉身碎骨"},{"lesson":5,"word":"雹子"},{"lesson":5,"word":"昂首"},{"lesson":5,"word":"豪迈"},{"lesson":5,"word":"气壮山河"},{"lesson":6,"word":"政府"},{"lesson":6,"word":"外宾"},{"lesson":6,"word":"汇集"},{"lesson":6,"word":"爆发"},{"lesson":6,"word":"排山倒海"},{"lesson":6,"word":"庄严"},{"lesson":6,"word":"雄壮"},{"lesson":6,"word":"肃立"},{"lesson":6,"word":"飘拂"},{"lesson":6,"word":"热烈"},{"lesson":6,"word":"完毕"},{"lesson":6,"word":"检阅"},{"lesson":6,"word":"率领"},{"lesson":6,"word":"坦克"},{"lesson":6,"word":"嗓子"},{"lesson":7,"word":"隐蔽"},{"lesson":7,"word":"潜伏"},{"lesson":7,"word":"前沿"},{"lesson":7,"word":"枯黄"},{"lesson":7,"word":"作为"},{"lesson":7,"word":"摧毁"},{"lesson":7,"word":"突击"},{"lesson":7,"word":"搜索"},{"lesson":7,"word":"蔓延"},{"lesson":7,"word":"恶毒"},{"lesson":7,"word":"幸而"},{"lesson":7,"word":"浓重"},{"lesson":7,"word":"落空"},{"lesson":7,"word":"忍耐"},{"lesson":7,"word":"熄灭"},{"lesson":8,"word":"前功尽弃"},{"lesson":8,"word":"威风凛凛"},{"lesson":8,"word":"搏斗"},{"lesson":8,"word":"挖空心思"},{"lesson":8,"word":"别出心裁"},{"lesson":8,"word":"技高一筹"},{"lesson":8,"word":"橡皮"},{"lesson":8,"word":"得意扬扬"},{"lesson":8,"word":"观摩"},{"lesson":8,"word":"知趣"},{"lesson":8,"word":"大步流星"},{"lesson":8,"word":"津津有味"},{"lesson":8,"word":"念念有词"},{"lesson":8,"word":"忘乎所以"},{"lesson":9,"word":"盛会"},{"lesson":9,"word":"猜测"},{"lesson":9,"word":"尚未"},{"lesson":9,"word":"起源"},{"lesson":9,"word":"效应"},{"lesson":9,"word":"轨道"},{"lesson":9,"word":"表明"},{"lesson":9,"word":"所谓"},{"lesson":9,"word":"斑点"},{"lesson":9,"word":"干燥"},{"lesson":9,"word":"沙漠"},{"lesson":9,"word":"进一步"},{"lesson":9,"word":"一系列"},{"lesson":9,"word":"土壤"},{"lesson":9,"word":"确凿"},{"lesson":9,"word":"探索"},{"lesson":11,"word":"黎明"},{"lesson":11,"word":"咆哮"},{"lesson":11,"word":"惊慌"},{"lesson":11,"word":"跌跌撞撞"},{"lesson":11,"word":"拥戴"},{"lesson":11,"word":"清瘦"},{"lesson":11,"word":"乱哄哄"},{"lesson":11,"word":"沙哑"},{"lesson":11,"word":"依次"},{"lesson":11,"word":"放肆"},{"lesson":11,"word":"呻吟"},{"lesson":11,"word":"胸膛"},{"lesson":11,"word":"废话"},{"lesson":11,"word":"吞没"},{"lesson":11,"word":"猛然"},{"lesson":12,"word":"呼啸"},{"lesson":12,"word":"汹涌"},{"lesson":12,"word":"澎湃"},{"lesson":12,"word":"风暴"},{"lesson":12,"word":"心惊肉跳"},{"lesson":12,"word":"抱怨"},{"lesson":12,"word":"探望"},{"lesson":12,"word":"照顾"},{"lesson":12,"word":"张罗"},{"lesson":12,"word":"仍旧"},{"lesson":12,"word":"僵硬"},{"lesson":12,"word":"自作自受"},{"lesson":12,"word":"湿淋淋"},{"lesson":12,"word":"糟糕"},{"lesson":12,"word":"倒霉"},{"lesson":12,"word":"总算"},{"lesson":14,"word":"赞叹"},{"lesson":14,"word":"激烈"},{"lesson":14,"word":"自制"},{"lesson":14,"word":"微弱"},{"lesson":14,"word":"插图"},{"lesson":14,"word":"聚精会神"},{"lesson":14,"word":"不由得"},{"lesson":14,"word":"点燃"},{"lesson":14,"word":"后续"},{"lesson":14,"word":"阻击"},{"lesson":14,"word":"突破"},{"lesson":14,"word":"焦急"},{"lesson":14,"word":"暴露"},{"lesson":15,"word":"斗篷"},{"lesson":15,"word":"瓦蓝"},{"lesson":15,"word":"衣柜"},{"lesson":15,"word":"预报"},{"lesson":15,"word":"遮盖"},{"lesson":15,"word":"闷雷"},{"lesson":15,"word":"酱油"},{"lesson":15,"word":"央求"},{"lesson":15,"word":"张望"},{"lesson":15,"word":"果真"},{"lesson":15,"word":"嘴唇"},{"lesson":15,"word":"理直气壮"},{"lesson":15,"word":"起劲"},{"lesson":16,"word":"眼帘"},{"lesson":16,"word":"晶莹"},{"lesson":16,"word":"摇篮"},{"lesson":16,"word":"渺小"},{"lesson":16,"word":"资源"},{"lesson":16,"word":"节制"},{"lesson":16,"word":"枯竭"},{"lesson":16,"word":"毁坏"},{"lesson":16,"word":"滥用"},{"lesson":16,"word":"生态"},{"lesson":20,"word":"移居"},{"lesson":20,"word":"指望"},{"lesson":20,"word":"目睹"},{"lesson":20,"word":"环境"},{"lesson":20,"word":"造福"},{"lesson":21,"word":"揪心"},{"lesson":21,"word":"走动"},{"lesson":21,"word":"柔和"},{"lesson":21,"word":"单调"},{"lesson":21,"word":"轻易"},{"lesson":21,"word":"入神"},{"lesson":21,"word":"唯恐"},{"lesson":21,"word":"恐怖"},{"lesson":21,"word":"愉快"},{"lesson":21,"word":"证实"},{"lesson":21,"word":"蟋蟀"},{"lesson":23,"word":"一望无际"},{"lesson":23,"word":"尽力"},{"lesson":23,"word":"郑重"},{"lesson":23,"word":"讲究"},{"lesson":23,"word":"允许"},{"lesson":23,"word":"厨房"},{"lesson":23,"word":"毡帽"},{"lesson":23,"word":"明晃晃"},{"lesson":23,"word":"可见"},{"lesson":23,"word":"怕羞"},{"lesson":23,"word":"刺猬"},{"lesson":23,"word":"畜生"},{"lesson":23,"word":"伶俐"},{"lesson":23,"word":"往常"},{"lesson":24,"word":"缩小"},{"lesson":24,"word":"昏沉"},{"lesson":24,"word":"茅屋"},{"lesson":24,"word":"游鱼"},{"lesson":24,"word":"荡漾"},{"lesson":24,"word":"解散"},{"lesson":24,"word":"边缘"},{"lesson":24,"word":"瘦削"},{"lesson":24,"word":"浮动"},{"lesson":24,"word":"骤然"},{"lesson":24,"word":"陡然"},{"lesson":24,"word":"何尝"}];
+const CONFUSABLES={"德":["德","得","徙","悳"],"蓑":["蓑","衰","裳","裹"],"勒":["勒","勤","靳","勘"],"蹄":["蹄","啼","缔","题"],"嚣":["嚣","器","噪","躁"],"拙":["拙","茁","绌","掘"],"蒙":["蒙","朦","檬","濛"],"崖":["崖","涯","捱","压"],"寇":["寇","冠","冦","贯"],"截":["截","裁","载","栽"],"政":["政","攻","玫","放"],"檐":["檐","瞻","蟾","赡"],"摧":["摧","催","崔","璀"],"溅":["溅","贱","践","浅"],"搏":["搏","博","膊","傅"],"筹":["筹","寿","涛","畴"],"尚":["尚","倘","徜","躺"],"燥":["燥","躁","澡","噪"],"黎":["黎","梨","犁","藜"],"肆":["肆","律","聿","津"],"嘛":["嘛","麻","吗","妈"],"激":["激","缴","邀","傲"],"倚":["倚","椅","崎","绮"],"缝":["缝","蓬","逢","峰"],"嫌":["嫌","赚","谦","歉"],"莹":["莹","萤","荧","营"],"薄":["薄","簿","博","搏"],"苔":["苔","抬","胎","台"],"施":["施","拖","迤","驰"],"焉":["焉","嫣","燕","蔫"],"拦":["拦","栏","烂","兰"],"愉":["愉","偷","俞","榆"],"郑":["郑","掷","邓","郸"],"厨":["厨","橱","蹰","厕"],"猬":["猬","谓","胃","猥"],"削":["削","消","俏","稍"],"撕":["撕","嘶","厮","斯"],"窗":["窗","囱","穴","聪"]};
+const SCENARIOS=[{"q":"“聚精会神”的近义词是什么？","options":["全神贯注","漫不经心","敷衍了事","心不在焉"],"answer":"全神贯注","focus":"聚","word":"聚精会神","explain":"教材旁注：聚精会神，近义词是“全神贯注”。"},{"q":"“骤然”的近义词是什么？","options":["突然","缓慢","平静","逐渐"],"answer":"突然","focus":"骤","word":"骤然","explain":"词语表旁注：“骤然”的近义词是“突然”。"},{"q":"“暴露”的反义词是什么？","options":["隐藏","出现","公开","显现"],"answer":"隐藏","focus":"暴","word":"暴露","explain":"词语表旁注：“暴露”的反义词是“隐藏”。"},{"q":"“节制”的反义词是什么？","options":["放纵","克制","节约","控制"],"answer":"放纵","focus":"节","word":"节制","explain":"词语表旁注：“节制”的反义词是“放纵”。"},{"q":"“拘束”的反义词是什么？","options":["自由","约束","拘谨","紧张"],"answer":"自由","focus":"拘","word":"拘束","explain":"词语表旁注：“拘束”的反义词是“自由”。"},{"q":"“探索”在词语表旁注中的意思是什么？","options":["多方寻求答案，解决疑问","只看表面现象","立即得出结论","反复背诵课文"],"answer":"多方寻求答案，解决疑问","focus":"索","word":"探索","explain":"教材旁注：探索，多方寻求答案，解决疑问。"},{"q":"“入神”的意思是什么？","options":["对眼前事物发生浓厚兴趣而注意力高度集中","突然害怕","迅速离开","不愿交流"],"answer":"对眼前事物发生浓厚兴趣而注意力高度集中","focus":"神","word":"入神","explain":"词语表旁注：注意力高度集中。"},{"q":"“郑重”的意思最接近哪项？","options":["严肃认真","轻率随意","紧张害怕","疑惑不解"],"answer":"严肃认真","focus":"郑","word":"郑重","explain":"教材旁注：郑重，严肃认真。"},{"q":"“何尝”的正确用法是什么？","options":["用反问语气表示未曾或并非","表示每次都发生","表示必须完成","表示非常高兴"],"answer":"用反问语气表示未曾或并非","focus":"何","word":"何尝","explain":"教材旁注：“何尝”用反问语气表示未曾或并非。"},{"q":"“落空”指什么？","options":["没有达到目的或目标","从高处落下","终于取得成功","在空中移动"],"answer":"没有达到目的或目标","focus":"落","word":"落空","explain":"教材旁注：落空，目的或目标没有达到。"},{"q":"“全神贯注”用来形容什么状态？","options":["注意力非常集中","疲劳想睡觉","难以专心","很生气"],"answer":"注意力非常集中","focus":"贯","word":"全神贯注","explain":"全神贯注与聚精会神意义相近。"},{"q":"“威风凛凛”强调什么？","options":["威严而令人敬畏的样子","疲惫不堪","非常柔软","懒散随意"],"answer":"威严而令人敬畏的样子","focus":"凛","word":"威风凛凛","explain":"根据词语字义设计的运用辨析题。"}];
+const QUIZ_ID="gaoyutong-grade6-chinese-180-v1";
+const BASE="gaoyutong-chinese-grade6-v1";
+const ATTEMPT_KEY=BASE+"-attempts";
+const DRAFT_KEY=BASE+"-drafts";
+const SYNC_KEY=BASE+"-synced";
+const SUPABASE_URL="https://iqlnwzxmtjjgzisufljd.supabase.co";
+const PUBLISHABLE_KEY="sb_publishable_jnY3xbWPgPFBd6naW35bXQ_tzZcNOTE";
+const $=id=>document.getElementById(id);
+const esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const parse=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k)||"null")||fallback}catch(_){return fallback}};
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(_){return false}};
+const makeId=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});
+let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{});
+let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[];
+function alertMessage(message,type){
+ const box=$("cloudMsg");box.className="cloud-message "+(type||"");box.textContent=message;
+}
+function memoryStatus(){
+ $("memoryLocal").textContent="本机："+attempts.length+"次答题";
+ $("memoryCloud").textContent=sb?(unlocked?"云端：家庭档案已解锁":"云端：已连接，待解锁"):"云端：未连接";
+ $("memoryCloud").className="memory-pill "+(unlocked?"ok":"warn");
+}
+function settings(){
+ return {term:$("semester").value.trim()||"2026秋",phase:$("phase").value,round:roundIndex+1};
+}
+function keyFor(){
+ const s=settings();return [s.term,s.phase,mode,s.round].join("|");
+}
+function draftAnswers(){
+ const ans={};
+ questions.forEach(q=>{
+  const el=q.type==="fill"?document.querySelector('[data-q="'+q.id+'"]'):document.querySelector('input[name="'+q.id+'"]:checked');
+  ans[q.id]=el?q.type==="fill"?el.value.trim():el.value:"";
+ });
+ return ans;
+}
+function saveDraft(){
+ if(lockedAttempt)return;
+ drafts[keyFor()]=draftAnswers();
+ store(DRAFT_KEY,drafts);
+}
+function getWord(entry){
+ return entry.word||"";
+}
+function blankWord(entry){
+ const w=getWord(entry),i=w.indexOf(entry.char);
+ return i>=0?w.slice(0,i)+"□"+w.slice(i+1):"第"+entry.lesson+"课 · □";
+}
+function currentRoundEntries(){
+ return mode==="special"?focusWords:WORDS.slice(roundIndex*36,(roundIndex+1)*36);
+}
+function makeQuestions(){
+ entries=currentRoundEntries();
+ const basic=entries.map((entry,i)=>({id:"fill-"+i,type:"fill",entry,answer:entry.char,focus:entry.char,word:entry.word||"第"+entry.lesson+"课写字表"}));
+ const choice=entries.filter(e=>CONFUSABLES[e.char]).slice(0,12).map((entry,i)=>({
+  id:"choice-"+i,type:"choice",entry,answer:entry.char,focus:entry.char,word:entry.word||"写字表",options:CONFUSABLES[entry.char],prompt:"选出正确汉字，避免与形近字混淆。"
+ }));
+ const selectedNotes=SCENARIOS.slice(roundIndex*2,roundIndex*2+4).concat(SCENARIOS.slice(0,Math.max(0,4-SCENARIOS.slice(roundIndex*2,roundIndex*2+4).length)));
+ const scenario=selectedNotes.map((n,i)=>({id:"scenario-"+i,type:"scenario",answer:n.answer,focus:n.focus,word:n.word,options:n.options,prompt:n.q,explain:n.explain}));
+ const phraseSet=PHOTO_WORDS.filter(w=>[...w.word].some(ch=>CONFUSABLES[ch]));
+ const phraseQuestions=phraseSet.slice(roundIndex*5,(roundIndex+1)*5).map((w,i)=>{
+  const target=[...w.word].find(ch=>CONFUSABLES[ch]);
+  const wrong=CONFUSABLES[target].slice(1,4).map(ch=>w.word.replace(target,ch)).filter(ch=>ch!==w.word);
+  return {id:"phrase-"+i,type:"phrase",answer:w.word,focus:target,word:w.word,options:[w.word,...wrong].slice(0,4),prompt:"第"+w.lesson+"课：选出词语表中的正确写法。",explain:"这条词语来自上传照片的词语表。"};
+ });
+ questions=basic.concat(choice,phraseQuestions,scenario);
+}
+function createCard(q,index){
+ const card=document.createElement("article");card.className="question";card.id="card-"+q.id;
+ let html='<div><span class="q-number">'+(index+1)+'</span><span class="q-kind">'+(q.type==="fill"?"拼音默写":q.type==="choice"?"易混字辨析":"词语应用")+'</span></div>';
+ if(q.type==="fill"){
+  html+='<div class="prompt">看拼音写汉字：</div><div class="pinyin">'+esc(q.entry.pinyin)+' · 第'+q.entry.lesson+'课</div><div class="blank-word">'+esc(blankWord(q.entry))+
+   '<input class="onechar answer-input" data-q="'+q.id+'" maxlength="1" autocomplete="off" aria-label="填写汉字" /></div>';
+ }else{
+  html+='<div class="prompt">'+esc(q.prompt)+'</div><div class="options">'+q.options.map((o,i)=>
+   '<label class="option"><input type="radio" name="'+q.id+'" value="'+esc(o)+'"><span>'+String.fromCharCode(65+i)+'. '+esc(o)+'</span></label>').join("")+'</div>';
+ }
+ html+='<div class="feedback"></div>';
+ card.innerHTML=html;
+ return card;
+}
+function answerOf(q){
+ if(q.type==="fill"){const el=document.querySelector('[data-q="'+q.id+'"]');return el?el.value.trim():"";}
+ const el=document.querySelector('input[name="'+q.id+'"]:checked');return el?el.value:"";
+}
+function countAnswered(){
+ return questions.filter(q=>answerOf(q)!=="").length;
+}
+function progress(){
+ const count=countAnswered(),total=questions.length;
+ $("progressText").textContent="已答 "+count+" / "+total;
+ $("progressBar").style.width=(100*count/Math.max(1,total))+"%";
+ const ready=!lockedAttempt&&count===total&&total>0;
+ $("gradeBtn").disabled=!ready;$("gradeTopBtn").disabled=!ready;
+ $("draftNotice").textContent=lockedAttempt?"这轮已经批改，答案和成绩已保存。可以切换轮次查看，也可以重新练习。":
+  ready?"本轮全部作答已完成，可以批改并查看答案。":"还差 "+(total-count)+" 题未完成。未全部作答时不能批改、不能看到答案。";
+ if(!lockedAttempt)saveDraft();
+}
+function attemptForRound(){
+ const key=keyFor(),s=settings();
+ return attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.semester===s.term&&a.phase===s.phase&&a.mode===mode&&a.round_no===s.round)
+  .sort((a,b)=>b.completed_at.localeCompare(a.completed_at))[0]||null;
+}
+function hydrateAnswers(answerMap){
+ questions.forEach(q=>{
+  const answer=answerMap[q.id]||"";
+  if(q.type==="fill"){
+   const node=document.querySelector('[data-q="'+q.id+'"]');if(node)node.value=answer;
+  }else{
+   const nodes=document.querySelectorAll('input[name="'+q.id+'"]');
+   nodes.forEach(x=>{x.checked=x.value===answer});
+  }
+ });
+}
+function showResults(attempt,shouldScroll){
+ let correct=0,wrong=[];
+ questions.forEach((q,i)=>{
+  const item=attempt.items[i],given=item?item.given_answer:"",ok=given===q.answer;
+  if(ok)correct++;else wrong.push(q.focus);
+  const card=$("card-"+q.id);if(!card)return;
+  card.classList.remove("correct","wrong");card.classList.add(ok?"correct":"wrong");
+  const feedback=card.querySelector(".feedback");
+  feedback.innerHTML=(ok?"答对了！":"需要再复习。")+
+  ' 正确答案：<strong>'+esc(q.answer)+'</strong>'+
+  (q.type==="fill"&&q.entry.word?'；词语：<strong>'+esc(q.entry.word)+'</strong>':'')+
+  (q.explain?'。 '+esc(q.explain):'')+'。';
+ });
+ const score=Math.round(100*correct/Math.max(1,questions.length));
+ const chips=[...new Set(wrong)].map(ch=>'<span class="chip">'+esc(ch)+'</span>').join("");
+ $("report").innerHTML='<div class="report-head"><h2>批改报告 · 第'+(roundIndex+1)+'轮</h2><div class="score">'+score+' 分</div><span class="level">答对'+correct+'/'+questions.length+'题 · '+esc(attempt.completed_at.slice(0,10))+'</span></div>'+
+ '<div class="report-body"><div class="mistakes"><h3>本轮错字与待巩固内容（'+new Set(wrong).size+'项）</h3><div class="chips">'+(chips||"无，本次全部答对")+'</div></div>'+
+ '<div class="study-box"><strong>复习建议：</strong>把错字在纸上写3遍，再用教材词语复习一遍。上方题目已经显示正确答案，切走再返回也能查看。</div></div>';
+ $("report").style.display="block";
+ document.querySelectorAll("#quizArea input").forEach(x=>x.disabled=true);
+ $("gradeBtn").disabled=true;$("gradeTopBtn").disabled=true;
+ $("gradeBtn").textContent="本轮已批改";$("gradeTopBtn").textContent="本轮已批改";
+ lockedAttempt=attempt;
+ renderVault();
+ $("vault").style.display="block";
+ progress();
+ if(shouldScroll)$("report").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderVault(){
+ const groups={}; entries.forEach(e=>(groups[e.lesson]||(groups[e.lesson]=[])).push(e));
+ $("vaultGroups").innerHTML=Object.entries(groups).map(([lesson,arr])=>
+ '<div class="lesson-group"><div class="lesson-name">第'+lesson+'课</div>'+
+ arr.map(e=>'<button class="char-btn" data-char="'+esc(e.char)+'" data-pinyin="'+esc(e.pinyin)+'" data-word="'+esc(e.word||"")+'">'+esc(e.char)+'</button>').join("")+'</div>').join("");
+ $("vaultGroups").querySelectorAll(".char-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  $("wordPopup").style.display="block";
+  $("wordPopup").textContent=btn.dataset.char+" · "+btn.dataset.pinyin+(btn.dataset.word?" · "+btn.dataset.word:"");
+ }));
+}
+function startRound(){
+ roundIndex=Math.max(0,Math.min(4,Number($("roundSelect").value)||0));
+ makeQuestions();
+ $("quizArea").classList.remove("hidden");
+ $("report").style.display="none";$("vault").style.display="none";
+ $("gradeBtn").textContent="批改并显示答案";$("gradeTopBtn").textContent="批改并显示答案";
+ $("roundTitle").textContent=mode==="special"?"错字专项复习":"第"+(roundIndex+1)+"轮 / 共5轮 · 本轮"+entries.length+"个写字表汉字";
+ $("fillGrid").innerHTML="";$("choiceGrid").innerHTML="";$("scenarioGrid").innerHTML="";
+ questions.forEach((q,i)=>{
+  const el=createCard(q,i);
+  (q.type==="fill"?$("fillGrid"):q.type==="choice"?$("choiceGrid"):$("scenarioGrid")).appendChild(el);
+ });
+ lockedAttempt=null;
+ const done=attemptForRound();
+ if(done){hydrateAnswers(Object.fromEntries(done.items.map((x,i)=>[questions[i]?questions[i].id:"",x.given_answer])));showResults(done,false);}
+ else{
+  hydrateAnswers(drafts[keyFor()]||{});
+  $("quizArea").querySelectorAll("input").forEach(el=>el.disabled=false);
+ }
+ $("quizArea").querySelectorAll("input").forEach(el=>{
+  el.addEventListener("input",progress);el.addEventListener("change",progress);
+ });
+ progress();
+}
+function grade(){
+ if(lockedAttempt)return;
+ if(countAnswered()!==questions.length){progress();return;}
+ const s=settings();
+ const items=questions.map(q=>({correct_char:q.focus,expected_word:q.word||q.answer,
+   question_type:q.type==="fill"?"拼音默写":q.type==="choice"?"易混字辨析":"词语应用",
+   given_answer:answerOf(q),is_correct:answerOf(q)===q.answer,answered_at:new Date().toISOString()}));
+ const correct=items.filter(x=>x.is_correct).length;
+ const attempt={id:makeId(),child_name:"高语桐",semester:s.term,phase:s.phase,round_no:s.round,
+   mode,quiz_id:QUIZ_ID,total_questions:items.length,correct_questions:correct,
+   score:Math.round(100*correct/items.length),completed_at:new Date().toISOString(),items};
+ attempts.push(attempt);
+ if(!store(ATTEMPT_KEY,attempts)){
+  alert("保存失败：当前浏览器无法保存。请改用固定网页地址打开。");
+  attempts.pop();return;
+ }
+ delete drafts[keyFor()];store(DRAFT_KEY,drafts);
+ showResults(attempt,true);
+ memoryStatus();
+ if(unlocked)uploadAttempt(attempt);
+ else alertMessage("已保存到本机。解锁家庭档案后，可自动同步。");
+}
+function nextRound(){
+ mode="normal";roundIndex=(roundIndex+1)%5;
+ $("roundSelect").value=String(roundIndex);startRound();
+}
+function resetRound(){
+ if(!confirm("仅重新开始当前轮，已上传的历史成绩不会删除。是否继续？"))return;
+ const s=settings();
+ // Keep historical attempts, but allow a fresh attempt by bypassing its past completed snapshot for this visit.
+ roundIndex=s.round-1;makeQuestions();
+ $("quizArea").classList.remove("hidden");
+ $("report").style.display="none";$("vault").style.display="none";
+ ["gradeBtn","gradeTopBtn"].forEach(id=>$(id).textContent="批改并显示答案");
+ ["fillGrid","choiceGrid","scenarioGrid"].forEach(id=>$(id).innerHTML="");
+ questions.forEach((q,i)=>(q.type==="fill"?$("fillGrid"):q.type==="choice"?$("choiceGrid"):$("scenarioGrid")).appendChild(createCard(q,i)));
+ lockedAttempt=null;
+ $("quizArea").querySelectorAll("input").forEach(el=>{el.disabled=false;el.addEventListener("input",progress);el.addEventListener("change",progress)});
+ delete drafts[keyFor()];store(DRAFT_KEY,drafts);progress();
+}
+function makeStats(items){
+ const groups=new Map();
+ items.forEach(x=>{
+  const key=x.correct_char;
+  if(!groups.has(key))groups.set(key,{char:key,word:x.expected_word,total:0,wrong:0,recent:[]});
+  const g=groups.get(key);g.total++;if(!x.is_correct)g.wrong++;g.recent.push(x);
+ });
+ return [...groups.values()].map(g=>{
+  const last=g.recent[g.recent.length-1];const last3=g.recent.slice(-3);
+  g.status=(g.wrong>=3||!last.is_correct||last3.filter(v=>!v.is_correct).length>=2)?"focus":
+     (g.wrong>0&&last3.filter(v=>v.is_correct).length<3)?"reinforce":"mastered";
+  return g;
+ });
+}
+function dashboard(){
+ const s=settings(),items=attempts.filter(a=>a.semester===s.term&&a.quiz_id===QUIZ_ID).flatMap(a=>a.items);
+ const stats=makeStats(items);
+ const heads=[["focus","🔥重点复习"],["reinforce","🟡继续巩固"],["mastered","🟢相对稳定"]];
+ const html=heads.map(([status,title])=>{
+  const matched=stats.filter(g=>g.status===status).sort((a,b)=>b.wrong-a.wrong);
+  return '<div class="rank-col '+status+'"><h3>'+title+'（'+matched.length+'）</h3>'+
+   (matched.length?matched.slice(0,35).map(g=>'<div class="rank-item"><span class="rank-char">'+esc(g.char)+'</span>答过'+g.total+'次；错过'+g.wrong+'次</div>').join(""):"尚无")+'</div>';
+ }).join("");
+ $("growthDashboard").innerHTML='<div class="growth-head"><h2>高语桐 · '+esc(s.term)+' · 字词成长档案</h2></div><div class="growth-body"><div class="metric-grid">'+
+ '<div class="metric"><b>'+attempts.length+'</b><span>本机及已恢复的历史记录</span></div><div class="metric"><b>'+stats.length+'</b><span>已考查的汉字或词语</span></div><div class="metric"><b>'+stats.filter(x=>x.status==="focus").length+'</b><span>重点复习项</span></div></div>'+
+ '<div class="rank-grid">'+html+'</div><div class="growth-note">错字统计按每道题的真实作答结果累计。云端历史记录可通过“从云端恢复”合并。</div></div>';
+ $("growthDashboard").style.display="block";
+}
+function special(){
+ dashboard();
+ const stats=makeStats(attempts.filter(a=>a.semester===settings().term).flatMap(a=>a.items));
+ const keys=stats.filter(x=>x.status!=="mastered").sort((a,b)=>b.wrong-a.wrong).map(x=>x.char);
+ focusWords=WORDS.filter(w=>keys.includes(w.char)).slice(0,36);
+ if(!focusWords.length){alert("目前没有可生成的专项错字，请先完成普通轮次。");return;}
+ mode="special";roundIndex=0;$("roundSelect").value="0";startRound();
+}
+function csv(){
+ if(!attempts.length){alert("暂无记录");return;}
+ const rows=[["孩子","学期","阶段","轮次","日期","题型","字词","正确答案","孩子答案","正确"]];
+ attempts.forEach(a=>a.items.forEach(x=>rows.push([a.child_name,a.semester,a.phase,a.round_no,a.completed_at,x.question_type,x.correct_char,x.expected_word,x.given_answer,x.is_correct?"是":"否"])));
+ const raw="\ufeff"+rows.map(r=>r.map(v=>'"'+String(v==null?"":v).replace(/"/g,'""')+'"').join(",")).join("\n");
+ const link=document.createElement("a");link.href=URL.createObjectURL(new Blob([raw],{type:"text/csv;charset=utf-8"}));
+ link.download="高语桐_六年级语文字词_成长记录.csv";document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),1500);
+}
+async function ensureCloud(){
+ if(!window.supabase){alertMessage("云端组件未加载。请检查网络；本机练习仍可使用。","err");memoryStatus();return;}
+ try{
+  sb=window.supabase.createClient(SUPABASE_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
+  const session=(await sb.auth.getSession()).data.session;
+  if(session)member=session.user;
+  else{const result=await sb.auth.signInAnonymously();if(result.error)throw result.error;member=result.data.user;}
+  const check=await sb.from("family_access").select("user_id").eq("user_id",member.id).maybeSingle();
+  if(check.error)throw check.error;
+  unlocked=!!check.data;memoryStatus();
+  alertMessage(unlocked?"当前设备已获得家庭档案权限。":"云端已连接；首次使用请在家长中心输入家庭暗号。",unlocked?"ok":"");
+  if(unlocked)await syncAll();
+ }catch(e){alertMessage("云端连接失败："+(e.message||String(e))+"。本机数据仍保存。","err");memoryStatus();}
+}
+async function unlock(){
+ if(!sb||!member){await ensureCloud();if(!sb)return;}
+ const passphrase=$("familyPassphrase").value;if(!passphrase){alertMessage("请输入家庭暗号","err");return;}
+ const btn=$("unlockFamilyBtn");btn.disabled=true;
+ try{
+  const res=await sb.functions.invoke("unlock-family",{body:{passphrase}});
+  if(res.error)throw res.error;
+  if(!res.data||!res.data.ok)throw new Error((res.data&&res.data.error)||"家庭暗号验证未通过");
+  $("familyPassphrase").value="";
+  const check=await sb.from("family_access").select("user_id").eq("user_id",member.id).maybeSingle();
+  if(check.error)throw check.error;
+  unlocked=!!check.data;memoryStatus();
+  alertMessage(unlocked?"家庭档案已解锁，正在同步本机历史答题…":"解锁后仍无访问权限，请检查账号。",unlocked?"ok":"err");
+  if(unlocked)await syncAll();
+ }catch(e){alertMessage("解锁失败："+(e.message||String(e)),"err")}
+ finally{btn.disabled=false;}
+}
+function synced(){return new Set(parse(SYNC_KEY,[]))}
+function markSynced(id){const keys=synced();keys.add(id);store(SYNC_KEY,[...keys]);}
+async function uploadAttempt(a){
+ if(!sb||!member||!unlocked)return false;
+ if(synced().has(a.id))return true;
+ try{
+  const exists=await sb.from("quiz_attempts_secure").select("id").eq("id",a.id).maybeSingle();
+  if(exists.error)throw exists.error;
+  if(!exists.data){
+   const added=await sb.from("quiz_attempts_secure").insert({id:a.id,created_by:member.id,child_name:a.child_name,
+    quiz_id:a.quiz_id,semester:a.semester,phase:a.phase,round_no:a.round_no,total_questions:a.total_questions,
+    correct_questions:a.correct_questions,score:a.score,completed_at:a.completed_at});
+   if(added.error)throw added.error;
+  }
+  const existing=await sb.from("quiz_item_results_secure").select("correct_char").eq("attempt_id",a.id);
+  if(existing.error)throw existing.error;
+  const skip=new Set((existing.data||[]).map(x=>x.correct_char+"|"+x.question_type+"|"+x.given_answer));
+  const rest=a.items.filter(x=>!skip.has(x.correct_char+"|"+x.question_type+"|"+x.given_answer));
+  if(rest.length){
+   const data=rest.map(x=>({attempt_id:a.id,created_by:member.id,child_name:a.child_name,semester:a.semester,
+    correct_char:x.correct_char,expected_word:x.expected_word,question_type:x.question_type,
+    given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
+   const added=await sb.from("quiz_item_results_secure").insert(data);
+   if(added.error)throw added.error;
+  }
+  markSynced(a.id);return true;
+ }catch(e){alertMessage("本机已保存；本次云端上传失败："+(e.message||String(e)),"err");return false;}
+}
+async function syncAll(){
+ if(!unlocked)return;
+ let n=0;
+ for(const a of attempts)if(a.quiz_id===QUIZ_ID&&!synced().has(a.id)){if(await uploadAttempt(a))n++;}
+ alertMessage("家庭档案已解锁；本次新同步"+n+"份历史记录。","ok");
+}
+async function restoreCloud(){
+ if(!sb||!unlocked){alertMessage("请先解锁家庭档案。","err");return;}
+ try{
+  const a=await sb.from("quiz_attempts_secure").select("id,child_name,quiz_id,semester,phase,round_no,total_questions,correct_questions,score,completed_at")
+   .eq("quiz_id",QUIZ_ID).eq("child_name","高语桐").eq("semester",settings().term).order("completed_at",{ascending:false}).limit(500);
+  if(a.error)throw a.error;
+  const roots=a.data||[];
+  if(!roots.length){alertMessage("云端还没有这份试卷的历史记录。","ok");return;}
+  const existing=new Set(attempts.map(x=>x.id));
+  const missing=roots.filter(x=>!existing.has(x.id));
+  if(!missing.length){alertMessage("云端记录已在当前设备，无需重复恢复。","ok");return;}
+  const b=await sb.from("quiz_item_results_secure")
+   .select("attempt_id,correct_char,expected_word,question_type,given_answer,is_correct,answered_at")
+   .in("attempt_id",missing.map(x=>x.id)).limit(10000);
+  if(b.error)throw b.error;
+  missing.forEach(a=>{
+   const items=(b.data||[]).filter(x=>x.attempt_id===a.id).map(x=>({correct_char:x.correct_char,expected_word:x.expected_word,question_type:x.question_type,given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
+   attempts.push({...a,mode:"normal",items});
+   markSynced(a.id);
+  });
+  store(ATTEMPT_KEY,attempts);memoryStatus();dashboard();
+  alertMessage("已从云端恢复"+missing.length+"轮历史成绩；答题明细也已合并到本机。","ok");
+ }catch(e){alertMessage("恢复失败："+(e.message||String(e)),"err")}
+}
+function renderPhotoWords(){
+ $("sourceWordCount").textContent=String(PHOTO_WORDS.length);
+ const grp={};
+ PHOTO_WORDS.forEach(w=>(grp[w.lesson]||(grp[w.lesson]=[])).push(w.word));
+ $("photoWordList").innerHTML=Object.entries(grp).map(([lesson,words])=>
+ '<div class="word-row"><strong>第'+lesson+'课</strong>　'+esc(words.join("　"))+'</div>').join("");
+}
+function init(){
+ renderPhotoWords();memoryStatus();
+ $("startBtn").addEventListener("click",()=>{mode="normal";startRound();});
+ $("roundSelect").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden")){mode="normal";startRound();}});
+ $("gradeBtn").addEventListener("click",grade);$("gradeTopBtn").addEventListener("click",grade);
+ $("restartBtn").addEventListener("click",resetRound);
+ $("nextBtn").addEventListener("click",nextRound);$("nextRoundTopBtn").addEventListener("click",nextRound);
+ $("showGrowthBtn").addEventListener("click",dashboard);
+ $("makeSpecialBtn").addEventListener("click",special);
+ $("exportCsvBtn").addEventListener("click",csv);
+ $("cloudRestoreBtn").addEventListener("click",restoreCloud);
+ $("unlockFamilyBtn").addEventListener("click",unlock);
+ $("familyPassphrase").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+ $("semester").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden"))startRound()});
+ $("phase").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden"))startRound()});
+ ensureCloud();
+}
+init();
+})();</script></body></html>
