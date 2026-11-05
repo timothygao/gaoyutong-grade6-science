@@ -414,7 +414,7 @@ function grade(){
  if(lockedAttempt)return;
  if(countAnswered()!==questions.length){progress();return;}
  const s=settings();
- const items=questions.map(q=>({correct_char:q.focus,expected_word:q.word||q.answer,
+ const items=questions.map((q,qi)=>({item_no:qi,correct_char:q.focus,expected_word:q.word||q.answer,
    question_type:q.type==="fill"?"拼音默写":q.type==="choice"?"易混字辨析":"词语应用",
    given_answer:answerOf(q),is_correct:answerOf(q)===q.answer,answered_at:new Date().toISOString()}));
  const correct=items.filter(x=>x.is_correct).length;
@@ -539,13 +539,13 @@ async function uploadAttempt(a){
     correct_questions:a.correct_questions,score:a.score,completed_at:a.completed_at});
    if(added.error)throw added.error;
   }
-  const existing=await sb.from("quiz_item_results_secure").select("correct_char").eq("attempt_id",a.id);
+  const existing=await sb.from("quiz_item_results_secure").select("correct_char,question_type,given_answer").eq("attempt_id",a.id);
   if(existing.error)throw existing.error;
   const skip=new Set((existing.data||[]).map(x=>x.correct_char+"|"+x.question_type+"|"+x.given_answer));
-  const rest=a.items.filter(x=>!skip.has(x.correct_char+"|"+x.question_type+"|"+x.given_answer));
+  const rest=a.items.filter(x=>!skip.has(x.correct_char+"|"+x.question_type+"|"+String(x.item_no||0).padStart(3,"0")+"|"+x.given_answer));
   if(rest.length){
    const data=rest.map(x=>({attempt_id:a.id,created_by:member.id,child_name:a.child_name,semester:a.semester,
-    correct_char:x.correct_char,expected_word:x.expected_word,question_type:x.question_type,
+    correct_char:x.correct_char,expected_word:x.expected_word,question_type:x.question_type+"|"+String(x.item_no||0).padStart(3,"0"),
     given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
    const added=await sb.from("quiz_item_results_secure").insert(data);
    if(added.error)throw added.error;
@@ -575,7 +575,7 @@ async function restoreCloud(){
    .in("attempt_id",missing.map(x=>x.id)).limit(10000);
   if(b.error)throw b.error;
   missing.forEach(a=>{
-   const items=(b.data||[]).filter(x=>x.attempt_id===a.id).map(x=>({correct_char:x.correct_char,expected_word:x.expected_word,question_type:x.question_type,given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
+   const items=(b.data||[]).filter(x=>x.attempt_id===a.id).sort((x,y)=>Number((x.question_type||"").split("|").pop())-Number((y.question_type||"").split("|").pop())).map((x,i)=>({item_no:i,correct_char:x.correct_char,expected_word:x.expected_word,question_type:(x.question_type||"").split("|")[0],given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
    attempts.push({...a,mode:"normal",items});
    markSynced(a.id);
   });
