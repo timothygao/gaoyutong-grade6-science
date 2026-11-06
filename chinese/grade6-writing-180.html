@@ -169,6 +169,11 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
 #quizArea .question.correct .feedback,#quizArea .question.wrong .feedback{display:block}
 .switch-notice{background:#f1f8fd;border:1px solid #d0e5f2;border-radius:10px;padding:10px 12px;margin:10px 0;color:#42637a;font-size:13px}
 @media print{.hero,.cloud-box,.parent-zone,.submitbar,.quiz-toolbar{display:none!important}.question-grid{display:grid;grid-template-columns:repeat(2,1fr)}.question{break-inside:avoid}.report{display:none!important}}
+.paper-space{display:inline-block;min-width:60px;border-bottom:2px solid #9bb0c0;height:44px;vertical-align:middle}
+.paper-mark{margin-top:10px;padding:8px 12px;background:#f3faf6;border:1px solid #c2dcd3;border-radius:8px}
+.paper-mark[hidden]{display:none!important}
+.paper-mark input{margin-right:7px}
+.paper-note{font-size:13px;color:#51738a;background:#eef6fb;border-radius:8px;padding:10px}
 </style></head><body>
 <main class="page">
  <section class="hero">
@@ -187,7 +192,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
     <div class="field"><label for="studentName">学生</label><input id="studentName" type="text" value="高语桐" readonly></div>
     <div class="field"><label for="semester">学期</label><input id="semester" type="text" value="2026秋"></div>
     <div class="field"><label for="phase">学习阶段</label><select id="phase"><option value="预习">预习</option><option value="复习" selected>复习</option><option value="期末总测">期末总测</option><option value="错字专项">错字专项</option></select></div>
-    <div class="field"><label for="roundSelect">选择轮次</label><select id="roundSelect"><option value="0">第1轮 · 1—36字</option><option value="1">第2轮 · 37—72字</option><option value="2">第3轮 · 73—108字</option><option value="3">第4轮 · 109—144字</option><option value="4">第5轮 · 145—180字</option></select></div>
+    <div class="field"><label for="answerMode">答题方式</label><select id="answerMode"><option value="paper" selected>纸上手写 · 自行核对</option><option value="typing">网页输入 · 自动批改</option></select></div><div class="field"><label for="roundSelect">选择轮次</label><select id="roundSelect"><option value="0">第1轮 · 1—36字</option><option value="1">第2轮 · 37—72字</option><option value="2">第3轮 · 73—108字</option><option value="3">第4轮 · 109—144字</option><option value="4">第5轮 · 145—180字</option></select></div>
     <button class="primary" id="startBtn">开始当前轮</button>
    </div>
    <details class="parent-zone compact-parent" id="parentZone">
@@ -210,12 +215,12 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
  </section>
  <section id="quizArea" class="hidden">
   <div class="statusbar"><div><div class="round-title" id="roundTitle">第一轮</div><div class="input-status">按顺序做题，批改前不显示任何答案。每轮的草稿、答题记录相互独立。</div></div><div class="progress-wrap"><div class="progress"><i id="progressBar"></i></div><span class="progress-text" id="progressText">已答0题</span></div></div>
-  <div class="quiz-toolbar"><button class="primary" id="gradeTopBtn" disabled>批改并显示答案</button><button class="ghost" id="restartBtn">重新练习本轮</button><button class="ghost" id="nextRoundTopBtn">下一轮</button></div>
+  <div class="quiz-toolbar"><button class="primary" id="gradeTopBtn" disabled>批改并显示答案</button><button class="primary" id="paperSaveTop" hidden>核对完毕 · 保存勾选记录</button><button class="ghost" id="restartBtn">重新练习本轮</button><button class="ghost" id="nextRoundTopBtn">下一轮</button></div>
   <div class="switch-notice" id="draftNotice">未作答完时批改按钮不可点击，草稿自动保存在本机。</div>
   <div class="section-title"><h2>第一关：看拼音写字</h2><span>字形默写</span></div><p class="section-note">每题都有完整词语的带声调拼音和缺字词语。只填写被遮住的字；补充示例词不冒充教材原词语。</p><div class="question-grid" id="fillGrid"></div>
   <div class="section-title"><h2>第二关：易混字辨析</h2><span>教材旁注易错字</span></div><p class="section-note">每题给出完整词语拼音和遮住目标字的词语，再从外形相近的字中选出正确写法。</p><div class="question-grid" id="choiceGrid"></div>
   <div class="section-title"><h2>第三关：课本词语与应用（含多音字）</h2><span>教材词语表可见部分</span></div><p class="section-note">依据教材旁注和具体句子理解词义。辨析词语时提供拼音和语境，但不提前展示答案清单。</p><div class="question-grid" id="scenarioGrid"></div>
-  <div class="submitbar"><button class="primary" id="gradeBtn" disabled>批改并显示答案</button><button class="ghost" id="nextBtn">下一轮</button></div>
+  <div class="submitbar"><button class="primary" id="gradeBtn" disabled>批改并显示答案</button><button class="primary" id="paperSaveBottom" hidden>核对完毕 · 保存勾选记录</button><button class="ghost" id="nextBtn">下一轮</button></div>
   <section class="report" id="report"></section>
   <section class="vault" id="vault"><div class="vault-head"><div><h2>180字写字宝库</h2><div class="growth-note">本轮批改后可点字查看拼音和来源课次。</div></div></div><div class="vault-body"><div class="word-popup" id="wordPopup"></div><div id="vaultGroups"></div></div></section>
  </section>
@@ -236,7 +241,7 @@ const QUIZ_ID="gaoyutong-grade6-chinese-180-v2";
 const BASE="gaoyutong-chinese-grade6-v2";
 const ATTEMPT_KEY=BASE+"-attempts";
 const DRAFT_KEY=BASE+"-drafts";
-const SYNC_KEY=BASE+"-synced";
+const SYNC_KEY=BASE+"-synced";const PAPER_KEY=BASE+"-paper";
 const SUPABASE_URL="https://iqlnwzxmtjjgzisufljd.supabase.co";
 const PUBLISHABLE_KEY="sb_publishable_jnY3xbWPgPFBd6naW35bXQ_tzZcNOTE";
 const $=id=>document.getElementById(id);
@@ -244,8 +249,8 @@ const esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;"
 const parse=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k)||"null")||fallback}catch(_){return fallback}};
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(_){return false}};
 const makeId=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});
-let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{});
-let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[];
+let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{}),paperSessions=parse(PAPER_KEY,{});
+let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper";
 function alertMessage(message,type){
  const box=$("cloudMsg");box.className="cloud-message "+(type||"");box.textContent=message;
 }
@@ -257,9 +262,9 @@ function memoryStatus(){
 function settings(){
  return {term:$("semester").value.trim()||"2026秋",phase:$("phase").value,round:roundIndex+1};
 }
-function keyFor(){
- const s=settings();return [s.term,s.phase,mode,s.round].join("|");
-}
+function keyFor(){const x=settings();return [x.term,x.phase,mode,x.round].join("|")+(studyMode==="paper"?"|paper":"");}
+function paperSession(){const k=keyFor();return paperSessions[k]||(paperSessions[k]={revealed:false,marks:{}});}
+function savePaper(){return store(PAPER_KEY,paperSessions);}
 function draftAnswers(){
  const ans={};
  questions.forEach(q=>{
@@ -269,7 +274,7 @@ function draftAnswers(){
  return ans;
 }
 function saveDraft(){
- if(lockedAttempt)return;
+ if(lockedAttempt||studyMode==="paper")return;
  drafts[keyFor()]=draftAnswers();
  store(DRAFT_KEY,drafts);
 }
@@ -340,7 +345,17 @@ function createCard(q,index){
    '<label class="option"><input type="radio" name="'+q.id+'" value="'+esc(o)+'"><span>'+String.fromCharCode(65+i)+'. '+esc(o)+'</span></label>').join("")+'</div>';
  }
  html+='<div class="feedback"></div>';
+ if(studyMode==="paper")html+='<div class="paper-mark" hidden><label><input type="checkbox" data-paper-tick="'+q.id+'">第'+(roundIndex+1)+'轮：这题我在纸上写对了</label></div>';
  card.innerHTML=html;
+ if(studyMode==="paper"){
+  card.querySelectorAll("input").forEach(el=>{
+   if(el.dataset.paperTick)return;
+   if(el.type==="radio")el.closest("label").remove();
+   else{const place=document.createElement("span");place.className="paper-space";el.replaceWith(place);}
+  });
+  const opts=card.querySelector(".options");
+  if(opts){const note=document.createElement("div");note.className="paper-note";note.textContent="在纸上写出正确字词，批改前不显示选项答案。";opts.replaceWith(note);}
+ }
  return card;
 }
 function answerOf(q){
@@ -351,6 +366,16 @@ function countAnswered(){
  return questions.filter(q=>answerOf(q)!=="").length;
 }
 function progress(){
+ if(studyMode==="paper"){
+  const p=paperSession(),count=questions.filter(q=>!!p.marks[q.id]).length;
+  $("progressText").textContent=p.revealed?"已勾选掌握 "+count+"/"+questions.length:"纸笔手写 · "+questions.length+"题";
+  $("progressBar").style.width=(p.revealed?100*count/Math.max(1,questions.length):0)+"%";
+  for(const id of ["gradeTopBtn","gradeBtn"]){$(id).disabled=p.revealed||!!lockedAttempt;$(id).textContent=p.revealed?"参考答案已显示":"纸上全部写完 · 显示参考答案";}
+  for(const id of ["paperSaveTop","paperSaveBottom"]){$(id).hidden=!p.revealed;$(id).textContent=lockedAttempt?"更新勾选记录":"核对完毕 · 保存勾选记录";}
+  $("draftNotice").textContent=p.revealed?"请自己核对纸上的手写答案；写对的打勾，没勾的记为待巩固。":"请先在纸上完成全部题目，确认后才能显示参考答案。";
+  return;
+ }
+ for(const id of ["paperSaveTop","paperSaveBottom"])$(id).hidden=true;
  const count=countAnswered(),total=questions.length;
  $("progressText").textContent="已答 "+count+" / "+total;
  $("progressBar").style.width=(100*count/Math.max(1,total))+"%";
@@ -362,7 +387,9 @@ function progress(){
 }
 function attemptForRound(){
  const key=keyFor(),s=settings();
- return attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.semester===s.term&&a.phase===s.phase&&a.mode===mode&&a.round_no===s.round)
+ return attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.semester===s.term&&
+  (a.phase===s.phase||a.phase===s.phase+"·纸笔自核")&&a.mode===mode&&a.round_no===s.round&&
+  (a.study_mode||"typing")===studyMode&&!a.replaced)
   .sort((a,b)=>b.completed_at.localeCompare(a.completed_at))[0]||null;
 }
 function hydrateAnswers(answerMap){
@@ -377,6 +404,14 @@ function hydrateAnswers(answerMap){
  });
 }
 function showResults(attempt,shouldScroll){
+ if((attempt.study_mode||"typing")==="paper"){
+  lockedAttempt=attempt;
+  const p=paperSession();p.revealed=true;
+  (attempt.items||[]).forEach((x,i)=>{if(questions[i])p.marks[questions[i].id]=!!x.is_correct;});
+  savePaper();renderPaperReview();
+  if(shouldScroll)$("report").scrollIntoView({behavior:"smooth",block:"start"});
+  return;
+ }
  let correct=0,wrong=[];
  questions.forEach((q,i)=>{
   const item=attempt.items[i],given=item?item.given_answer:"",ok=given===q.answer;
@@ -414,6 +449,46 @@ function renderVault(){
   $("wordPopup").textContent=btn.dataset.char+" · "+btn.dataset.pinyin+(btn.dataset.word?" · "+btn.dataset.word:"");
  }));
 }
+function renderPaperReview(){
+ if(studyMode!=="paper"||!paperSession().revealed)return;
+ const p=paperSession();let good=0;
+ questions.forEach(q=>{
+  const c=$("card-"+q.id);if(!c)return;
+  const feedback=c.querySelector(".feedback");feedback.style.display="block";
+  feedback.innerHTML='参考答案：<strong>'+esc(q.answer)+'</strong>'+(q.explain?'；'+esc(q.explain):"");
+  const mark=c.querySelector(".paper-mark");
+  if(mark){mark.hidden=false;mark.querySelector("[data-paper-tick]").checked=!!p.marks[q.id];}
+  if(p.marks[q.id])good++;
+ });
+ $("report").style.display="block";
+ $("report").innerHTML='<div class="report-head"><h2>纸笔自核 · 第'+(roundIndex+1)+'轮</h2><div class="score">'+good+'/'+questions.length+'</div></div><div class="report-body">核对纸上手写结果，正确的打勾，未勾选的记录为待巩固；最后点击保存。</div>';
+ $("vault").style.display="none";
+}
+function revealPaper(){
+ if(studyMode!=="paper"||paperSession().revealed)return;
+ if(!confirm("确认已在纸上独立完成本轮全部题目？确定后才会显示参考答案。"))return;
+ paperSession().revealed=true;savePaper();renderPaperReview();progress();
+}
+function savePaperMarks(){
+ if(studyMode!=="paper"||!paperSession().revealed)return;
+ if(!confirm("已逐题核对纸上的手写答案？未勾选题目将记为待巩固。"))return;
+ const p=paperSession(),settingsNow=settings(),old=attemptForRound();
+ const items=questions.map((q,i)=>({
+  item_no:i,correct_char:q.focus,expected_word:q.word||q.answer,
+  question_type:q.type==="fill"?"纸笔默写":q.type==="choice"?"纸笔易混字":q.type==="poly"?"纸笔多音字":"纸笔词语",
+  given_answer:"[纸笔自核]",is_correct:!!p.marks[q.id],answered_at:new Date().toISOString()
+ }));
+ const good=items.filter(x=>x.is_correct).length;
+ const a={id:makeId(),child_name:"高语桐",semester:settingsNow.term,phase:settingsNow.phase+"·纸笔自核",
+  base_phase:settingsNow.phase,study_mode:"paper",mode,quiz_id:QUIZ_ID,round_no:settingsNow.round,
+  total_questions:items.length,correct_questions:good,score:Math.round(good/Math.max(1,items.length)*100),
+  completed_at:new Date().toISOString(),items};
+ if(old)old.replaced=true;
+ attempts.push(a);
+ if(!store(ATTEMPT_KEY,attempts)){attempts.pop();if(old)delete old.replaced;alert("本机保存失败");return;}
+ lockedAttempt=a;savePaper();renderPaperReview();progress();memoryStatus();
+ if(unlocked)uploadAttempt(a);else alertMessage("纸笔自核记录已保存本机；解锁家庭档案后可上传。");
+}
 function startRound(){
  roundIndex=Math.max(0,Math.min(4,Number($("roundSelect").value)||0));
  makeQuestions();
@@ -428,8 +503,12 @@ function startRound(){
  });
  lockedAttempt=null;
  const done=attemptForRound();
- if(done){hydrateAnswers(Object.fromEntries(done.items.map((x,i)=>[questions[i]?questions[i].id:"",x.given_answer])));showResults(done,false);}
- else{
+ if(studyMode==="paper"){
+  if(done)showResults(done,false);else if(paperSession().revealed)renderPaperReview();
+ }else if(done){
+  hydrateAnswers(Object.fromEntries(done.items.map((x,i)=>[questions[i]?questions[i].id:"",x.given_answer])));
+  showResults(done,false);
+ }else{
   hydrateAnswers(drafts[keyFor()]||{});
   $("quizArea").querySelectorAll("input").forEach(el=>el.disabled=false);
  }
@@ -439,6 +518,7 @@ function startRound(){
  progress();
 }
 function grade(){
+ if(studyMode==="paper"){revealPaper();return;}
  if(lockedAttempt)return;
  if(countAnswered()!==questions.length){progress();return;}
  const s=settings();
@@ -465,6 +545,11 @@ function nextRound(){
  $("roundSelect").value=String(roundIndex);startRound();
 }
 function resetRound(){
+ if(studyMode==="paper"){
+  if(!confirm("重新开始当前纸笔轮次？历史成绩仍保留，当前轮参考答案会重新隐藏、勾选草稿会清空。"))return;
+  const old=attemptForRound();if(old)old.replaced=true;
+  paperSessions[keyFor()]={revealed:false,marks:{}};savePaper();store(ATTEMPT_KEY,attempts);lockedAttempt=null;startRound();return;
+ }
  if(!confirm("仅重新开始当前轮，已上传的历史成绩不会删除。是否继续？"))return;
  const s=settings();
  // Keep historical attempts, but allow a fresh attempt by bypassing its past completed snapshot for this visit.
@@ -604,7 +689,8 @@ async function restoreCloud(){
   if(b.error)throw b.error;
   missing.forEach(a=>{
    const items=(b.data||[]).filter(x=>x.attempt_id===a.id).sort((x,y)=>Number((x.question_type||"").split("|").pop())-Number((y.question_type||"").split("|").pop())).map((x,i)=>({item_no:i,correct_char:x.correct_char,expected_word:x.expected_word,question_type:(x.question_type||"").split("|")[0],given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
-   attempts.push({...a,mode:"normal",items});
+   attempts.push({...a,mode:"normal",study_mode:a.phase.includes("·纸笔自核")?"paper":"typing",
+  base_phase:a.phase.replace(/·纸笔自核$/,""),items});
    markSynced(a.id);
   });
   store(ATTEMPT_KEY,attempts);memoryStatus();dashboard();
@@ -612,6 +698,15 @@ async function restoreCloud(){
  }catch(e){alertMessage("恢复失败："+(e.message||String(e)),"err")}
 }
 function init(){
+ studyMode=$("answerMode").value;
+ $("answerMode").addEventListener("change",()=>{studyMode=$("answerMode").value;if(!$("quizArea").classList.contains("hidden"))startRound();});
+ for(const id of ["paperSaveTop","paperSaveBottom"])$(id).addEventListener("click",savePaperMarks);
+ $("quizArea").addEventListener("change",e=>{
+  if(e.target.matches("[data-paper-tick]")&&studyMode==="paper"&&paperSession().revealed){
+   paperSession().marks[e.target.dataset.paperTick]=e.target.checked;
+   savePaper();renderPaperReview();progress();
+  }
+ });
  memoryStatus();
  $("startBtn").addEventListener("click",()=>{mode="normal";startRound();});
  $("roundSelect").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden")){mode="normal";startRound();}});
