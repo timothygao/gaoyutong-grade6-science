@@ -451,7 +451,10 @@ function showResults(attempt,shouldScroll){
  }
  let correct=0,wrong=[];
  questions.forEach((q,i)=>{
-  const item=attempt.items[i],given=item?item.given_answer:"",ok=answerCorrect(q,given);
+  const item=attempt.items[i],given=item?item.given_answer:"";
+  const wasOldPoly=q.type==="poly"&&String(given).split("|").length!==q.readings.length;
+  // Preserve the grade originally stored for a completed legacy single-choice polyphone.
+  const ok=wasOldPoly?!!item?.is_correct:answerCorrect(q,given);
   if(ok)correct++;else wrong.push(q.focus);
   const card=$("card-"+q.id);if(!card)return;
   card.classList.remove("correct","wrong");card.classList.add(ok?"correct":"wrong");
@@ -459,6 +462,7 @@ function showResults(attempt,shouldScroll){
   feedback.innerHTML=(ok?"答对了！":"需要再复习。")+
   ' 正确答案：<strong>'+esc(q.answer)+'</strong>'+
   (q.type==="fill"&&q.entry.word?'；词语：<strong>'+esc(q.entry.word)+'</strong>':'')+
+  (wasOldPoly?'；这是旧版单选题的历史成绩，成绩已保留。要练习写全多个拼音，请重新开始该组。':'')+
   (q.type==="poly"?'；'+q.readings.map(x=>esc(x.word)+'：<strong>'+esc(x.pinyin)+'</strong>').join('；'):'')+
   (q.explain?'。 '+esc(q.explain):'')+'。';
  });
