@@ -174,7 +174,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
 .paper-mark[hidden]{display:none!important}
 .paper-mark input{margin-right:7px}
 .paper-note{font-size:13px;color:#51738a;background:#eef6fb;border-radius:8px;padding:10px}
-</style></head><body>
+.paper-pass-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.paper-pass-grid label{display:inline-flex;align-items:center;gap:6px;border:1px solid #d1e0ea;border-radius:9px;background:#fff;padding:8px 10px;font-size:13px;font-weight:700}.paper-pass-grid label:has(input:disabled){opacity:.48}.paper-pass-grid input{width:18px;height:18px;accent-color:#277aaf}.paper-help{font-size:12px;color:#647e90}#paperPassField[hidden]{display:none!important}</style></head><body>
 <main class="page">
  <section class="hero">
   <h1>六年级上册 · 180字写字表闯关复习</h1>
@@ -506,7 +506,7 @@ function startRound(){
  $("quizArea").classList.remove("hidden");
  $("report").style.display="none";$("vault").style.display="none";
  $("gradeBtn").textContent="批改并显示答案";$("gradeTopBtn").textContent="批改并显示答案";
- $("roundTitle").textContent=mode==="special"?"错字专项复习":"第"+(roundIndex+1)+"轮 / 共5轮 · 本轮"+entries.length+"个写字表汉字";
+ $("roundTitle").textContent=mode==="special"?"错字专项复习":"第"+(roundIndex+1)+"组 / 共5组 · "+(studyMode==="paper"?"纸笔第"+paperPass+"次 · ":"")+"本组"+entries.length+"个写字表汉字";
  $("fillGrid").innerHTML="";$("choiceGrid").innerHTML="";$("scenarioGrid").innerHTML="";
  questions.forEach((q,i)=>{
   const el=createCard(q,i);
