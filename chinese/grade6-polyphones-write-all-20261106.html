@@ -427,7 +427,7 @@ function progress(){
 function attemptForRound(){
  const key=keyFor(),s=settings();
  return attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.semester===s.term&&
-  (studyMode==="paper"?a.phase===s.phase+"·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"):a.phase===s.phase)&&a.mode===mode&&a.round_no===s.round&&
+  (studyMode==="paper"?a.phase===s.phase+"·多音字专项·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"):a.phase===s.phase+"·多音字专项")&&a.mode===mode&&a.round_no===s.round&&
   (a.study_mode||"typing")===studyMode&&!a.replaced)
   .sort((a,b)=>b.completed_at.localeCompare(a.completed_at))[0]||null;
 }
@@ -535,7 +535,7 @@ function savePaperMarks(){
   given_answer:"[纸笔自核]",is_correct:!!p.marks[q.id],answered_at:new Date().toISOString()
  }));
  const good=items.filter(x=>x.is_correct).length;
- const a={id:makeId(),child_name:"高语桐",semester:settingsNow.term,phase:settingsNow.phase+"·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"),
+ const a={id:makeId(),child_name:"高语桐",semester:settingsNow.term,phase:settingsNow.phase+"·多音字专项·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"),
   base_phase:settingsNow.phase,study_mode:"paper",paper_pass:paperPass,mode,quiz_id:QUIZ_ID,round_no:settingsNow.round,
   total_questions:items.length,correct_questions:good,score:Math.round(good/Math.max(1,items.length)*100),
   completed_at:new Date().toISOString(),items};
@@ -552,7 +552,7 @@ function startRound(){
  $("quizArea").classList.remove("hidden");
  $("report").style.display="none";$("vault").style.display="none";
  $("gradeBtn").textContent="批改并显示答案";$("gradeTopBtn").textContent="批改并显示答案";
- $("roundTitle").textContent=mode==="special"?"错字专项复习":"第"+(roundIndex+1)+"组 / 共5组 · "+(studyMode==="paper"?"纸笔第"+paperPass+"次 · ":"")+"本组"+entries.length+"个写字表汉字";
+ $("roundTitle").textContent=mode==="poly"?"多音字专项 · 8个字，19处读音":mode==="special"?"错字专项复习":"第"+(roundIndex+1)+"组 / 共5组 · "+(studyMode==="paper"?"纸笔第"+paperPass+"次 · ":"")+"本组"+entries.length+"个写字表汉字";
  $("fillGrid").innerHTML="";$("choiceGrid").innerHTML="";$("scenarioGrid").innerHTML="";
  questions.forEach((q,i)=>{
   const el=createCard(q,i);
@@ -583,7 +583,7 @@ function grade(){
    question_type:q.type==="fill"?"拼音默写":q.type==="choice"?"易混字辨析":q.type==="poly"?"多音字拼音默写":"词语应用",
    given_answer:answerOf(q),is_correct:answerCorrect(q,answerOf(q)),answered_at:new Date().toISOString()}));
  const correct=items.filter(x=>x.is_correct).length;
- const attempt={id:makeId(),child_name:"高语桐",semester:s.term,phase:s.phase,round_no:s.round,
+ const attempt={id:makeId(),child_name:"高语桐",semester:s.term,phase:s.phase+"·多音字专项",round_no:s.round,
    mode,quiz_id:QUIZ_ID,total_questions:items.length,correct_questions:correct,
    score:Math.round(100*correct/items.length),completed_at:new Date().toISOString(),items};
  attempts.push(attempt);
@@ -747,8 +747,8 @@ async function restoreCloud(){
   if(b.error)throw b.error;
   missing.forEach(a=>{
    const items=(b.data||[]).filter(x=>x.attempt_id===a.id).sort((x,y)=>Number((x.question_type||"").split("|").pop())-Number((y.question_type||"").split("|").pop())).map((x,i)=>({item_no:i,correct_char:x.correct_char,expected_word:x.expected_word,question_type:(x.question_type||"").split("|")[0],given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
-   attempts.push({...a,mode:"normal",study_mode:a.phase.includes("·纸笔自核")?"paper":"typing",
-  base_phase:a.phase.replace(/·纸笔自核(?:·第[123]次)?$/,""),paper_pass:Number((a.phase.match(/·纸笔自核·第([123])次$/)||[])[1]||1),items});
+   attempts.push({...a,mode:a.phase.includes("·多音字专项")?"poly":"normal",study_mode:a.phase.includes("·纸笔自核")?"paper":"typing",
+  base_phase:a.phase.replace(/·纸笔自核(?:·第[123]次)?$/,"").replace(/·多音字专项$/,""),paper_pass:Number((a.phase.match(/·纸笔自核·第([123])次$/)||[])[1]||1),items});
    markSynced(a.id);
   });
   store(ATTEMPT_KEY,attempts);memoryStatus();dashboard();
@@ -771,8 +771,8 @@ function init(){
   }
  });
  memoryStatus();
- $("startBtn").addEventListener("click",()=>{mode="normal";startRound();});
- $("roundSelect").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden")){mode="normal";startRound();}});
+ $("startBtn").addEventListener("click",()=>{mode="poly";roundIndex=0;$("roundSelect").value="0";startRound();});
+ $("roundSelect").addEventListener("change",()=>{if(!$("quizArea").classList.contains("hidden")){mode="poly";roundIndex=0;$("roundSelect").value="0";startRound();}});
  $("gradeBtn").addEventListener("click",grade);$("gradeTopBtn").addEventListener("click",grade);
  $("restartBtn").addEventListener("click",resetRound);
  $("nextBtn").addEventListener("click",nextRound);$("nextRoundTopBtn").addEventListener("click",nextRound);
