@@ -250,7 +250,7 @@ const parse=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k)||"null"
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(_){return false}};
 const makeId=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});
 let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{}),paperSessions=parse(PAPER_KEY,{});
-let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper",paperPass=1;
+let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper",paperPass=1,answersVisible=false;
 function alertMessage(message,type){
  const box=$("cloudMsg");box.className="cloud-message "+(type||"");box.textContent=message;
 }
@@ -352,7 +352,7 @@ function createCard(q,index){
  html+='<div class="feedback"></div>';
  if(studyMode==="paper")html+='<div class="paper-mark"><strong>三次独立核对记录 · 新版2026-11-06</strong><div class="paper-pass-grid">'+[1,2,3].map(n=>{
  const p=paperSessionForPass(n);
- return '<label title="'+(p.revealed?'已核对的第'+n+'次可勾选':'先完成第'+n+'次纸上练习再核对')+'"><input type="checkbox" data-paper-tick="'+q.id+'" data-paper-pass="'+n+'" '+(p.marks[q.id]?'checked ':'')+(p.revealed?'':'disabled ')+'><span>第'+n+'次写对</span></label>';
+ return '<label title="'+(p.revealed?'已核对的第'+n+'次可勾选':'先完成第'+n+'次纸上练习再核对')+'"><input type="checkbox" data-paper-tick="'+q.id+'" data-paper-pass="'+n+'" '+(p.marks[q.id]?'checked ':'')+((answersVisible&&p.revealed&&n===paperPass)?'':'disabled ')+'><span>第'+n+'次写对</span></label>';
  }).join("")+'</div><div class="paper-help">只有已经核对的次数可以勾选，未勾选表示仍需巩固。</div></div>';
  card.innerHTML=html;
  if(studyMode==="paper"){
@@ -376,11 +376,11 @@ function countAnswered(){
 function progress(){
  if(studyMode==="paper"){
   const p=paperSession(),count=questions.filter(q=>!!p.marks[q.id]).length;
-  $("progressText").textContent=p.revealed?"已勾选掌握 "+count+"/"+questions.length:"纸笔手写 · "+questions.length+"题";
-  $("progressBar").style.width=(p.revealed?100*count/Math.max(1,questions.length):0)+"%";
-  for(const id of ["gradeTopBtn","gradeBtn"]){$(id).disabled=p.revealed||!!lockedAttempt;$(id).textContent=p.revealed?"参考答案已显示":"纸上全部写完 · 显示参考答案";}
-  for(const id of ["paperSaveTop","paperSaveBottom"]){$(id).hidden=!p.revealed;$(id).textContent=lockedAttempt?"更新勾选记录":"核对完毕 · 保存勾选记录";}
-  $("draftNotice").textContent=p.revealed?"请自己核对纸上的手写答案；写对的打勾，没勾的记为待巩固。":"请先在纸上完成全部题目，确认后才能显示参考答案。";
+  $("progressText").textContent=answersVisible?"已勾选掌握 "+count+"/"+questions.length:"纸笔手写 · "+questions.length+"题（答案隐藏）";
+  $("progressBar").style.width=(answersVisible?100*count/Math.max(1,questions.length):0)+"%";
+  for(const id of ["gradeTopBtn","gradeBtn"]){$(id).disabled=answersVisible;$(id).textContent=answersVisible?"参考答案已显示":"确认纸笔写完 · 核对并显示答案";}
+  for(const id of ["paperSaveTop","paperSaveBottom"]){$(id).hidden=!answersVisible;$(id).textContent=lockedAttempt?"更新勾选记录":"核对完毕 · 保存勾选记录";}
+  $("draftNotice").textContent=answersVisible?"请自己核对纸上的手写答案；写对的打勾，没勾的记为待巩固。":"参考答案已隐藏。以前的完成记录和勾选仍保留；本次请先独立写完，再点核对按钮。";
   return;
  }
  for(const id of ["paperSaveTop","paperSaveBottom"])$(id).hidden=true;
@@ -458,7 +458,8 @@ function renderVault(){
  }));
 }
 function renderPaperReview(){
- if(studyMode!=="paper"||!paperSession().revealed)return;
+ // Existing review history is not authorization to show answers in this page view.
+ if(studyMode!=="paper"||!answersVisible||!paperSession().revealed)return;
  const p=paperSession();let good=0;
  questions.forEach(q=>{
   const c=$("card-"+q.id);if(!c)return;
@@ -467,7 +468,7 @@ function renderPaperReview(){
   const mark=c.querySelector(".paper-mark");
   if(mark)mark.querySelectorAll("[data-paper-tick]").forEach(tick=>{
     const pass=Number(tick.dataset.paperPass),record=paperSessionForPass(pass);
-    tick.checked=!!record.marks[q.id];tick.disabled=!record.revealed;
+    tick.checked=!!record.marks[q.id];tick.disabled=!(answersVisible&&record.revealed&&pass===paperPass);
   });
   if(p.marks[q.id])good++;
  });
@@ -476,12 +477,12 @@ function renderPaperReview(){
  $("vault").style.display="none";
 }
 function revealPaper(){
- if(studyMode!=="paper"||paperSession().revealed)return;
+ if(studyMode!=="paper"||answersVisible)return;
  if(!confirm("确认已在纸上独立完成本轮全部题目？确定后才会显示参考答案。"))return;
- paperSession().revealed=true;savePaper();renderPaperReview();progress();
+ paperSession().revealed=true;answersVisible=true;savePaper();renderPaperReview();progress();
 }
 function savePaperMarks(){
- if(studyMode!=="paper"||!paperSession().revealed)return;
+ if(studyMode!=="paper"||!answersVisible||!paperSession().revealed)return;
  if(!confirm("已逐题核对纸上的手写答案？未勾选题目将记为待巩固。"))return;
  const p=paperSession(),settingsNow=settings(),old=attemptForRound();
  const items=questions.map((q,i)=>({
@@ -501,6 +502,7 @@ function savePaperMarks(){
  if(unlocked)uploadAttempt(a);else alertMessage("纸笔自核记录已保存本机；解锁家庭档案后可上传。");
 }
 function startRound(){
+ answersVisible=false; // Changing groups, passes, or reopening a prior attempt re-hides the answers.
  roundIndex=Math.max(0,Math.min(4,Number($("roundSelect").value)||0));
  makeQuestions();
  $("quizArea").classList.remove("hidden");
