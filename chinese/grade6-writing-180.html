@@ -192,7 +192,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
     <div class="field"><label for="studentName">学生</label><input id="studentName" type="text" value="高语桐" readonly></div>
     <div class="field"><label for="semester">学期</label><input id="semester" type="text" value="2026秋"></div>
     <div class="field"><label for="phase">学习阶段</label><select id="phase"><option value="预习">预习</option><option value="复习" selected>复习</option><option value="期末总测">期末总测</option><option value="错字专项">错字专项</option></select></div>
-    <div class="field"><label for="answerMode">答题方式</label><select id="answerMode"><option value="paper" selected>纸上手写 · 自行核对</option><option value="typing">网页输入 · 自动批改</option></select></div><div class="field"><label for="roundSelect">选择轮次</label><select id="roundSelect"><option value="0">第1轮 · 1—36字</option><option value="1">第2轮 · 37—72字</option><option value="2">第3轮 · 73—108字</option><option value="3">第4轮 · 109—144字</option><option value="4">第5轮 · 145—180字</option></select></div>
+    <div class="field"><label for="answerMode">答题方式</label><select id="answerMode"><option value="paper" selected>纸上手写 · 自行核对</option><option value="typing">网页输入 · 自动批改</option></select></div><div class="field"><label for="roundSelect">选择字词组（五组覆盖180字）</label><select id="roundSelect"><option value="0">第1组 · 1—36字</option><option value="1">第2组 · 37—72字</option><option value="2">第3组 · 73—108字</option><option value="3">第4组 · 109—144字</option><option value="4">第5组 · 145—180字</option></select></div><div class="field" id="paperPassField"><label for="paperPass">纸笔复习次数</label><select id="paperPass"><option value="1">第1次 · 手写核对</option><option value="2">第2次 · 手写核对</option><option value="3">第3次 · 手写核对</option></select></div>
     <button class="primary" id="startBtn">开始当前轮</button>
    </div>
    <details class="parent-zone compact-parent" id="parentZone">
@@ -250,7 +250,7 @@ const parse=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k)||"null"
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(_){return false}};
 const makeId=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});
 let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{}),paperSessions=parse(PAPER_KEY,{});
-let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper";
+let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper",paperPass=1;
 function alertMessage(message,type){
  const box=$("cloudMsg");box.className="cloud-message "+(type||"");box.textContent=message;
 }
@@ -263,7 +263,12 @@ function settings(){
  return {term:$("semester").value.trim()||"2026秋",phase:$("phase").value,round:roundIndex+1};
 }
 function keyFor(){const x=settings();return [x.term,x.phase,mode,x.round].join("|")+(studyMode==="paper"?"|paper":"");}
-function paperSession(){const k=keyFor();return paperSessions[k]||(paperSessions[k]={revealed:false,marks:{}});}
+function paperSessionForPass(n){
+ const x=settings(),prefix=[x.term,x.phase,mode,x.round].join("|")+"|paper";
+ const k=prefix+(n===1?"":"|pass"+n);
+ return paperSessions[k]||(paperSessions[k]={revealed:false,marks:{}});
+}
+function paperSession(){return paperSessionForPass(paperPass);}
 function savePaper(){return store(PAPER_KEY,paperSessions);}
 function draftAnswers(){
  const ans={};
@@ -345,7 +350,10 @@ function createCard(q,index){
    '<label class="option"><input type="radio" name="'+q.id+'" value="'+esc(o)+'"><span>'+String.fromCharCode(65+i)+'. '+esc(o)+'</span></label>').join("")+'</div>';
  }
  html+='<div class="feedback"></div>';
- if(studyMode==="paper")html+='<div class="paper-mark" hidden><label><input type="checkbox" data-paper-tick="'+q.id+'">第'+(roundIndex+1)+'轮：这题我在纸上写对了</label></div>';
+ if(studyMode==="paper")html+='<div class="paper-mark"><strong>手写核对 · 三次记录</strong><div class="paper-pass-grid">'+[1,2,3].map(n=>{
+ const p=paperSessionForPass(n);
+ return '<label title="'+(p.revealed?'已核对的第'+n+'次可勾选':'先完成第'+n+'次纸上练习再核对')+'"><input type="checkbox" data-paper-tick="'+q.id+'" data-paper-pass="'+n+'" '+(p.marks[q.id]?'checked ':'')+(p.revealed?'':'disabled ')+'><span>第'+n+'次写对</span></label>';
+ }).join("")+'</div><div class="paper-help">只有已经核对的次数可以勾选，未勾选表示仍需巩固。</div></div>';
  card.innerHTML=html;
  if(studyMode==="paper"){
   card.querySelectorAll("input").forEach(el=>{
@@ -388,7 +396,7 @@ function progress(){
 function attemptForRound(){
  const key=keyFor(),s=settings();
  return attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.semester===s.term&&
-  (a.phase===s.phase||a.phase===s.phase+"·纸笔自核")&&a.mode===mode&&a.round_no===s.round&&
+  (studyMode==="paper"?a.phase===s.phase+"·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"):a.phase===s.phase)&&a.mode===mode&&a.round_no===s.round&&
   (a.study_mode||"typing")===studyMode&&!a.replaced)
   .sort((a,b)=>b.completed_at.localeCompare(a.completed_at))[0]||null;
 }
@@ -457,7 +465,10 @@ function renderPaperReview(){
   const feedback=c.querySelector(".feedback");feedback.style.display="block";
   feedback.innerHTML='参考答案：<strong>'+esc(q.answer)+'</strong>'+(q.explain?'；'+esc(q.explain):"");
   const mark=c.querySelector(".paper-mark");
-  if(mark){mark.hidden=false;mark.querySelector("[data-paper-tick]").checked=!!p.marks[q.id];}
+  if(mark)mark.querySelectorAll("[data-paper-tick]").forEach(tick=>{
+    const pass=Number(tick.dataset.paperPass),record=paperSessionForPass(pass);
+    tick.checked=!!record.marks[q.id];tick.disabled=!record.revealed;
+  });
   if(p.marks[q.id])good++;
  });
  $("report").style.display="block";
@@ -479,8 +490,8 @@ function savePaperMarks(){
   given_answer:"[纸笔自核]",is_correct:!!p.marks[q.id],answered_at:new Date().toISOString()
  }));
  const good=items.filter(x=>x.is_correct).length;
- const a={id:makeId(),child_name:"高语桐",semester:settingsNow.term,phase:settingsNow.phase+"·纸笔自核",
-  base_phase:settingsNow.phase,study_mode:"paper",mode,quiz_id:QUIZ_ID,round_no:settingsNow.round,
+ const a={id:makeId(),child_name:"高语桐",semester:settingsNow.term,phase:settingsNow.phase+"·纸笔自核"+(paperPass===1?"":"·第"+paperPass+"次"),
+  base_phase:settingsNow.phase,study_mode:"paper",paper_pass:paperPass,mode,quiz_id:QUIZ_ID,round_no:settingsNow.round,
   total_questions:items.length,correct_questions:good,score:Math.round(good/Math.max(1,items.length)*100),
   completed_at:new Date().toISOString(),items};
  if(old)old.replaced=true;
@@ -548,7 +559,8 @@ function resetRound(){
  if(studyMode==="paper"){
   if(!confirm("重新开始当前纸笔轮次？历史成绩仍保留，当前轮参考答案会重新隐藏、勾选草稿会清空。"))return;
   const old=attemptForRound();if(old)old.replaced=true;
-  paperSessions[keyFor()]={revealed:false,marks:{}};savePaper();store(ATTEMPT_KEY,attempts);lockedAttempt=null;startRound();return;
+  const x=settings(),paperKey=[x.term,x.phase,mode,x.round].join("|")+"|paper"+(paperPass===1?"":"|pass"+paperPass);
+  paperSessions[paperKey]={revealed:false,marks:{}};savePaper();store(ATTEMPT_KEY,attempts);lockedAttempt=null;startRound();return;
  }
  if(!confirm("仅重新开始当前轮，已上传的历史成绩不会删除。是否继续？"))return;
  const s=settings();
@@ -690,7 +702,7 @@ async function restoreCloud(){
   missing.forEach(a=>{
    const items=(b.data||[]).filter(x=>x.attempt_id===a.id).sort((x,y)=>Number((x.question_type||"").split("|").pop())-Number((y.question_type||"").split("|").pop())).map((x,i)=>({item_no:i,correct_char:x.correct_char,expected_word:x.expected_word,question_type:(x.question_type||"").split("|")[0],given_answer:x.given_answer,is_correct:x.is_correct,answered_at:x.answered_at}));
    attempts.push({...a,mode:"normal",study_mode:a.phase.includes("·纸笔自核")?"paper":"typing",
-  base_phase:a.phase.replace(/·纸笔自核$/,""),items});
+  base_phase:a.phase.replace(/·纸笔自核(?:·第[123]次)?$/,""),paper_pass:Number((a.phase.match(/·纸笔自核·第([123])次$/)||[])[1]||1),items});
    markSynced(a.id);
   });
   store(ATTEMPT_KEY,attempts);memoryStatus();dashboard();
@@ -699,12 +711,17 @@ async function restoreCloud(){
 }
 function init(){
  studyMode=$("answerMode").value;
- $("answerMode").addEventListener("change",()=>{studyMode=$("answerMode").value;if(!$("quizArea").classList.contains("hidden"))startRound();});
+ $("paperPassField").hidden=studyMode!=="paper";
+ $("answerMode").addEventListener("change",()=>{studyMode=$("answerMode").value;$("paperPassField").hidden=studyMode!=="paper";if(!$("quizArea").classList.contains("hidden"))startRound();});
+ $("paperPass").addEventListener("change",()=>{paperPass=Math.max(1,Math.min(3,Number($("paperPass").value)||1));if(studyMode==="paper"&&!$("quizArea").classList.contains("hidden"))startRound();});
  for(const id of ["paperSaveTop","paperSaveBottom"])$(id).addEventListener("click",savePaperMarks);
  $("quizArea").addEventListener("change",e=>{
-  if(e.target.matches("[data-paper-tick]")&&studyMode==="paper"&&paperSession().revealed){
-   paperSession().marks[e.target.dataset.paperTick]=e.target.checked;
-   savePaper();renderPaperReview();progress();
+  if(e.target.matches("[data-paper-tick]")&&studyMode==="paper"){
+   const n=Number(e.target.dataset.paperPass),record=paperSessionForPass(n);
+   if(!record.revealed){e.target.checked=false;return;}
+   record.marks[e.target.dataset.paperTick]=e.target.checked;
+   savePaper();
+   if(n===paperPass){renderPaperReview();progress();}
   }
  });
  memoryStatus();
