@@ -174,7 +174,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
 .paper-mark[hidden]{display:none!important}
 .paper-mark input{margin-right:7px}
 .paper-note{font-size:13px;color:#51738a;background:#eef6fb;border-radius:8px;padding:10px}
-.paper-pass-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.paper-pass-grid label{display:inline-flex;align-items:center;gap:6px;border:1px solid #d1e0ea;border-radius:9px;background:#fff;padding:8px 10px;font-size:13px;font-weight:700}.paper-pass-grid label:has(input:disabled){opacity:.48}.paper-pass-grid input{width:18px;height:18px;accent-color:#277aaf}.paper-help{font-size:12px;color:#647e90}#paperPassField[hidden]{display:none!important}.poly-contexts{display:grid;gap:9px;margin:12px 0}.poly-word{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #dce9f3;border-radius:10px;background:#f9fcff;padding:10px 13px;font-size:18px;font-weight:700}.poly-word input{flex:0 1 170px;min-width:100px;font-size:16px;padding:8px 10px;border:1px solid #b1ccde;border-radius:8px}.poly-note{font-size:12px;color:#698093;margin:6px 0 12px}.composite-paper-options{display:grid;grid-template-columns:1fr;gap:8px}.composite-paper-options .option{background:#f6fafc;border:1px solid #cedfea;display:flex;justify-content:flex-start}.composite-paper-options .option span{font-weight:600;line-height:1.8}.question .options .option span{overflow-wrap:anywhere}#fillGrid{row-gap:30px;column-gap:42px}#fillGrid .question{min-height:222px}#fillGrid .blank-word{margin-top:18px}.stage-gate{background:#f2f8fc;border:1px solid #c8deec;border-radius:12px;margin:22px 0;padding:16px}.stage-gate p{margin:0 0 10px;color:#486c85}#laterStages[hidden],#fillStageGate[hidden]{display:none!important}</style></head><body>
+.paper-pass-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.paper-pass-grid label{display:inline-flex;align-items:center;gap:6px;border:1px solid #d1e0ea;border-radius:9px;background:#fff;padding:8px 10px;font-size:13px;font-weight:700}.paper-pass-grid label:has(input:disabled){opacity:.48}.paper-pass-grid input{width:18px;height:18px;accent-color:#277aaf}.paper-help{font-size:12px;color:#647e90}#paperPassField[hidden]{display:none!important}.poly-contexts{display:grid;gap:9px;margin:12px 0}.poly-word{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #dce9f3;border-radius:10px;background:#f9fcff;padding:10px 13px;font-size:18px;font-weight:700}.poly-word input{flex:0 1 170px;min-width:100px;font-size:16px;padding:8px 10px;border:1px solid #b1ccde;border-radius:8px}.poly-note{font-size:12px;color:#698093;margin:6px 0 12px}.composite-paper-options{display:grid;grid-template-columns:1fr;gap:8px}.composite-paper-options .option{background:#f6fafc;border:1px solid #cedfea;display:flex;justify-content:flex-start}.composite-paper-options .option span{font-weight:600;line-height:1.8}.question .options .option span{overflow-wrap:anywhere}#fillGrid{row-gap:30px;column-gap:42px}#fillGrid .question{min-height:222px}#fillGrid .blank-word{margin-top:18px}.stage-gate{background:#f2f8fc;border:1px solid #c8deec;border-radius:12px;margin:22px 0;padding:16px}.stage-gate p{margin:0 0 10px;color:#486c85}#laterStages[hidden],#fillStageGate[hidden],#fillGrid[hidden]{display:none!important}</style></head><body>
 <main class="page">
  <section class="hero">
   <h1>六年级上册 · 180字写字表闯关复习</h1>
@@ -548,13 +548,16 @@ function openLaterStages(){
   if(undone.length){alert("第一关还有 "+undone.length+" 个字没有写完，完成后才能打开辨析题。");return;}
  }
  $("laterStages").hidden=false;$("fillStageGate").hidden=true;
+ // Lock the already completed spelling questions before showing words that might reveal their characters.
+ $("fillGrid").querySelectorAll("input").forEach(x=>x.disabled=true);
+ $("fillGrid").hidden=true;
  progress();
 }
 function revealPaper(){
  if(studyMode!=="paper"||answersVisible)return;
  if($("laterStages").hidden){alert("请先独立完成第一关，再点击“进入第二关”。");return;}
  if(!confirm("确认已在纸上独立完成本轮全部题目？确定后才会显示参考答案。"))return;
- paperSession().revealed=true;answersVisible=true;savePaper();renderPaperReview();progress();
+ paperSession().revealed=true;answersVisible=true;$("fillGrid").hidden=false;savePaper();renderPaperReview();progress();
 }
 function savePaperMarks(){
  if(studyMode!=="paper"||!answersVisible||!paperSession().revealed)return;
@@ -577,7 +580,7 @@ function savePaperMarks(){
  if(unlocked)uploadAttempt(a);else alertMessage("纸笔自核记录已保存本机；解锁家庭档案后可上传。");
 }
 function startRound(){
- $("laterStages").hidden=true;$("fillStageGate").hidden=false;
+ $("laterStages").hidden=true;$("fillStageGate").hidden=false;$("fillGrid").hidden=false;
  answersVisible=false; // Changing groups, passes, or reopening a prior attempt re-hides the answers.
  roundIndex=Math.max(0,Math.min(4,Number($("roundSelect").value)||0));
  makeQuestions();
@@ -626,6 +629,7 @@ function grade(){
  }
  delete drafts[keyFor()];store(DRAFT_KEY,drafts);
  showResults(attempt,true);
+ $("fillGrid").hidden=false;
  memoryStatus();
  if(unlocked)uploadAttempt(attempt);
  else alertMessage("已保存到本机。解锁家庭档案后，可自动同步。");
