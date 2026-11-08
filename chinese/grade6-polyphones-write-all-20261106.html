@@ -174,7 +174,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
 .paper-mark[hidden]{display:none!important}
 .paper-mark input{margin-right:7px}
 .paper-note{font-size:13px;color:#51738a;background:#eef6fb;border-radius:8px;padding:10px}
-.paper-pass-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.paper-pass-grid label{display:inline-flex;align-items:center;gap:6px;border:1px solid #d1e0ea;border-radius:9px;background:#fff;padding:8px 10px;font-size:13px;font-weight:700}.paper-pass-grid label:has(input:disabled){opacity:.48}.paper-pass-grid input{width:18px;height:18px;accent-color:#277aaf}.paper-help{font-size:12px;color:#647e90}#paperPassField[hidden]{display:none!important}.poly-contexts{display:grid;gap:9px;margin:12px 0}.poly-word{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #dce9f3;border-radius:10px;background:#f9fcff;padding:10px 13px;font-size:18px;font-weight:700}.poly-word input{flex:0 1 170px;min-width:100px;font-size:16px;padding:8px 10px;border:1px solid #b1ccde;border-radius:8px}.poly-note{font-size:12px;color:#698093;margin:6px 0 12px}.poly-intro{padding:12px 16px;background:#eef7ff;border-radius:12px;margin:16px 0}.poly-intro h2{margin:0;color:#245778}#quizArea.poly-only .section-title,#quizArea.poly-only .section-note{display:none!important}#quizArea.poly-only #fillGrid,#quizArea.poly-only #choiceGrid{display:none!important}#quizArea.poly-only #nextBtn,#quizArea.poly-only #nextRoundTopBtn{display:none!important}</style></head><body>
+.paper-pass-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.paper-pass-grid label{display:inline-flex;align-items:center;gap:6px;border:1px solid #d1e0ea;border-radius:9px;background:#fff;padding:8px 10px;font-size:13px;font-weight:700}.paper-pass-grid label:has(input:disabled){opacity:.48}.paper-pass-grid input{width:18px;height:18px;accent-color:#277aaf}.paper-help{font-size:12px;color:#647e90}#paperPassField[hidden]{display:none!important}.poly-contexts{display:grid;gap:9px;margin:12px 0}.poly-word{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #dce9f3;border-radius:10px;background:#f9fcff;padding:10px 13px;font-size:18px;font-weight:700}.poly-word input{flex:0 1 170px;min-width:100px;font-size:16px;padding:8px 10px;border:1px solid #b1ccde;border-radius:8px}.poly-note{font-size:12px;color:#698093;margin:6px 0 12px}.poly-intro{padding:12px 16px;background:#eef7ff;border-radius:12px;margin:16px 0}.poly-intro h2{margin:0;color:#245778}#quizArea.poly-only .section-title,#quizArea.poly-only .section-note{display:none!important}#quizArea.poly-only #fillGrid,#quizArea.poly-only #choiceGrid{display:none!important}#quizArea.poly-only #nextBtn,#quizArea.poly-only #nextRoundTopBtn{display:none!important}.pending-tools{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 14px;margin:12px 0;border-radius:10px;border:1px solid #d4e8f3;background:#f5fbff}.pending-tools label{display:flex;align-items:center;gap:8px;font-weight:800;cursor:pointer}.pending-tools input{width:18px;height:18px}.pending-tools span{font-size:13px;color:#54758a}.pending-hidden{display:none!important}</style></head><body>
 <main class="page">
  <section class="hero">
   <h1>六年级上册 · 180字写字表闯关复习</h1>
@@ -215,7 +215,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shad
  </section>
  <section id="quizArea" class="hidden poly-only"><div class="poly-intro"><h2>多音字专项 · 8字19个读音</h2><p>每个字有两到三个词语，请分别写出每个词语中的正确读音。全写完才可以批改。</p></div>
   <div class="statusbar"><div><div class="round-title" id="roundTitle">第一轮</div><div class="input-status">按顺序做题，批改前不显示任何答案。每轮的草稿、答题记录相互独立。</div></div><div class="progress-wrap"><div class="progress"><i id="progressBar"></i></div><span class="progress-text" id="progressText">已答0题</span></div></div>
-  <div class="quiz-toolbar"><button class="primary" id="gradeTopBtn" disabled>批改并显示答案</button><button class="primary" id="paperSaveTop" hidden>核对完毕 · 保存勾选记录</button><button class="ghost" id="restartBtn">重新练习本轮</button><button class="ghost" id="nextRoundTopBtn">下一轮</button></div>
+  <div class="pending-tools"><label><input id="pendingOnly" type="checkbox"> 只显示待巩固题目</label><span id="pendingCount">显示全部题目</span></div><div class="quiz-toolbar"><button class="primary" id="gradeTopBtn" disabled>批改并显示答案</button><button class="primary" id="paperSaveTop" hidden>核对完毕 · 保存勾选记录</button><button class="ghost" id="restartBtn">重新练习本轮</button><button class="ghost" id="nextRoundTopBtn">下一轮</button></div>
   <div class="switch-notice" id="draftNotice">未作答完时批改按钮不可点击，草稿自动保存在本机。</div>
   <div class="section-title"><h2>第一关：看拼音写字</h2><span>字形默写</span></div><p class="section-note">每题都有完整词语的带声调拼音和缺字词语。只填写被遮住的字；补充示例词不冒充教材原词语。</p><div class="question-grid" id="fillGrid"></div>
   <div class="section-title"><h2>第二关：易混字辨析</h2><span>教材旁注易错字</span></div><p class="section-note">每题给出完整词语拼音和遮住目标字的词语，再从外形相近的字中选出正确写法。</p><div class="question-grid" id="choiceGrid"></div>
@@ -250,7 +250,7 @@ const parse=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k)||"null"
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(_){return false}};
 const makeId=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:(r&3|8)).toString(16)});
 let attempts=parse(ATTEMPT_KEY,[]),drafts=parse(DRAFT_KEY,{}),paperSessions=parse(PAPER_KEY,{});
-let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper",paperPass=1,answersVisible=false;
+let sb=null,member=null,unlocked=false,mode="normal",roundIndex=0,questions=[],entries=[],lockedAttempt=null,focusWords=[],studyMode="paper",paperPass=1,answersVisible=false,pendingOnly=false;
 function alertMessage(message,type){
  const box=$("cloudMsg");box.className="cloud-message "+(type||"");box.textContent=message;
 }
@@ -412,6 +412,7 @@ function progress(){
   for(const id of ["gradeTopBtn","gradeBtn"]){$(id).disabled=answersVisible;$(id).textContent=answersVisible?"参考答案已显示":"确认纸笔写完 · 核对并显示答案";}
   for(const id of ["paperSaveTop","paperSaveBottom"]){$(id).hidden=!answersVisible;$(id).textContent=lockedAttempt?"更新勾选记录":"核对完毕 · 保存勾选记录";}
   $("draftNotice").textContent=answersVisible?"请自己核对纸上的手写答案；写对的打勾，没勾的记为待巩固。":"参考答案已隐藏。以前的完成记录和勾选仍保留；本次请先独立写完，再点核对按钮。";
+  if(pendingOnly)applyPendingFilter();
   return;
  }
  for(const id of ["paperSaveTop","paperSaveBottom"])$(id).hidden=true;
@@ -423,6 +424,7 @@ function progress(){
  $("draftNotice").textContent=lockedAttempt?"这轮已经批改，答案和成绩已保存。可以切换轮次查看，也可以重新练习。":
   ready?"本轮全部作答已完成，可以批改并查看答案。":"还差 "+(total-count)+" 题未完成。未全部作答时不能批改、不能看到答案。";
  if(!lockedAttempt)saveDraft();
+ if(pendingOnly)applyPendingFilter();
 }
 function attemptForRound(){
  const key=keyFor(),s=settings();
@@ -544,6 +546,40 @@ function savePaperMarks(){
  if(!store(ATTEMPT_KEY,attempts)){attempts.pop();if(old)delete old.replaced;alert("本机保存失败");return;}
  lockedAttempt=a;savePaper();renderPaperReview();progress();memoryStatus();
  if(unlocked)uploadAttempt(a);else alertMessage("纸笔自核记录已保存本机；解锁家庭档案后可上传。");
+}
+function lastReviewedCorrect(q){
+ const sc=settings(),idx=questions.indexOf(q),expected=q.word||q.answer;
+ const records=attempts.filter(a=>a.quiz_id===QUIZ_ID&&a.mode===mode&&a.round_no===sc.round&&a.semester===sc.term&&
+   String(a.phase||"").startsWith(sc.phase+"·多音字专项")&&!a.replaced)
+ .sort((a,b)=>b.completed_at.localeCompare(a.completed_at));
+ for(const a of records){
+   const item=a.items?.[idx];
+   if(item&&item.correct_char===q.focus&&item.expected_word===expected)return !!item.is_correct;
+ }
+ if(studyMode==="paper")for(let n=3;n>=1;n--){
+   const p=paperSessionForPass(n);
+   if(p.revealed)return !!p.marks[q.id];
+ }
+ return null;
+}
+function applyPendingFilter(){
+ let visible=0,hidden=0;
+ questions.forEach(q=>{
+   const show=!pendingOnly||lastReviewedCorrect(q)!==true;
+   $("card-"+q.id)?.classList.toggle("pending-hidden",!show);
+   if(show)visible++;else hidden++;
+ });
+ $("pendingCount").textContent=pendingOnly?"待巩固 "+visible+" 题，暂隐藏已掌握 "+hidden+" 题；仅筛选，不改记录":"显示全部 "+questions.length+" 题";
+ if(pendingOnly&&hidden){
+   if(studyMode==="typing"&&!lockedAttempt){
+     $("gradeBtn").disabled=true;$("gradeTopBtn").disabled=true;
+     $("draftNotice").textContent="当前是待巩固筛选；正式整轮批改前请切回全部题目。";
+   }
+   if(studyMode==="paper"){
+     for(const id of ["paperSaveTop","paperSaveBottom"])$(id).disabled=true;
+     $("draftNotice").textContent="筛选仅供查看和纸上复习，正式提交核对结果前请切回全部题目。";
+   }
+ }else for(const id of ["paperSaveTop","paperSaveBottom"])$(id).disabled=false;
 }
 function startRound(){
  answersVisible=false; // Changing groups, passes, or reopening a prior attempt re-hides the answers.
@@ -778,6 +814,7 @@ function init(){
  $("nextBtn").addEventListener("click",nextRound);$("nextRoundTopBtn").addEventListener("click",nextRound);
  $("showGrowthBtn").addEventListener("click",dashboard);
  $("makeSpecialBtn").addEventListener("click",special);
+ $("pendingOnly").addEventListener("change",e=>{pendingOnly=!!e.target.checked;progress();applyPendingFilter();});
  $("exportCsvBtn").addEventListener("click",csv);
  $("cloudRestoreBtn").addEventListener("click",restoreCloud);
  $("unlockFamilyBtn").addEventListener("click",unlock);
