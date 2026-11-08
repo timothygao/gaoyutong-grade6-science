@@ -160,6 +160,7 @@ nav{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px}.navbtn{border:1px soli
 'use strict';
 const KEY='gaoyutong-grade6-micro-world-26-triple-v1';
 let state={tick:{},draft:{},done:{},graded:{},round:{memory:1,scene:1}}, panel='memory',filter={memory:false,scene:false},storeOK=true;
+const visibleAnswers={memory:false,scene:false}; // presentation-only state; not persisted, does not alter saved grading
 const id=(m,i,r)=>m+'-'+i+'-'+r;
 function load(){try{let raw=localStorage.getItem(KEY);if(raw){let obj=JSON.parse(raw);if(obj&&typeof obj==='object') state={tick:obj.tick||{},draft:obj.draft||{},done:obj.done||{},graded:obj.graded||{},round:obj.round||{memory:1,scene:1}};}}catch(e){storeOK=false;}}
 function save(){try{const raw=JSON.stringify(state);localStorage.setItem(KEY,raw);storeOK=localStorage.getItem(KEY)===raw;}catch(e){storeOK=false;}
@@ -167,7 +168,7 @@ const st=document.querySelector('#storage-status');if(st)st.textContent=storeOK?
 const proof=document.getElementById('save-proof');if(proof)proof.textContent=storeOK?'✅ 已写入本机存储，最近保存：'+new Date().toLocaleTimeString('zh-CN')+'。请退出后用同一链接重新进入再确认。':'⚠️ 存储失败：当前窗口不能确保记录保留。请复制备份文本，或使用托管网站链接打开。';
 return storeOK;}
 function round(m){return Math.max(1,Math.min(3,Number(state.round[m])||1));}
-function setRound(m,r){captureFields(m);state.round[m]=r;filter[m]=r>1;renderFields(m);renderBars();renderMarks();renderGrades();save();}
+function setRound(m,r){captureFields(m);visibleAnswers[m]=false;state.round[m]=r;filter[m]=r>1;renderFields(m);renderBars();renderMarks();renderGrades();save();}
 function captureFields(m){let r=round(m);document.querySelectorAll('[data-mode="'+m+'"].blank-field,[data-mode="'+m+'"].response').forEach(el=>{let n=el.dataset.n,b=el.dataset.b||'essay';state.draft[id(m,n,r)+'-'+b]=el.value;});}
 function renderFields(m){let r=round(m);document.querySelectorAll('[data-mode="'+m+'"].blank-field,[data-mode="'+m+'"].response').forEach(el=>{let n=el.dataset.n,b=el.dataset.b||'essay';el.value=state.draft[id(m,n,r)+'-'+b]||'';});}
 function renderBars(){['memory','scene'].forEach(m=>{let r=round(m);document.querySelectorAll('[data-rselect="'+m+'"] button').forEach(b=>b.classList.toggle('selected',+b.dataset.r===r));let completed=!!state.done[m+'-'+r];document.getElementById('finish-'+m).textContent=completed?'撤销“第'+r+'轮已核对”':'第'+r+'轮全部核对完毕';document.getElementById('done-'+m).textContent=completed?'✓ 第'+r+'轮已核对': '第'+r+'轮尚未核对';document.getElementById('filter-'+m).textContent='只看待巩固题：'+(filter[m]?'开':'关');});}
@@ -233,7 +234,7 @@ function renderGrades(){
       if(!cardComplete&&state.graded[key]){delete state.graded[key];cleaned=true;}
       const marked=!!state.tick[key],graded=!!state.graded[key];
       const answer=card.querySelector('.grade-answer');
-      if(answer)answer.hidden=!graded;
+      if(answer)answer.hidden=!(graded&&visibleAnswers[m]);
       if(marked)checked++;
       if(graded)shown++;
       if(!marked&&!graded&&answer)eligible++;
@@ -246,14 +247,14 @@ function renderGrades(){
         button.textContent='完成本轮作答后可批改';
         if(status)status.textContent='已完成 '+completion.complete+'/'+completion.total+' 题，还差 '+completion.missingQuestions+' 题。请先填写本轮所有空格或情境回答。';
       }else if(eligible===0){
-        button.disabled=true;
-        button.textContent=shown?'本轮未掌握题目的答案已显示':'本轮已全部勾选掌握';
+        button.disabled=!(shown&&!visibleAnswers[m]);
+        button.textContent=shown?(visibleAnswers[m]?'本轮参考答案已显示':'查看本轮已批改的参考答案'):'本轮已全部勾选掌握';
         if(status)status.textContent=shown
-          ?'第'+r+'轮已显示 '+shown+' 道未勾选题目的参考答案。'
+          ?(visibleAnswers[m]?'本轮参考答案已经显示。':'本轮历史批改已保存，答案在换轮次后重新隐藏，点击按钮才显示。')
           :'第'+r+'轮题目均已勾选掌握。';
       }else{
         button.disabled=false;
-        button.textContent=shown?'显示剩余未勾选答案':'批改并显示答案';
+        button.textContent=shown&&!visibleAnswers[m]?'查看已批改答案':shown?'显示剩余未勾选答案':'批改并显示答案';
         if(status)status.textContent=(roundDone?'第'+r+'轮已标记核对完成；仍可查看答案。 ':'')+
           '已勾选掌握 '+checked+' 题，已显示 '+shown+' 道答案；点击后显示其余未掌握题目的参考答案。';
       }
@@ -277,6 +278,7 @@ window.gradeRound=function(m){
     if(status)status.textContent='暂不能批改：已完成 '+completion.complete+'/'+completion.total+' 题，还差 '+completion.missingQuestions+' 题。请先完成全部作答。';
     return;
   }
+  visibleAnswers[m]=true;
   let revealed=0,locked=0;
   document.querySelectorAll('#sheet-'+m+' .card').forEach(card=>{
     const n=Number(card.dataset.n),key=id(m,n,r);
@@ -292,7 +294,7 @@ window.gradeRound=function(m){
   const status=document.getElementById('grade-status-'+m);
   if(status){
     status.textContent=revealed
-      ?'第'+r+'轮已显示 '+revealed+' 道题的参考答案。答案已按轮次保存，切换轮次后再切回来仍会保留。'+(locked?'；'+locked+' 道已勾选掌握的题目保持不显示':'')
+      ?'第'+r+'轮已显示 '+revealed+' 道题的参考答案。结果按轮次保存；切换轮次后参考答案重新隐藏，须主动点击查看。'+(locked?'；'+locked+' 道已勾选掌握的题目保持不显示':'')
       :'本轮没有需要显示的题目答案。';
   }
 }
