@@ -82,7 +82,7 @@ function previousMastered(id){for(let r=1;r<round;r++){for(const kind of ["typin
 function eligible(){return questions.filter(q=>!previousMastered(q.id))}
 function shown(){const rec=getSession();return eligible().filter(q=>!pendingOnly||!rec.marks[q.id])}
 function roundStatus(q,rec){return [1,2,3].map(r=>{
- const checked=["typing","paper"].some(m=>!!state.sessions[[stage,mode,r,m].join("|")]?.marks?.[q.id]),active=r===round&&!rec.completed&&rec.graded;
+ const checked=r===round?!!rec.marks?.[q.id]:["typing","paper"].some(m=>!!state.sessions[[stage,mode,r,m].join("|")]?.marks?.[q.id]),active=r===round&&!rec.completed&&rec.graded;
  return '<label title="第'+r+'轮自行核对写对时打勾"><input class="mark" type="checkbox" data-id="'+safe(q.id)+'" data-mark-round="'+r+'" '+(checked?'checked ':'')+(active?'':'disabled')+'>第'+r+'次</label>'
  }).join("")}
 function card(q,i,rec){
