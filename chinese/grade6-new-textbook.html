@@ -603,12 +603,17 @@ async function restore(){
    if(rows.error)throw rows.error;
    let count=0;
    for(const a of roots){
-      const parts=a.phase.split("·");if(parts.length!==3&&parts.length!==4)continue;
-      const modeKey=Object.keys(LABEL).find(k=>LABEL[k]===parts[1]);const groupNum=Number(parts[2].replace(/[^0-9]/g,""));
-      if(!modeKey||!groupNum)continue;
+      // Parse the full mode label: some labels themselves contain the middle dot "·".
+      const suffix=(a.phase||"").match(/·第(\d+)组(?:·(纸笔|网页核对))?$/);
+      if(!suffix)continue;
+      const groupNum=Number(suffix[1]),before=a.phase.slice(0,suffix.index);
+      const found=Object.entries(LABEL).find(([,label])=>before.endsWith("·"+label));
+      if(!found||!groupNum)continue;
+      const [modeKey,label]=found;
+      const basePhase=before.slice(0,-("·"+label).length);
       const entries=(rows.data||[]).filter(x=>x.attempt_id===a.id);
-      const study=parts[3]==="纸笔"?"paper":parts[3]==="网页核对"?"typed-review":"typing";
-      attempts.push({id:a.id,quiz_id:QUIZ_ID,child_name:"高语桐",semester:a.semester,base_phase:parts[0],mode:modeKey,group:groupNum-1,round_no:a.round_no,study_mode:study,
+      const study=suffix[2]==="纸笔"?"paper":suffix[2]==="网页核对"?"typed-review":"typing";
+      attempts.push({id:a.id,quiz_id:QUIZ_ID,child_name:"高语桐",semester:a.semester,base_phase:basePhase,mode:modeKey,group:groupNum-1,round_no:a.round_no,study_mode:study,
        total_questions:a.total_questions,correct_questions:a.correct_questions,score:a.score,completed_at:a.completed_at,
        items:entries.map(x=>({id:x.question_type.split("|")[1],type:x.question_type.split("|")[0].replace(/^(paper-|review-)/,""),focus:x.correct_char,word:x.expected_word,
          expected:x.expected_word,answer:x.given_answer,correct:x.is_correct}))});
