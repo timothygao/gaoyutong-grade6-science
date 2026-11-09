@@ -202,9 +202,9 @@ async function restoreCloud(){
    const res=await supabase.from("quiz_item_results_secure").select("attempt_id,correct_char,expected_word,question_type,given_answer,is_correct").in("attempt_id",ids).limit(3000);
    if(res.error)throw res.error;
    for(const attempt of group){
-    const [st,md,meth]=(attempt.phase||"").split("|"),items=(res.data||[]).filter(x=>x.attempt_id===attempt.id).map(x=>{
+    const [st,md,meth]=(attempt.phase||"").split("|"),questionsById=new Map((MODES.some(t=>t[0]===md)?buildQuestions(md):[]).map(q=>[q.id,q])),items=(res.data||[]).filter(x=>x.attempt_id===attempt.id).map(x=>{
      let got="";try{got=JSON.parse(x.given_answer||"{}").input||""}catch(e){}
-     return{id:x.correct_char,prompt:x.correct_char,expected:x.expected_word||"",answer:got,correct:!!x.is_correct,category:x.question_type}
+     return{id:x.correct_char,prompt:questionsById.get(x.correct_char)?.prompt||x.correct_char,expected:x.expected_word||"",answer:got,correct:!!x.is_correct,category:x.question_type}
     });
     if(!MODES.some(x=>x[0]===md)||!["typing","paper"].includes(meth))continue;
     const snap={id:attempt.id,quizId:QUIZ_ID,child:attempt.child_name,semester:attempt.semester,stage:st,mode:md,method:meth,round:Number(attempt.round_no),completedAt:attempt.completed_at,items,synced:true};
