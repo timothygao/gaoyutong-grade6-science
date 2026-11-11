@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');const {classify,plan}=require('../review-mastery.js');
+const q=[{id:'x'}];let n=0;const event=(correct,at,extra={})=>({key:String(++n),questionId:'x',valid:true,correct,answered:true,at,batchId:'b'+n,independent:true,...extra});const result=es=>classify(q,es)[0];
+assert.equal(result([event(false),event(false),event(false)]).level,'unresolved');
+assert.equal(result([event(false),event(true)]).level,'unstable');
+assert.equal(result([event(false),event(false),event(true)]).level,'unstable');
+assert.equal(result([event(true)]).reason,'暂时掌握，仍需另日独立验证');
+assert.equal(result([event(false),event(true,null,{valid:false})]).level,'unresolved');
+assert.equal(result([event(true,'2026-11-01T00:00:00Z'),event(true,'2026-11-02T00:00:00Z')]).level,'stable');
+assert.equal(result([event(true,'2026-11-01T00:00:00Z'),event(true,'2026-11-01T01:00:00Z')]).level,'unstable');
+assert.equal(result([event(true,'2026-11-01T00:00:00Z',{batchId:'same'}),event(true,'2026-11-03T00:00:00Z',{batchId:'same'})]).level,'unstable');
+assert.equal(result([event(true,'2026-11-01T00:00:00Z'),event(false,'2026-11-02T00:00:00Z'),event(true,'2026-11-03T00:00:00Z')]).level,'unstable');
+assert.equal(result([event(false,null,{skipped:true,answered:false})]).hadWrong,false);
+assert.equal(result([event(false,null,{valid:false})]).level,'unseen');
+const rows=[...Array.from({length:10},(_,i)=>({id:'u'+i,level:'unresolved'})),...Array.from({length:20},(_,i)=>({id:'c'+i,level:'unstable',hadWrong:true,wrongCount:i,last:{at:'2026-11-01'}})),{id:'neverWrong',level:'unstable',hadWrong:false}];assert.equal(plan(rows).required.length,10);assert.equal(plan(rows).sampled.length,5);assert.equal(plan(rows).ids.length,15);
+console.log('PASS mastery classification: examples, independent dates, incomplete/skip separation, 10+5 review plan');
