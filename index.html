@@ -1,1 +1,853 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>六年级科学 · 健康生活 · 独立复习</title><link rel="stylesheet" href="science-review.css?v=20261111"><script id="review-config" type="application/json">{"grade": 6, "quizId": "gaoyutong-grade6-science", "localKey": "health-life-31-triple-tracker-v3", "defaultName": "高语桐", "questionCount": 31, "parts": [{"key": "memory", "label": "基础填空"}, {"key": "scene", "label": "情境挑战"}], "title": "六年级科学 · 健康生活", "source": "review-source-index.txt"}</script><script defer src="review-mastery.js?v=20261111-2"></script><script defer src="science-review.js?v=20261111-2"></script></head><body><main><header><p>科学 · 三轮独立复习</p><h1>六年级科学 · 健康生活</h1><nav><a href="./">主科学卷</a> <a href="micro-world.html">微小世界</a> <a href="earth-motion.html">地球的运动</a> <a href="english/">英语</a><a href="chinese/grade6-new-textbook.html">语文</a></nav></header><div id="app"><p role="status">正在加载试卷……</p></div></main></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="color-scheme" content="light"><title>六年级科学·健康生活｜三轮学习追踪</title>
+<style>
+:root{--blue:#15375e;--sea:#087f83;--border:#dce5ed;--ink:#273648;--muted:#687b90;--bg:#f3f6fa;--gold:#fff8e8;--green:#17784d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
+header.top{background:#fff;border-bottom:1px solid var(--border)}.wrap{max-width:970px;margin:auto;padding:22px 24px}h1{font-size:26px;color:var(--blue);margin:3px 0 0;letter-spacing:.01em}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:800;color:var(--sea)}.subtitle{margin:1px 0;color:var(--muted);font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px}.navbtn{border:1px solid var(--border);border-radius:12px;padding:12px 16px;background:#f5f8fc;color:var(--blue);font-size:15px;font-weight:700;cursor:pointer;flex:1}.navbtn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.panel{display:none}.panel.active{display:block}.roundbar{padding:15px 18px;background:#fff;border:1px solid var(--border);border-radius:14px;margin:12px 0 17px}.split{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}button{font:inherit;line-height:1.5;cursor:pointer;border:1px solid #a8bac9;background:white;color:var(--blue);border-radius:10px;padding:8px 12px}button.primary{background:var(--blue);border-color:var(--blue);color:#fff}button.small{font-size:13px;padding:5px 10px}button.warn{color:#a34230}.roundselect{display:inline-flex;gap:5px}.roundselect button{padding:7px 12px}.roundselect button.selected{background:#e0f2f2;border-color:var(--sea);color:#056269;font-weight:800}.micro{font-size:12px;color:var(--muted)}.notice{background:#eaf5f5;padding:13px 16px;border-left:4px solid var(--sea);border-radius:9px;font-size:14px}.warnnote{background:#fff5e7;border-left-color:#d58b31}
+#sheet-memory,#sheet-scene{margin-top:14px}.card{background:#fff;border:1px solid var(--border);border-radius:15px;padding:18px 20px;margin:0 0 16px;break-inside:avoid;page-break-inside:avoid;box-shadow:0 2px 8px #27364808}.card-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #edf0f4;padding-bottom:9px;margin-bottom:13px}.card-header strong{color:var(--blue);font-size:17px}.seq{font-size:12px;color:#8796a7}.question{font-size:16px;line-height:2.1}.question p{margin:0}.story-title{display:inline-block;color:var(--sea);font-weight:800;margin:0 0 9px;font-size:15px}.blank-field{font:inherit;font-size:15px;color:#24496f;min-width:min(calc(var(--w) + 8px), 100%);max-width:100%;width:min(calc(var(--w) + 8px), 100%);border:0;border-bottom:2px solid #647d90;border-radius:0;background:#f9fbff;outline:none;padding:2px 4px;vertical-align:baseline;height:1.9em;margin:0 3px}.blank-field:focus{border-bottom-color:var(--sea);background:#eef8f7}
+.write-label{font-size:12px;color:#7c8da2;display:block;margin:14px 0 6px}textarea.response{width:100%;display:block;resize:vertical;min-height:80px;border:1px dashed #adbecc;padding:10px 12px;line-height:1.7;font:inherit;border-radius:9px;background:#fcfdff;color:var(--ink)}textarea.response:focus{outline:2px solid #c1e6e5}
+.trials{margin-top:17px;border-top:1px dashed #dfe7ef;display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding-top:13px}.trial-caption{font-size:12px;color:#7890a6}.trials label{display:inline-flex;gap:5px;align-items:center;color:#53677c;cursor:pointer;font-size:13px;white-space:nowrap}input.trial{appearance:none;-webkit-appearance:none;width:23px;height:23px;border-radius:50%;border:2px solid #a9b9c8;background:white;display:inline-grid;place-items:center;cursor:pointer;margin:0;vertical-align:middle;flex:none}input.trial:checked{background:var(--green);border-color:var(--green)}input.trial:checked::after{content:'✓';font-size:14px;font-weight:900;color:white;line-height:1}input.trial:focus-visible{outline:3px solid #93cfd3;outline-offset:2px}.status{margin-left:auto;font-size:12px;color:#a17125;border-radius:20px;background:#fff7e8;padding:3px 9px}.status.good{background:#e8f7ef;color:#19754c}.status.bad{background:#fff0ec;color:#aa4937}.finish{color:#116b54;font-size:13px;font-weight:700}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:14px 0 20px}.metric{background:#fff;border:1px solid var(--border);padding:16px;border-radius:13px}.metric .n{display:block;color:var(--blue);font-size:28px;font-weight:800;line-height:1.25}.metric .lbl{display:block;font-size:13px;color:#6b7e91}.tracker{background:#fff;border-radius:14px;border:1px solid var(--border);padding:18px;margin-bottom:18px}.tracker h3{margin:0 0 8px;font-size:17px;color:var(--blue)}.roundstats{display:flex;gap:12px;flex-wrap:wrap;margin:5px 0}.roundstats b{color:var(--green)}.progress{height:9px;background:#eaf0f4;border-radius:10px;overflow:hidden;margin:10px 0}.progress span{display:block;background:#1a8f87;height:100%;width:0}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0 0}.chip{display:inline-block;padding:4px 11px;border-radius:999px;background:#edf4f8;color:#335a73;font-size:13px;cursor:pointer;border:0}.chip:hover{background:#d1e9e9}.none{color:#8092a5;font-size:13px}.key-list details{background:#fff;border:1px solid var(--border);border-radius:10px;margin:9px 0;padding:10px 14px}.key-list summary{font-weight:700;cursor:pointer}.key-list p{margin:7px 0;font-size:14px}.footer{text-align:center;color:#8a98a9;font-size:12px;padding:21px 0}
+.files{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0}.upload{display:inline-block;border:1px solid #a8bac9;border-radius:10px;padding:9px 12px;background:#fff;color:var(--blue);cursor:pointer;font-size:14px}.disabled-js{display:none}.hide-filter{display:none!important}.print-header{display:none}
+@media(max-width:660px){.wrap{padding:14px 13px}h1{font-size:22px}.card{padding:14px 12px}.question{font-size:15px}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:12px}.status{margin-left:0}.trials{gap:10px}.navbtn{padding:10px 8px;font-size:13px}.blank-field{min-width:0}}
+@page{size:A4;margin:13mm 12mm}@media print{body{background:#fff;font-size:11pt;color:#111}.wrap{padding:0;max-width:none}header.top{border:0}h1{font-size:20pt}nav,.toolbar,.roundbar,.notice,.footer,#key-warning,.files,.no-print,#summary-panel,#answers-panel{display:none!important}.panel{display:none!important}.panel.printing{display:block!important}.card{box-shadow:none;border:1px solid #999;margin-bottom:11pt;border-radius:5px;padding:10pt}.print-header{display:block;margin:10pt 0 15pt;font-size:11pt}.blank-field{background:white;border-bottom:1px solid #000!important;color:transparent!important;font-size:0;width:var(--w);height:1.6em;box-shadow:none;print-color-adjust:exact}textarea.response{height:48pt;min-height:48pt;background:#fff;border:0;border-bottom:1px dashed #888;resize:none;color:transparent!important}.trials{margin-top:12pt}input.trial{width:17px;height:17px;border:1.5px solid #666}input.trial:checked::after{font-size:12px}.status{display:none}.card{break-inside:avoid}.seq{color:#777}}
+
+.cloud-archive{border:1px solid #c8dfed;background:linear-gradient(120deg,#f1f9ff,#fffaf0);border-radius:15px;padding:17px 19px;margin:14px 0 18px;box-shadow:0 3px 14px #1737500c}
+.cloud-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.cloud-head h3{margin:0 0 3px;color:#214e70;font-size:18px}
+.cloud-head p{margin:0;color:#617b90;font-size:13px}
+.cloud-status{display:inline-block;padding:6px 11px;border-radius:30px;background:#edf2f6;color:#526a7c;font-size:13px;font-weight:700}
+.cloud-status[data-state="ok"]{background:#e8f7ef;color:#176b49}
+.cloud-status[data-state="warn"]{background:#fff4df;color:#8a5b10}
+.cloud-status[data-state="error"]{background:#fff0ed;color:#a73527}
+.cloud-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px}
+.cloud-field{display:flex;flex-direction:column;gap:5px;color:#38566e;font-size:13px;font-weight:700}
+.cloud-field input,.cloud-field select{width:100%;min-width:0;border:1px solid #bdd1df;border-radius:9px;background:#fff;padding:9px 10px;font:inherit;font-size:15px;color:#213b50}
+.cloud-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.cloud-actions button{border:1px solid #b8d0e0;border-radius:9px;background:#fff;color:#24587c;padding:9px 13px;font-size:14px;font-weight:700}
+.cloud-actions button.cloud-primary{background:#276db1;border-color:#276db1;color:#fff}
+.cloud-actions button:disabled{opacity:.55;cursor:wait}
+.cloud-message{margin-top:10px;border-radius:9px;background:#fff;padding:9px 11px;color:#526d80;font-size:13px}
+.cloud-message[data-state="error"]{background:#fff1ee;color:#a73527}
+.cloud-report{margin-top:12px;padding:12px;background:#fff;border:1px solid #d6e4ed;border-radius:10px}
+.cloud-report h4{margin:0 0 8px;color:#244f70}
+.cloud-report p{margin:5px 0;font-size:13px;color:#536d80}
+.cloud-report-row{padding:9px 0;border-top:1px dashed #d8e3eb}
+.cloud-report-row strong{color:#254f70}
+.cloud-report-row small{display:block;color:#6d8293;margin-top:3px;overflow-wrap:anywhere}
+@media(max-width:600px){.cloud-archive{padding:13px}.cloud-actions button{flex:1 1 calc(50% - 8px)}.cloud-head h3{font-size:16px}}
+
+
+.grade-btn{background:#edf5ff;border:1px solid #9dbde0;color:#174c7c;font-weight:800;padding:8px 15px;border-radius:9px}
+.grade-btn:hover:not(:disabled){background:#dcecff}
+.grade-btn:disabled{opacity:.58;cursor:not-allowed;background:#eef1f4;color:#718096;border-color:#d3dbe3}
+.grade-status{font-size:12px;color:var(--muted);align-self:center}
+.grade-answer{margin-top:12px;padding:11px 13px;border-left:4px solid var(--sea);border-radius:8px;background:#eef8f7;color:#254e67;font-size:14px;line-height:1.8}
+.grade-answer[hidden]{display:none!important}
+.grade-answer strong{color:#0c6b65}
+#answer-source{display:none!important}
+@media print{.grade-btn,.grade-status,.grade-answer{display:none!important}}
+</style><link rel="stylesheet" href="review-tools.css?v=20261111-3"><script id="review-config" type="application/json">{"grade": 6, "quizId": "gaoyutong-grade6-science", "localKey": "health-life-31-triple-tracker-v3", "defaultName": "高语桐", "questionCount": 31, "parts": [{"key": "memory", "label": "基础填空"}, {"key": "scene", "label": "情境挑战"}], "title": "六年级科学 · 健康生活", "source": "review-source-index.txt"}</script><script defer src="review-mastery.js?v=20261111-3"></script><script defer src="science-review.js?v=20261111-3"></script></head>
+<body><div id="original-layout">
+<header class="top"><div class="wrap"><div class="eyebrow">六年级科学 · 第一单元</div><h1>《健康生活》三轮闯关练习</h1><p class="subtitle">31道重点填空 + 31道进阶情境 · 分开完成 · 自动记录三次掌握情况</p>
+<nav aria-label="学习模块"><button type="button" class="navbtn active" data-panel="memory">① 基础填空卷</button><button type="button" class="navbtn" data-panel="scene">② 情境挑战卷</button><button type="button" class="navbtn" data-panel="summary">③ 掌握情况</button></nav></div></header>
+<main class="wrap">
+<div class="notice no-print" style="border:2px solid #c5dcea;background:#eef8ff"><strong>🌍 第三单元《地球的运动》科学复习卷</strong>　24组重点填空（94处关键空）＋24道进阶情境；三个轮次、待巩固筛选和云端记录均与其他单元分开。<a href="./earth-motion.html" style="font-weight:700;color:#065c8c">打开《地球的运动》试卷</a></div>
+<div class="notice no-print" style="border:2px solid #c5dcea;background:#eef8ff"><strong>📘 新单元上线：《微小世界》三轮科学卷</strong>　26条重点填空＋26道情境挑战，独立云端档案，不影响本页《健康生活》记录。<a href="./micro-world.html" style="font-weight:700;color:#065c8c">打开《微小世界》试卷</a></div>
+<div class="notice no-print"><b>怎么用：</b>先独立做基础填空，再切换到情境挑战，两套题不会同时出现。每道题有三枚圆圈：哪一轮<strong>独立答对了</strong>，就勾哪一轮；答错或不会，保持空白。每轮完成后点击“本轮全部核对完毕”，系统才能区分“未做”和“不会”。每轮核对完成后会自动同步到家庭云端；答题草稿仍保存在当前设备。换设备时，先解锁家庭档案，再点击“查看云端历史记录”。</div>
+
+<section class="cloud-archive no-print" id="cloudArchive">
+  <div class="cloud-head">
+    <div>
+      <h3>☁️ 家庭云端学习档案</h3>
+      <p>匿名自动连接；每轮核对完成后自动同步。答题草稿仍保存在当前设备。</p>
+    </div>
+    <span id="cloudStatus" class="cloud-status" data-state="loading" aria-live="polite">正在连接云端…</span>
+  </div>
+  <div class="cloud-grid">
+    <label class="cloud-field">孩子姓名
+      <input id="cloudChildName" type="text" value="高语桐" autocomplete="off">
+    </label>
+    <label class="cloud-field">学期
+      <input id="cloudSemester" type="text" value="2026秋" placeholder="例如：2026秋">
+    </label>
+    <label class="cloud-field">本次阶段
+      <select id="cloudPhase">
+        <option value="预习">预习</option>
+        <option value="复习" selected>复习</option>
+        <option value="期末">期末</option>
+      </select>
+    </label>
+    <label class="cloud-field">家庭暗号
+      <input id="cloudPassphrase" type="password" autocomplete="current-password" placeholder="首次或换设备时输入">
+    </label>
+  </div>
+  <div class="cloud-actions">
+    <button type="button" id="cloudUnlock" class="cloud-primary">解锁家庭档案</button>
+    <button type="button" id="cloudSync">同步已完成轮次</button>
+    <button type="button" id="cloudRestore">从云端恢复</button>
+    <button type="button" id="cloudWrongList">查看云端错题榜</button>
+  </div>
+  <div id="cloudMessage" class="cloud-message" role="status">正在建立匿名云端身份…</div>
+  <div id="cloudReport" class="cloud-report" hidden></div>
+</section>
+<section class="panel active" id="memory-panel">
+  <div class="roundbar"><div class="split"><div><h2 style="margin:0;color:var(--blue)">A卷 · 基础知识填空</h2><div class="micro">题号与原知识单1—31相同 · 这一部分不显示情境题</div></div><div class="roundselect" data-rselect="memory"><button type="button" data-r="1" class="selected">第1轮</button><button type="button" data-r="2">第2轮</button><button type="button" data-r="3">第3轮</button></div></div><div class="toolbar"><button type="button" class="grade-btn" id="grade-memory" data-original-onclick="gradeRound('memory')">批改并显示答案</button><button class="primary" type="button" data-original-onclick="toggleFinish('memory')" id="finish-memory">本轮全部核对完毕</button><span class="grade-status" id="grade-status-memory" aria-live="polite"></span><button type="button" data-original-onclick="printSheet('memory')">打印这套卷</button><button type="button" data-original-onclick="filterMode('memory')" id="filter-memory">只看待巩固题：关</button><span class="finish" id="done-memory"></span></div><div class="micro">必须先填写本轮所有空格或情境回答，批改按钮才会开放。批改后，未勾选掌握的题目显示参考答案；答案按轮次保存，切换轮次再切回来仍会保留。已勾选掌握的题目不会在本次批改中揭示答案。完成批改后，才能标记本轮核对完毕。</div></div>
+  <div class="print-header">班级：____________　姓名：____________　日期：____________　　第____轮</div>
+  <div id="sheet-memory"><article class="card" id="memory-1" data-n="1" data-mode="memory">
+    <div class="card-header"><strong>第 01 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>BMI体重指数计算公式：<input aria-label="第1题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:18em" type="text"/>。单位：<input aria-label="第1题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>，划分<input aria-label="第1题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:10.6em" type="text"/>四个等级。</p></div>
+    
+    <div class="trials" aria-label="第1题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="1" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="1" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="1" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-1">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-2" data-n="2" data-mode="memory">
+    <div class="card-header"><strong>第 02 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p><input aria-label="第2题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>是生长发育非常旺盛的时期。</p></div>
+    
+    <div class="trials" aria-label="第2题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="2" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="2" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="2" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-2">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-3" data-n="3" data-mode="memory">
+    <div class="card-header"><strong>第 03 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>影响生长发育的主要因素：<input aria-label="第3题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:14.1em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第3题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="3" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="3" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="3" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-3">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-4" data-n="4" data-mode="memory">
+    <div class="card-header"><strong>第 04 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>身高增长存在高峰期，女生<input aria-label="第4题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>、男生<input aria-label="第4题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>进入青春期快速长高阶段。</p></div>
+    
+    <div class="trials" aria-label="第4题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="4" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="4" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="4" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-4">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-5" data-n="5" data-mode="memory">
+    <div class="card-header"><strong>第 05 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>人体六大基础营养：<input aria-label="第5题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:16.7em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第5题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="5" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="5" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="5" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-5">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-6" data-n="6" data-mode="memory">
+    <div class="card-header"><strong>第 06 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>糖类主要提供<input aria-label="第6题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>；肉蛋奶豆类富含蛋白质，<input aria-label="第6题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:7.9em" type="text"/>，也可为人体提供能量。</p></div>
+    
+    <div class="trials" aria-label="第6题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="6" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="6" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="6" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-6">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-7" data-n="7" data-mode="memory">
+    <div class="card-header"><strong>第 07 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p><input aria-label="第7题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>富含脂肪，是人体<input aria-label="第7题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:15em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第7题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="7" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="7" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="7" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-7">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-8" data-n="8" data-mode="memory">
+    <div class="card-header"><strong>第 08 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p><input aria-label="第8题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>大多人体无法合成，必须靠<input aria-label="第8题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>；<input aria-label="第8题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>：食盐中的钠、牛奶中的钙、肉中的铁。</p></div>
+    
+    <div class="trials" aria-label="第8题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="8" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="8" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="8" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-8">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-9" data-n="9" data-mode="memory">
+    <div class="card-header"><strong>第 09 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>检验淀粉：食物滴<input aria-label="第9题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>；检验脂肪：食物涂抹白纸出现<input aria-label="第9题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第9题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="9" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="9" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="9" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-9">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-10" data-n="10" data-mode="memory">
+    <div class="card-header"><strong>第 10 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>清洗蔬菜不要<input aria-label="第10题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>，淘米不要<input aria-label="第10题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，避免水溶性维生素流失。</p></div>
+    
+    <div class="trials" aria-label="第10题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="10" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="10" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="10" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-10">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-11" data-n="11" data-mode="memory">
+    <div class="card-header"><strong>第 11 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>食品包装<input aria-label="第11题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>可快速判断食物能量、营养素含量，辅助健康选餐。</p></div>
+    
+    <div class="trials" aria-label="第11题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="11" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="11" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="11" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-11">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-12" data-n="12" data-mode="memory">
+    <div class="card-header"><strong>第 12 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>饥饿是体内能量不足的信号，缺少糖类会导致听课注意力下降、浑身乏力。</p></div>
+    
+    <div class="trials" aria-label="第12题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="12" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="12" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="12" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-12">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-13" data-n="13" data-mode="memory">
+    <div class="card-header"><strong>第 13 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>儿童平衡膳食宝塔总共5层，<input aria-label="第13题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:9.7em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第13题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="13" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="13" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="13" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-13">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-14" data-n="14" data-mode="memory">
+    <div class="card-header"><strong>第 14 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>健康饮食准则：吃<input aria-label="第14题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:16.7em" type="text"/>食品。</p></div>
+    
+    <div class="trials" aria-label="第14题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="14" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="14" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="14" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-14">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-15" data-n="15" data-mode="memory">
+    <div class="card-header"><strong>第 15 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>青春期骨骼、<input aria-label="第15题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>，需多<input aria-label="第15题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>，不可<input aria-label="第15题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第15题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="15" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="15" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="15" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-15">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-16" data-n="16" data-mode="memory">
+    <div class="card-header"><strong>第 16 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>“均衡”指各类食物合理搭配，<input aria-label="第16题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:6.2em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第16题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="16" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="16" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="16" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-16">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-17" data-n="17" data-mode="memory">
+    <div class="card-header"><strong>第 17 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>每天<input aria-label="第17题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:12.3em" type="text"/>，才能匹配青春期<input aria-label="第17题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第17题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="17" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="17" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="17" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-17">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-18" data-n="18" data-mode="memory">
+    <div class="card-header"><strong>第 18 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>脑分为<input aria-label="第18题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:7em" type="text"/>，大脑分左右<input aria-label="第18题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，<input aria-label="第18题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:6.2em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第18题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="18" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="18" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="18" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-18">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-19" data-n="19" data-mode="memory">
+    <div class="card-header"><strong>第 19 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>大脑负责<input aria-label="第19题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:10.6em" type="text"/>；小脑控制<input aria-label="第19题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>；脑干管理<input aria-label="第19题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>等基础生命活动。</p></div>
+    
+    <div class="trials" aria-label="第19题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="19" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="19" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="19" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-19">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-20" data-n="20" data-mode="memory">
+    <div class="card-header"><strong>第 20 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>大脑消耗人体<input aria-label="第20题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>，充足<input aria-label="第20题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>才能维持大脑高效工作。</p></div>
+    
+    <div class="trials" aria-label="第20题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="20" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="20" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="20" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-20">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-21" data-n="21" data-mode="memory">
+    <div class="card-header"><strong>第 21 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>脑<input aria-label="第21题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，颅骨起保护作用，<input aria-label="第21题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:7.9em" type="text"/>可防止撞击损伤大脑。</p></div>
+    
+    <div class="trials" aria-label="第21题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="21" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="21" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="21" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-21">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-22" data-n="22" data-mode="memory">
+    <div class="card-header"><strong>第 22 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>大脑可以同时处理多种信息，<input aria-label="第22题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:12.3em" type="text"/>，需<input aria-label="第22题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第22题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="22" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="22" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="22" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-22">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-23" data-n="23" data-mode="memory">
+    <div class="card-header"><strong>第 23 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>大脑不同分区分工明确：额叶负责<input aria-label="第23题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，枕叶<input aria-label="第23题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，颞叶<input aria-label="第23题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第23题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="23" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="23" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="23" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-23">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-24" data-n="24" data-mode="memory">
+    <div class="card-header"><strong>第 24 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>小学生每日标准睡眠时间<input aria-label="第24题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:6.2em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第24题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="24" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="24" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="24" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-24">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-25" data-n="25" data-mode="memory">
+    <div class="card-header"><strong>第 25 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>长期熬夜会影响<input aria-label="第25题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:7.9em" type="text"/>，干扰<input aria-label="第25题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第25题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="25" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="25" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="25" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-25">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-26" data-n="26" data-mode="memory">
+    <div class="card-header"><strong>第 26 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>调查研究完整流程：<input aria-label="第26题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:18em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第26题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="26" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="26" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="26" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-26">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-27" data-n="27" data-mode="memory">
+    <div class="card-header"><strong>第 27 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p><input aria-label="第27题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:9.7em" type="text"/>会损伤身体健康，<input aria-label="第27题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:11.4em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第27题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="27" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="27" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="27" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-27">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-28" data-n="28" data-mode="memory">
+    <div class="card-header"><strong>第 28 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>可以制作“<input aria-label="第28题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4.4em" type="text"/>”，记录各类调节情绪的办法，情绪低落时使用。</p></div>
+    
+    <div class="trials" aria-label="第28题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="28" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="28" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="28" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-28">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-29" data-n="29" data-mode="memory">
+    <div class="card-header"><strong>第 29 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>青春期大脑<input aria-label="第29题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>不完善，更容易<input aria-label="第29题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:4em" type="text"/>，需要<input aria-label="第29题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:5.3em" type="text"/>管理。</p></div>
+    
+    <div class="trials" aria-label="第29题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="29" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="29" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="29" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-29">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-30" data-n="30" data-mode="memory">
+    <div class="card-header"><strong>第 30 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>完整健康计划四步骤：<input aria-label="第30题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:18em" type="text"/>。</p></div>
+    
+    <div class="trials" aria-label="第30题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="30" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="30" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="30" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-30">尚未记录</span></div>
+    </article>
+<article class="card" id="memory-31" data-n="31" data-mode="memory">
+    <div class="card-header"><strong>第 31 题</strong><span class="seq">基础记忆 · 独立作答</span></div>
+    
+    <div class="question"><p>健康三大核心要素：<input aria-label="第31题填空" autocomplete="off" class="blank-field" data-blank="0" style="--w:12.3em" type="text"/>，三者缺一不可。</p></div>
+    
+    <div class="trials" aria-label="第31题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="31" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="31" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="memory" data-n="31" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-memory-31">尚未记录</span></div>
+    </article></div>
+</section>
+<section class="panel" id="scene-panel">
+  <div class="roundbar"><div class="split"><div><h2 style="margin:0;color:var(--blue)">B卷 · 生活情境挑战</h2><div class="micro">31道独立情境题 · 需要自己推理、解释或设计解决方案</div></div><div class="roundselect" data-rselect="scene"><button type="button" data-r="1" class="selected">第1轮</button><button type="button" data-r="2">第2轮</button><button type="button" data-r="3">第3轮</button></div></div><div class="toolbar"><button type="button" class="grade-btn" id="grade-scene" data-original-onclick="gradeRound('scene')">批改并显示答案</button><button class="primary" type="button" data-original-onclick="toggleFinish('scene')" id="finish-scene">本轮全部核对完毕</button><span class="grade-status" id="grade-status-scene" aria-live="polite"></span><button type="button" data-original-onclick="printSheet('scene')">打印这套卷</button><button type="button" data-original-onclick="filterMode('scene')" id="filter-scene">只看待巩固题：关</button><span class="finish" id="done-scene"></span></div><div class="micro">情境题没有把知识点答案直接写在题干里，建议不翻阅A卷，先讲清“为什么”。</div></div>
+  <div class="print-header">班级：____________　姓名：____________　日期：____________　　第____轮</div>
+  <div id="sheet-scene"><article class="card" id="scene-1" data-n="1" data-mode="scene">
+    <div class="card-header"><strong>第 01 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">体检数据怎么比较？</div>
+    <div class="question">两名同学记录了体检数据：甲身高1.40米、体重39.2千克；乙身高1.50米、体重45千克。请分别算出他们的BMI（写算式），判断两人的数值是否相同。仅凭这个数字，能直接断定谁更健康吗？为什么？</div>
+    <label class="write-label" for="memo-scene-1">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-1" data-mode="scene" data-n="1" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第1题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="1" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="1" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="1" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-1">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-2" data-n="2" data-mode="scene">
+    <div class="card-header"><strong>第 02 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">成长速度不一样</div>
+    <div class="question">小杰上半年身高只长了1厘米，接下来的半年却长了5厘米。他担心自己身体出了问题。你会怎样解释这种变化？还需要了解哪些情况，才能判断是否正常？</div>
+    <label class="write-label" for="memo-scene-2">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-2" data-mode="scene" data-n="2" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第2题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="2" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="2" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="2" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-2">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-3" data-n="3" data-mode="scene">
+    <div class="card-header"><strong>第 03 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">同桌的身高差</div>
+    <div class="question">小华和同桌年龄相同、每天在学校待的时间也差不多，可一年后身高增长不一样。请提出至少三种可能原因，并说出你想怎样调查，而不是直接猜测。</div>
+    <label class="write-label" for="memo-scene-3">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-3" data-mode="scene" data-n="3" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第3题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="3" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="3" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="3" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-3">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-4" data-n="4" data-mode="scene">
+    <div class="card-header"><strong>第 04 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">谁先猛长个？</div>
+    <div class="question">班里两个同龄的孩子，一个已经进入快速长高阶段，另一个还没有。有人因此断定“没长高的肯定不正常”。你是否同意？结合男女生通常开始快速长高的时间解释。</div>
+    <label class="write-label" for="memo-scene-4">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-4" data-mode="scene" data-n="4" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第4题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="4" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="4" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="4" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-4">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-5" data-n="5" data-mode="scene">
+    <div class="card-header"><strong>第 05 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">只有米饭和面条</div>
+    <div class="question">小明连续几天只吃米饭和面条。你认为他的饮食可能缺少哪些种类的营养？至少说出三种，并给他设计一顿更合理的饭。</div>
+    <label class="write-label" for="memo-scene-5">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-5" data-mode="scene" data-n="5" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第5题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="5" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="5" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="5" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-5">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-6" data-n="6" data-mode="scene">
+    <div class="card-header"><strong>第 06 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">运动后怎么补？</div>
+    <div class="question">学校组织长距离徒步。小宇早上只喝了一杯水，途中越来越没力气；回家后又想靠“只喝白水”帮助身体长结实。你会分别给他什么建议？说明理由。</div>
+    <label class="write-label" for="memo-scene-6">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-6" data-mode="scene" data-n="6" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第6题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="6" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="6" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="6" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-6">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-7" data-n="7" data-mode="scene">
+    <div class="card-header"><strong>第 07 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">一滴油都不能碰吗？</div>
+    <div class="question">小兰听说某些食物“脂肪多”，便决定以后做菜绝不放油，也不碰任何坚果。你觉得这种做法合理吗？请从人体需要的角度说出至少两条理由。</div>
+    <label class="write-label" for="memo-scene-7">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-7" data-mode="scene" data-n="7" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第7题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="7" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="7" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="7" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-7">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-8" data-n="8" data-mode="scene">
+    <div class="card-header"><strong>第 08 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">几种食物就够了？</div>
+    <div class="question">一位同学长期只吃自己最喜欢的两三种食物，认为“吃饱就等于什么都不缺”。请从营养获取的角度指出他的想法可能有什么问题，并举例说明怎样改进。</div>
+    <label class="write-label" for="memo-scene-8">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-8" data-mode="scene" data-n="8" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第8题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="8" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="8" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="8" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-8">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-9" data-n="9" data-mode="scene">
+    <div class="card-header"><strong>第 09 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">两份未知样品</div>
+    <div class="question">科学小组拿到两种不知道成分的食物A和B，手边只有碘酒与干净白纸。你会怎样分别检查它们是否含有淀粉或较多脂肪？观察到什么现象可以作为依据？</div>
+    <label class="write-label" for="memo-scene-9">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-9" data-mode="scene" data-n="9" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第9题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="9" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="9" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="9" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-9">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-10" data-n="10" data-mode="scene">
+    <div class="card-header"><strong>第 10 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">洗得越用力越好吗？</div>
+    <div class="question">小杰做饭时，先把青菜泡在水里很久，又把大米放在盆里搓洗了许多遍。妈妈说这样“肯定更有营养”。你会保留哪些清洗目的，又会调整哪些操作？说出科学理由。</div>
+    <label class="write-label" for="memo-scene-10">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-10" data-mode="scene" data-n="10" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第10题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="10" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="10" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="10" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-10">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-11" data-n="11" data-mode="scene">
+    <div class="card-header"><strong>第 11 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">包装大挑战</div>
+    <div class="question">超市有两种燕麦棒，正面都写着“轻盈健康”。小明想比较它们每100克含多少能量，以及蛋白质等含量。除了看广告语，你会让他查包装的哪一部分？为什么？</div>
+    <label class="write-label" for="memo-scene-11">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-11" data-mode="scene" data-n="11" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第11题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="11" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="11" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="11" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-11">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-12" data-n="12" data-mode="scene">
+    <div class="card-header"><strong>第 12 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">上午最后一节课</div>
+    <div class="question">小宇早上赶车没有吃东西，到了上午最后一节课，他觉得无力、注意力集中不起来。他只想喝一杯水继续撑到中午。请推测可能的原因，并提出一个更合适的办法。</div>
+    <label class="write-label" for="memo-scene-12">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-12" data-mode="scene" data-n="12" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第12题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="12" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="12" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="12" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-12">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-13" data-n="13" data-mode="scene">
+    <div class="card-header"><strong>第 13 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">把宝塔倒过来？</div>
+    <div class="question">学校要做一张“每天怎样搭配食物”的宣传图。有位同学把平衡膳食宝塔倒过来，主张顶端类别吃最多，底部类别吃最少。你发现什么问题？应该怎样修改？</div>
+    <label class="write-label" for="memo-scene-13">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-13" data-mode="scene" data-n="13" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第13题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="13" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="13" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="13" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-13">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-14" data-n="14" data-mode="scene">
+    <div class="card-header"><strong>第 14 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">一天饮食改造师</div>
+    <div class="question">小杰早上只吃几口零食，中午用一瓶甜饮料代替喝水，放学后经常点炸鸡。请帮他制定三条可以马上执行的改变，并解释其中一条为什么有必要。</div>
+    <label class="write-label" for="memo-scene-14">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-14" data-mode="scene" data-n="14" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第14题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="14" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="14" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="14" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-14">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-15" data-n="15" data-mode="scene">
+    <div class="card-header"><strong>第 15 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">长身体却节食</div>
+    <div class="question">一名正在长身体的同学为了迅速变瘦，连续几天减少正餐，运动时还常觉得疲劳。你会如何劝他？说出至少两条与身体发育有关的理由，并提出饮食方面的调整。</div>
+    <label class="write-label" for="memo-scene-15">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-15" data-mode="scene" data-n="15" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第15题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="15" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="15" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="15" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-15">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-16" data-n="16" data-mode="scene">
+    <div class="card-header"><strong>第 16 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">旅行午餐盒</div>
+    <div class="question">春游时，一名同学只装了香肠，另一名同学只装了饼干。请你设计一个更合理的午餐盒，并解释为什么“只吃一种喜欢的东西”不够好。</div>
+    <label class="write-label" for="memo-scene-16">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-16" data-mode="scene" data-n="16" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第16题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="16" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="16" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="16" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-16">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-17" data-n="17" data-mode="scene">
+    <div class="card-header"><strong>第 17 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">课间活动够了吗？</div>
+    <div class="question">小明说：“我每天课间活动10分钟，一周有几天还会踢球，所以运动量肯定够了。”请根据这张知识单给他一个可以衡量的每日活动目标，并建议如何合理分配。</div>
+    <label class="write-label" for="memo-scene-17">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-17" data-mode="scene" data-n="17" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第17题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="17" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="17" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="17" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-17">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-18" data-n="18" data-mode="scene">
+    <div class="card-header"><strong>第 18 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">头部结构拼图</div>
+    <div class="question">科学馆有一个模型：内部器官被坚硬骨壳包围，模型中有一个最大的部分和另外两个重要部分。请说出脑由哪三大部分组成，并解释为什么保护头部很重要。</div>
+    <label class="write-label" for="memo-scene-18">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-18" data-mode="scene" data-n="18" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第18题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="18" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="18" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="18" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-18">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-19" data-n="19" data-mode="scene">
+    <div class="card-header"><strong>第 19 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">三个“岗位”出问题</div>
+    <div class="question">某人能清醒地读文字、听声音，却走路时明显不稳；另一个人清醒时能做动作，但睡眠时仍必须自动维持心跳和呼吸。结合知识单，分别说说协调动作、处理文字声音以及维持基本生命活动主要与脑的哪些部分有关。</div>
+    <label class="write-label" for="memo-scene-19">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-19" data-mode="scene" data-n="19" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第19题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="19" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="19" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="19" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-19">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-20" data-n="20" data-mode="scene">
+    <div class="card-header"><strong>第 20 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">临考前的选择</div>
+    <div class="question">小雨为了多做两套卷子，连续几天睡得很少，吃饭也不规律，结果越学越难集中注意力。她说：“大脑又不是肌肉，为什么会受影响？”你怎样解释并给她两条建议？</div>
+    <label class="write-label" for="memo-scene-20">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-20" data-mode="scene" data-n="20" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第20题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="20" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="20" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="20" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-20">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-21" data-n="21" data-mode="scene">
+    <div class="card-header"><strong>第 21 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">熟练也可能受伤</div>
+    <div class="question">小杰骑车技术很好，认为“我速度慢又熟练，摔倒也不会伤到脑子”。你认为这个判断可靠吗？请解释身体原有的保护结构为什么仍不能代替安全装备。</div>
+    <label class="write-label" for="memo-scene-21">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-21" data-mode="scene" data-n="21" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第21题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="21" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="21" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="21" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-21">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-22" data-n="22" data-mode="scene">
+    <div class="card-header"><strong>第 22 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">学习计划改造</div>
+    <div class="question">小文计划星期天从早到晚只背一门课，不安排休息。到了下午，他虽然一直盯着书，却怎么也记不住。请给他设计两个具体调整，并说明这样安排的原因。</div>
+    <label class="write-label" for="memo-scene-22">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-22" data-mode="scene" data-n="22" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第22题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="22" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="22" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="22" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-22">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-23" data-n="23" data-mode="scene">
+    <div class="card-header"><strong>第 23 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">脑区研究员</div>
+    <div class="question">科普馆有三张任务卡：①看清远处交通灯的颜色；②听见老师呼叫自己的名字；③思考该怎样处理与同学的争执。请把每张卡分别对应到知识单提到的三个脑区，并说说依据。</div>
+    <label class="write-label" for="memo-scene-23">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-23" data-mode="scene" data-n="23" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第23题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="23" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="23" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="23" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-23">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-24" data-n="24" data-mode="scene">
+    <div class="card-header"><strong>第 24 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">上学时间不变</div>
+    <div class="question">小宇每天早上7点起床，最近常在晚上10点半才睡着。如果要达到知识单推荐的小学生睡眠时长，他至少还差多少睡眠时间？应把入睡时间调整到几点左右？</div>
+    <label class="write-label" for="memo-scene-24">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-24" data-mode="scene" data-n="24" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第24题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="24" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="24" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="24" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-24">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-25" data-n="25" data-mode="scene">
+    <div class="card-header"><strong>第 25 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">熬夜打游戏</div>
+    <div class="question">一位同学一连好几个星期凌晨才睡，白天没精神，却说“睡觉只影响第二天困不困，不会影响长身体”。你同意吗？请给出两个理由。</div>
+    <label class="write-label" for="memo-scene-25">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-25" data-mode="scene" data-n="25" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第25题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="25" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="25" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="25" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-25">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-26" data-n="26" data-mode="scene">
+    <div class="card-header"><strong>第 26 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">调查不能靠猜</div>
+    <div class="question">学校想了解六年级同学每天用多少时间进行体育活动。小组确定好这个主题后，有人建议“随便问两个人就写结论”。你会怎样组织这项调查，直到提出有依据的建议？</div>
+    <label class="write-label" for="memo-scene-26">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-26" data-mode="scene" data-n="26" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第26题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="26" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="26" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="26" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-26">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-27" data-n="27" data-mode="scene">
+    <div class="card-header"><strong>第 27 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">比赛前与比赛后</div>
+    <div class="question">演讲比赛前，小杰有点紧张，反而认真练习；另一位同学连续几周都因担忧而难以入睡。你觉得这两种状态有哪些不同？分别可以怎样应对？</div>
+    <label class="write-label" for="memo-scene-27">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-27" data-mode="scene" data-n="27" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第27题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="27" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="27" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="27" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-27">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-28" data-n="28" data-mode="scene">
+    <div class="card-header"><strong>第 28 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">给未来的自己留办法</div>
+    <div class="question">一位同学发现自己一生气就忘了平时学过的缓解方法。他想设计一个随时能取用的小工具，帮助自己心情低落时快速找到合适做法。你会让他准备什么、怎么使用？</div>
+    <label class="write-label" for="memo-scene-28">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-28" data-mode="scene" data-n="28" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第28题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="28" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="28" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="28" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-28">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-29" data-n="29" data-mode="scene">
+    <div class="card-header"><strong>第 29 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">冲动的十秒钟</div>
+    <div class="question">玩球时小华被误撞，立刻想推回去。事后他又觉得自己太冲动。请根据青春期脑发育的知识解释这种反应可能与什么有关，并设计一个当场可执行的应对步骤。</div>
+    <label class="write-label" for="memo-scene-29">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-29" data-mode="scene" data-n="29" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第29题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="29" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="29" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="29" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-29">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-30" data-n="30" data-mode="scene">
+    <div class="card-header"><strong>第 30 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">计划总是坚持不住</div>
+    <div class="question">小明写下“我要更健康”，却不知道每天该做什么，也不清楚一周后有没有进步。请把这句空泛的愿望变成一个能执行、能检查的计划，写出完整步骤。</div>
+    <label class="write-label" for="memo-scene-30">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-30" data-mode="scene" data-n="30" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第30题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="30" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="30" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="30" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-30">尚未记录</span></div>
+    </article>
+<article class="card" id="scene-31" data-n="31" data-mode="scene">
+    <div class="card-header"><strong>第 31 题</strong><span class="seq">情境应用 · 独立作答</span></div>
+    <div class="story-title">只补一项够不够？</div>
+    <div class="question">有三个人：甲每天吃得很丰富却总是熬夜；乙很早睡却几乎不活动；丙每天锻炼但经常用零食代替正餐。你认为他们各自忽略了什么？要维持健康应共同做到哪三方面？</div>
+    <label class="write-label" for="memo-scene-31">我的分析（可选，可保存）</label><textarea class="response" id="memo-scene-31" data-mode="scene" data-n="31" rows="3" placeholder="先独立思考，再写出你的理由……"></textarea>
+    <div class="trials" aria-label="第31题三次作答记录">
+    <span class="trial-caption">答对后打勾</span>
+    <label title="第一次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="31" data-round="1"><span>第1次</span></label>
+    <label title="第二次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="31" data-round="2"><span>第2次</span></label>
+    <label title="第三次答对后勾选"><input type="checkbox" class="trial" data-mode="scene" data-n="31" data-round="3"><span>第3次</span></label>
+    <span class="status" id="st-scene-31">尚未记录</span></div>
+    </article></div>
+</section>
+<section class="panel" id="summary-panel"><h2 style="color:var(--blue)">三轮掌握情况 · 自动诊断</h2><p class="micro">以下统计依据每题三次的勾选记录，不能代替老师对答案的判断。只有确认“本轮全部核对完毕”后，未勾选才算本轮未掌握。</p><div id="stats-memory"></div><div id="stats-scene"></div>
+<div class="tracker"><h3>数据保存与备份</h3><p class="micro">答题草稿会保存在当前浏览器；完成一轮核对后可同步到家庭云端。换设备时，先解锁家庭档案，再查看云端历史记录；也可以定期导出 JSON 备份。</p><div class="files"><button type="button" class="primary" data-original-onclick="exportData()">导出学习记录 JSON</button><label class="upload">导入学习记录 JSON<input type="file" style="display:none" accept=".json,application/json" data-original-onchange="importData(event)"></label><button type="button" class="warn" data-original-onclick="resetData()">清空所有记录</button></div><p class="micro" id="storage-status"></p></div></section>
+<section id="answer-source" hidden><div class="key-list" id="key-list" hidden><details><summary>第 01 题 · 参考思路</summary><p><b>基础：</b>BMI＝体重（kg）÷身高（m）÷身高（m）；kg/m²；肥胖、超重、正常、低体重</p><p><b>情境：</b>两人的BMI均为20：39.2÷1.4÷1.4＝20；45÷1.5÷1.5＝20。不能仅凭一个数值判断谁更健康；尤其对儿童，还要结合年龄、性别和成长情况等评价。</p></details><details><summary>第 02 题 · 参考思路</summary><p><b>基础：</b>青少年时期</p><p><b>情境：</b>生长速度可能随成长阶段变化，青少年时期生长发育旺盛；可结合年龄、身体变化和较长期的身高记录来看，不能凭半年一次变化下结论。</p></details><details><summary>第 03 题 · 参考思路</summary><p><b>基础：</b>遗传、饮食习惯、睡眠、运动、情绪</p><p><b>情境：</b>可能与遗传、饮食习惯、睡眠、运动、情绪等有关。可了解作息、饮食、活动等并持续记录，不能简单把原因归结为单一因素。</p></details><details><summary>第 04 题 · 参考思路</summary><p><b>基础：</b>约10岁；约12岁</p><p><b>情境：</b>不同孩子进入快速长高阶段的时间不同，女生通常约10岁、男生约12岁进入相关阶段（按知识单表述），个体差异存在，不能轻易断言异常。</p></details><details><summary>第 05 题 · 参考思路</summary><p><b>基础：</b>糖类、脂肪、蛋白质、维生素、无机盐、水</p><p><b>情境：</b>米饭和面条主要提供糖类，单一饮食容易缺少蛋白质、脂肪、维生素、部分无机盐等，营养搭配也不均衡。可增加蛋、豆制品、鱼肉、蔬菜、水果等，适量饮水。</p></details><details><summary>第 06 题 · 参考思路</summary><p><b>基础：</b>能量；构成细胞的基础物质</p><p><b>情境：</b>需要合理摄入能提供能量的食物，尤其是含糖类的主食；长身体也需蛋白质等营养帮助构成细胞。水重要但不能替代全部营养。</p></details><details><summary>第 07 题 · 参考思路</summary><p><b>基础：</b>油脂、坚果；重要的储能物质和组织细胞的结构成分</p><p><b>情境：</b>不合理。脂肪是重要储能物质，也参与构成组织细胞；应合理摄入，而不是完全不吃或过量摄入。</p></details><details><summary>第 08 题 · 参考思路</summary><p><b>基础：</b>维生素；食物获取；无机盐</p><p><b>情境：</b>吃饱不等于营养全面。多种维生素需从食物获取，身体也需要适量无机盐；应选择种类丰富的食物，如蔬果、奶类、豆类等，合理搭配。</p></details><details><summary>第 09 题 · 参考思路</summary><p><b>基础：</b>碘酒变蓝紫色；油迹不易消失</p><p><b>情境：</b>检验淀粉可滴碘酒，出现蓝紫色提示含淀粉；检验脂肪可将食物涂抹白纸，出现不易消失的油迹可作为依据。注意实验安全、不要食用试验样品。</p></details><details><summary>第 10 题 · 参考思路</summary><p><b>基础：</b>长时间浸泡；反复揉搓</p><p><b>情境：</b>食材需要适当清洗以去除污物，但不宜长时间浸泡蔬菜，也不宜反复揉搓淘米，避免水溶性维生素过多流失。</p></details><details><summary>第 11 题 · 参考思路</summary><p><b>基础：</b>营养成分表</p><p><b>情境：</b>查看食品包装上的营养成分表，按相同计量基础比较能量和营养素含量，不能只看广告语。</p></details><details><summary>第 12 题 · 参考思路</summary><p><b>基础：</b>本题原文无划线填空</p><p><b>情境：</b>可能是饥饿、能量摄入不足；应及时、合理进食补充能量，平时养成吃早餐的习惯；不能只靠喝水代替饮食。</p></details><details><summary>第 13 题 · 参考思路</summary><p><b>基础：</b>从上到下食用量依次增多</p><p><b>情境：</b>儿童平衡膳食宝塔分五层，按知识单从上到下食用量依次增多，不应把顶层食物当作吃得最多的类别。</p></details><details><summary>第 14 题 · 参考思路</summary><p><b>基础：</b>好早餐、足量水、不喝含糖饮料、少吃油炸</p><p><b>情境：</b>应吃好早餐、足量饮水、少喝或不喝含糖饮料、少吃油炸食品等；解释示例：用白水替代含糖饮料可减少额外糖分摄入。</p></details><details><summary>第 15 题 · 参考思路</summary><p><b>基础：</b>肌肉快速发育；喝奶补充钙质；盲目节食减肥</p><p><b>情境：</b>青春期骨骼和肌肉快速发育，需要充分且均衡的营养，不能盲目节食；可合理摄入含钙食物如奶类并正常吃三餐，配合健康运动。</p></details><details><summary>第 16 题 · 参考思路</summary><p><b>基础：</b>不偏食、不挑食</p><p><b>情境：</b>要均衡搭配各类食物，不偏食、不挑食；午餐盒可安排主食、蔬菜、适量肉蛋豆类、水和水果等，尽量种类丰富。</p></details><details><summary>第 17 题 · 参考思路</summary><p><b>基础：</b>坚持60分钟以上中高强度运动；生长需求</p><p><b>情境：</b>按知识单，每天坚持60分钟以上中高强度运动，以符合生长需求；可在课间、体育课和放学后合理安排，结合实际循序渐进。</p></details><details><summary>第 18 题 · 参考思路</summary><p><b>基础：</b>大脑、小脑、脑干；半球；是人体控制中心</p><p><b>情境：</b>脑主要分为大脑、小脑、脑干；大脑分左右半球，是人体控制中心。脑组织较柔软，需重视保护头部。</p></details><details><summary>第 19 题 · 参考思路</summary><p><b>基础：</b>思考、记忆、视觉听觉处理；肢体协调运动；呼吸心跳</p><p><b>情境：</b>协调动作主要与小脑有关；阅读思考、视觉听觉处理主要与大脑有关；呼吸和心跳等基础生命活动主要与脑干有关。</p></details><details><summary>第 20 题 · 参考思路</summary><p><b>基础：</b>约1/5能量；营养和睡眠</p><p><b>情境：</b>大脑工作消耗较多能量（知识单约1/5），需要充足营养和睡眠以高效工作。建议规律吃饭、保证睡眠，合理安排学习。</p></details><details><summary>第 21 题 · 参考思路</summary><p><b>基础：</b>柔软脆弱；骑车、轮滑佩戴头盔</p><p><b>情境：</b>不可靠。脑柔软脆弱，虽有颅骨保护，发生撞击仍可能受伤；骑车、轮滑时佩戴合适头盔有助于减少损伤。</p></details><details><summary>第 22 题 · 参考思路</summary><p><b>基础：</b>长时间单一学习会造成大脑疲劳；运动、呼吸</p><p><b>情境：</b>长时间单一学习可能造成大脑疲劳；可适当穿插运动、短暂休息、深呼吸及变换学习任务等，帮助调节状态。</p></details><details><summary>第 23 题 · 参考思路</summary><p><b>基础：</b>思维情绪；处理视觉；处理声音记忆</p><p><b>情境：</b>①主要与枕叶处理视觉有关；②主要与颞叶处理声音有关；③主要与额叶的思维、情绪处理有关。现实脑活动通常涉及多个区域协作。</p></details><details><summary>第 24 题 · 参考思路</summary><p><b>基础：</b>不少于10小时</p><p><b>情境：</b>22:30到次日7:00为8.5小时；与不少于10小时相比少1.5小时，应尽量在21:00左右入睡（按知识单标准）。</p></details><details><summary>第 25 题 · 参考思路</summary><p><b>基础：</b>青春期正常生长发育；身体激素分泌</p><p><b>情境：</b>不同意。长期熬夜可能影响青春期正常生长发育，并干扰身体激素分泌；也会影响日间状态。</p></details><details><summary>第 26 题 · 参考思路</summary><p><b>基础：</b>确定主题→设计问卷→收集数据→分析问题→给出建议</p><p><b>情境：</b>确定主题后，要设计问卷、收集数据、分析问题，再给出建议；应尽量合理取样，不靠个别回答就得出整体结论。</p></details><details><summary>第 27 题 · 参考思路</summary><p><b>基础：</b>过度紧张、长期负面情绪；轻度紧张反而有助于解决问题</p><p><b>情境：</b>适度/轻度紧张有时有助于集中注意和解决问题；过度紧张、长期负面情绪会影响健康。可通过练习、休息、倾诉等调节；严重持续困扰可寻求成人帮助。</p></details><details><summary>第 28 题 · 参考思路</summary><p><b>基础：</b>压力疏解盒</p><p><b>情境：</b>可以制作“压力疏解盒”，把让自己平静的做法写成卡片放进去，情绪低落时抽取并尝试，如深呼吸、散步、向信任的人倾诉。</p></details><details><summary>第 29 题 · 参考思路</summary><p><b>基础：</b>额叶发育；急躁冲动；主动学习情绪</p><p><b>情境：</b>青春期大脑额叶发育尚不完善，更容易急躁冲动；可先停下来、深呼吸、表达感受、寻求沟通或老师帮助，主动学习情绪管理。</p></details><details><summary>第 30 题 · 参考思路</summary><p><b>基础：</b>确定目标→养成对应习惯→每日实践→打卡评估效果</p><p><b>情境：</b>应确定明确目标→养成对应习惯→每日实践→打卡评估效果。示例：每天放学后步行30分钟，每日记录，一周回顾执行情况。</p></details><details><summary>第 31 题 · 参考思路</summary><p><b>基础：</b>均衡膳食、充足睡眠、规律运动</p><p><b>情境：</b>分别忽视充足睡眠、规律运动、均衡膳食；三者都需要，不能用某一方面替代其他方面。</p></details></div></section>
+<div class="footer">六年级科学《健康生活》 · 家庭云端学习版 · 原题1—31按知识单整理 · 圆圈代表“该次独立答对”</div>
+</main>
+
+</div><div id="app" class="wrap container" hidden></div></body></html>
